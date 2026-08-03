@@ -78,7 +78,7 @@ const ExperienceSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-slate-50 px-6 md:px-16 lg:px-24 py-24 md:py-32 overflow-hidden"
+      className="w-full bg-[#F7F8F3] px-6 md:px-16 lg:px-24 py-24 md:py-32 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center gap-16 lg:gap-24">

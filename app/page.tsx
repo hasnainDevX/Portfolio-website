@@ -13,6 +13,7 @@ const MarqueeShowcase = dynamic(() => import("./components/TextMarquee"), {
 });
 import AnnouncementBar from "./components/AnnouncementBar";
 import Image from "next/image";
+import Cta from "./components/Cta";
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
       <Portfolio />
       <Testimonials />
       <ExperienceSection />
+      <Cta/>
       <MarqueeShowcase
         data={["DEVELOPMENT MADE SIMPLE ✦ DESIGN & DEVELOPMENT"]}
         speed={20}

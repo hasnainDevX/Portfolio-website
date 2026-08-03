@@ -8,6 +8,7 @@ import Package1Image from "../assets/maceysmethod3.png";
 import Package3Image from "../assets/ecomsite1.jpeg";
 import Image from "next/image";
 import Link from "next/link";
+import PackagesOffer from "./PackagesOffer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,26 +37,50 @@ const Deliverable = ({
 
 const PriceBlock = ({
   price,
+  originalPrice,
   turnaround,
   note,
 }: {
   price: string;
+  originalPrice?: string;
   turnaround: string;
   note?: string;
-}) => (
-  <div className="mt-8 mb-8 border-t border-[#2a2a2a]/10 pt-8">
-    <p
-      className="text-4xl text-[#2a2a2a] mb-1"
-      style={{ fontFamily: "Playfair Display, serif" }}
-    >
-      {price}
-    </p>
-    <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/60">
-      {turnaround}
-    </p>
-    {note && <p className="text-xs text-[#2a2a2a]/40 italic mt-1">{note}</p>}
-  </div>
-);
+}) => {
+  const blockRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={blockRef} className="mt-8 mb-8 border-t border-[#2a2a2a]/10 pt-8">
+      {originalPrice && (
+        <span
+          className="discount-badge inline-block text-[10px] tracking-[0.2em] uppercase font-semibold mb-3 px-3 py-1 rounded-full border"
+          style={{ color: "#b5924c", borderColor: "#b5924c" }}
+        >
+          25% off · August only
+        </span>
+      )}
+      <div className="flex items-baseline gap-3 flex-wrap">
+        {originalPrice && (
+          <span
+            className="text-xl text-[#2a2a2a]/30 line-through"
+            style={{ fontFamily: "Playfair Display, serif" }}
+          >
+            {originalPrice}
+          </span>
+        )}
+        <p
+          className="text-4xl text-[#2a2a2a] mb-1"
+          style={{ fontFamily: "Playfair Display, serif" }}
+        >
+          {price}
+        </p>
+      </div>
+      <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/60">
+        {turnaround}
+      </p>
+      {note && <p className="text-xs text-[#2a2a2a]/40 italic mt-1">{note}</p>}
+    </div>
+  );
+};
 
 // Hook to animate a package row
 const usePackageAnimation = (
@@ -150,8 +175,8 @@ const usePackageAnimation = (
       if (cta) {
         tl.fromTo(
           cta,
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.5 },
+          { opacity: 0, y: 12, scale: 0.97 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.5 },
           "-=0.2"
         );
       }
@@ -173,6 +198,7 @@ const PackagesSection = () => {
   return (
     <div id="packages-section" className="w-full min-h-screen">
       <hr className="border-t border-gray-500" />
+      <PackagesOffer/>
 
       {/* ── 01 The Foundation Site ── */}
       <div
@@ -213,7 +239,13 @@ const PackagesSection = () => {
               </div>
             </div>
 
-            <div className="price-block"><PriceBlock price="£200–£400" turnaround="1–2 weeks turnaround" /></div>
+            <div className="price-block">
+              <PriceBlock
+                price="£150–£300"
+                originalPrice="£200–£400"
+                turnaround="1–2 weeks turnaround"
+              />
+            </div>
             <Link href="/enquiry" aria-label="Book The Foundation Site package">
               <button className="cta-btn px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
                 Book The Foundation Site
@@ -260,7 +292,14 @@ const PackagesSection = () => {
             <div className="deliverable-item"><Deliverable bold="Email marketing integration" normal="and lead capture forms" /></div>
             <div className="deliverable-item"><Deliverable bold="60 days" normal="of post-launch support and updates" /></div>
             <div className="deliverable-item"><Deliverable bold="Self-managed content system" normal="— no developer needed" /></div>
-            <div className="price-block"><PriceBlock price="£500–£1000" turnaround="3–4 weeks turnaround" note="2-month payment plans available" /></div>
+            <div className="price-block">
+              <PriceBlock
+                price="£375–£750"
+                originalPrice="£500–£1000"
+                turnaround="3–4 weeks turnaround"
+                note="2-month payment plans available"
+              />
+            </div>
             <Link href="/enquiry" aria-label="Book The Signature Site package">
               <button className="cta-btn px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
                 Book The Signature Site
@@ -327,7 +366,13 @@ const PackagesSection = () => {
             <div className="deliverable-item"><Deliverable bold="Multi-platform compatibility" normal="and PWA features" /></div>
             <div className="deliverable-item"><Deliverable bold="Ongoing maintenance" normal="and security updates included" /></div>
             <div className="deliverable-item"><Deliverable bold="90 days priority support" normal="with unlimited revisions" /></div>
-            <div className="price-block"><PriceBlock price="£1,500+" turnaround="6–8 weeks turnaround" note="3-month payment plans available" /></div>
+            <div className="price-block">
+              <PriceBlock
+                price="£1,500+"
+                turnaround="6–8 weeks turnaround"
+                note="3-month payment plans available"
+              />
+            </div>
             <Link href="/enquiry" aria-label="Book The Complete Vision package">
               <button className="cta-btn px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
                 Book The Complete Vision
@@ -339,7 +384,7 @@ const PackagesSection = () => {
 
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center">
         <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto font-sans">
-          Need something outside these packages? Custom quotes are available for e-commerce builds, web applications, or anything with specific requirements. All prices are in GBP and exclude domain and hosting renewal costs.{" "}
+          Need something outside these packages? Custom quotes are available for e-commerce builds, web applications, or anything with specific requirements. All prices are in GBP and exclude domain and hosting renewal costs. August's 25% discount applies to Foundation and Signature Site packages only.{" "}
           <a href="/enquiry" className="underline underline-offset-2 hover:text-[#2a2a2a] transition-colors duration-200">
             Get in touch
           </a>{" "}

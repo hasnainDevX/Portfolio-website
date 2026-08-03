@@ -1,11 +1,11 @@
 const announcementItems = [
-  "Now Booking",
+  "Now Booking for August",
   "✦",              
-  "Now Booking",
+  "Hasnain Webworks",
   "✦",
-  "Now Booking",
+  "Now Booking for August",
   "✦",
-  "Now Booking",
+  "Hasnain Webworks",
   "✦",
 ];
 
