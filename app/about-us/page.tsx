@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 
 export const metadata: Metadata = {
   title: "About | Hasnain Webworks",
-  description: "Learn about Hasnain — a freelance web developer and software engineering student building custom websites for small businesses across the UK.",
+  description: "Learn about Hasnain — a freelance web developer and software engineering student building custom websites for small businesses.",
 };
 
 const About = () => {

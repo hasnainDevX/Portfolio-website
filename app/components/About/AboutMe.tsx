@@ -150,8 +150,8 @@ const AboutMe = () => {
             </p>
             <p className="font-sans text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
               Over two years of freelancing, I've delivered projects for clients
-              across the globe — working mostly with virtual assistants and
-              coaches in the UK, building sites that don't just look good. They
+              across the globe — working with virtual assistants, Social media managers,
+              coaches and other service based businesses in the UK, Canada, US, and beyond, building sites that don't just look good. They
               work.
             </p>
           </div>

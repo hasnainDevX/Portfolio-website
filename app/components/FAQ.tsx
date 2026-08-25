@@ -14,7 +14,7 @@ const faqs: FAQ[] = [
   {
     question: "How much does a website cost?",
     answer:
-      "Packages start from £200 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
+      "Packages start from $200 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
   },
   {
     question: "Why custom code instead of Wix, WordPress, or Squarespace?",
@@ -32,9 +32,9 @@ const faqs: FAQ[] = [
       "The Foundation Site typically wraps up in 1–2 weeks. Larger projects run 3–8 weeks depending on scope. The biggest factor is usually how quickly content and feedback come through on your end — I'll always give you a clear timeline upfront so nothing drags.",
   },
   {
-    question: "Why are your rates lower than most UK developers?",
+    question: "Why are your rates lower than most developers?",
     answer:
-      "Because the traditional agency model is broken. You pay £3,000 and half of it covers account managers, project coordinators, and internal meetings you're never in. I've cut all of that out by design — every penny goes into the actual build. The result is the same quality, delivered faster, with direct access to the person doing the work. That's not a compromise. That's a better deal.",
+      "Because the traditional agency model is broken. You pay $3,000 and half of it covers account managers, project coordinators, and internal meetings you're never in. I've cut all of that out by design — every penny goes into the actual build. The result is the same quality, delivered faster, with direct access to the person doing the work. That's not a compromise. That's a better deal.",
   },
   {
     question: "Will my website work on mobile?",

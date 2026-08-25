@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Hasnain Webworks",
-  description: "Custom-coded websites for service-based businesses in the UK. Fast, professional, and built to convert visitors into customers.",
+  description: "Custom-coded websites for service-based businesses. Fast, professional, and built to convert visitors into customers.",
 };
 
 export default function RootLayout({

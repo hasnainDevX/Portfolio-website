@@ -20,10 +20,10 @@ interface FormData {
 }
 
 const budgetOptions = [
-  "£200 – £500",
-  "£500 – £1000",
-  "£1000 – £2000",
-  "£2,000+",
+  "$200 – $500",
+  "$500 – $1000",
+  "$1000 – $2000",
+  "$2,000+",
 ];
 
 const timelineOptions = [
@@ -340,7 +340,7 @@ const ContactForm = () => {
         {/* Budget */}
         <div className="space-y-4">
           <label className={labelCls}>
-            Where does your budget roughly fall? (All prices in GBP). All
+            Where does your budget roughly fall? (All prices in USD). All
             budgets are welcome, this just helps me understand the scope
             <span className="text-[#A68B44]">*</span>
           </label>

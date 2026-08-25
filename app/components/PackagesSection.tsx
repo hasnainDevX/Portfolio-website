@@ -241,8 +241,8 @@ const PackagesSection = () => {
 
             <div className="price-block">
               <PriceBlock
-                price="£150–£300"
-                originalPrice="£200–£400"
+                price="$150–$300"
+                originalPrice="$200–$400"
                 turnaround="1–2 weeks turnaround"
               />
             </div>
@@ -294,8 +294,8 @@ const PackagesSection = () => {
             <div className="deliverable-item"><Deliverable bold="Self-managed content system" normal="— no developer needed" /></div>
             <div className="price-block">
               <PriceBlock
-                price="£375–£750"
-                originalPrice="£500–£1000"
+                price="$375–$750"
+                originalPrice="$500–$1000"
                 turnaround="3–4 weeks turnaround"
                 note="2-month payment plans available"
               />
@@ -368,7 +368,7 @@ const PackagesSection = () => {
             <div className="deliverable-item"><Deliverable bold="90 days priority support" normal="with unlimited revisions" /></div>
             <div className="price-block">
               <PriceBlock
-                price="£1,500+"
+                price="$1,500+"
                 turnaround="6–8 weeks turnaround"
                 note="3-month payment plans available"
               />
@@ -384,7 +384,7 @@ const PackagesSection = () => {
 
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center">
         <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto font-sans">
-          Need something outside these packages? Custom quotes are available for e-commerce builds, web applications, or anything with specific requirements. All prices are in GBP and exclude domain and hosting renewal costs. August's 25% discount applies to Foundation and Signature Site packages only.{" "}
+          Need something outside these packages? Custom quotes are available for e-commerce builds, web applications, or anything with specific requirements. All prices are in USD and exclude domain and hosting renewal costs. August's 25% discount applies to Foundation and Signature Site packages only.{" "}
           <a href="/enquiry" className="underline underline-offset-2 hover:text-[#2a2a2a] transition-colors duration-200">
             Get in touch
           </a>{" "}
