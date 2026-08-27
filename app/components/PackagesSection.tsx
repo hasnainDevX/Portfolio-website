@@ -240,11 +240,11 @@ const PackagesSection = () => {
             </div>
 
             <div className="price-block">
-              <PriceBlock
-                price="$150–$300"
-                originalPrice="$200–$400"
-                turnaround="1–2 weeks turnaround"
-              />
+            <PriceBlock
+  price="$225–$300"
+  originalPrice="$300–$400"
+  turnaround="1–2 weeks turnaround"
+/>
             </div>
             <Link href="/enquiry" aria-label="Book The Foundation Site package">
               <button className="cta-btn px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
