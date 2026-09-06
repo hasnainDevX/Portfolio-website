@@ -14,7 +14,7 @@ const faqs: FAQ[] = [
   {
     question: "How much does a website cost?",
     answer:
-      "Packages start from $200 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
+      "Packages start from $299 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
   },
   {
     question: "Why custom code instead of Wix, WordPress, or Squarespace?",
@@ -23,16 +23,18 @@ const faqs: FAQ[] = [
   },
   {
     question: "Can I update the website myself after it's built?",
+
     answer:
-      "Yes — on the Signature and Complete Vision packages, your site comes with a custom content management system. You can update text, swap images, add blog posts, and manage pages without touching a single line of code. It's built to be genuinely easy to use, not just technically possible.",
+      "Yes — you can add a custom content management dashboard to your website so you can update it yourself. The Complete Vision package includes a custom dashboard, while clients on other packages can also add one as an optional upgrade. Dashboard pricing typically ranges from $99–$299 depending on the features and complexity. You can use it to update text, swap images, add blog posts, and handle other content directly from an easy-to-use interface.",
   },
+
   {
     question: "How long does the process take?",
     answer:
       "The Foundation Site typically wraps up in 1–2 weeks. Larger projects run 3–8 weeks depending on scope. The biggest factor is usually how quickly content and feedback come through on your end — I'll always give you a clear timeline upfront so nothing drags.",
   },
   {
-    question: "Why are your rates lower than most developers?",
+    question: "Why are your rates lower than most Web Designers?",
     answer:
       "Because the traditional agency model is broken. You pay $3,000 and half of it covers account managers, project coordinators, and internal meetings you're never in. I've cut all of that out by design — every penny goes into the actual build. The result is the same quality, delivered faster, with direct access to the person doing the work. That's not a compromise. That's a better deal.",
   },
@@ -63,14 +65,20 @@ const FAQItem = ({ faq }: { faq: FAQ; index: number }) => {
       >
         <span
           className="text-2xl md:text-3xl lg:text-4xl font-normal leading-snug transition-colors duration-300 group-hover:opacity-70 px-10 md:px-16 lg:px-24"
-          style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "#1a1a1a" }}
+          style={{
+            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            color: "#1a1a1a",
+          }}
         >
           {faq.question}
         </span>
 
         <span
           className="shrink-0 flex items-center justify-center transition-transform duration-400 px-10 md:px-16"
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: "#1a1a1a" }}
+          style={{
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            color: "#1a1a1a",
+          }}
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <path
@@ -120,7 +128,7 @@ const FAQSection = () => {
       tl.fromTo(
         eyebrowRef.current,
         { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.6 }
+        { opacity: 1, y: 0, duration: 0.6 },
       );
 
       // FAQ rows stagger in
@@ -129,7 +137,7 @@ const FAQSection = () => {
           items,
           { opacity: 0, y: 24 },
           { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 },
-          "-=0.3"
+          "-=0.3",
         );
       }
     }, sectionRef);

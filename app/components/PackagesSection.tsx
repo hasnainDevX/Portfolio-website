@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -117,7 +117,7 @@ const usePackageAnimation = (
           hr,
           { scaleX: 0, transformOrigin: "left" },
           { scaleX: 1, duration: 0.8 },
-          0
+          0,
         );
       }
 
@@ -127,7 +127,7 @@ const usePackageAnimation = (
           number,
           { opacity: 0, y: 10 },
           { opacity: 1, y: 0, duration: 0.5 },
-          0.1
+          0.1,
         );
       }
 
@@ -137,7 +137,7 @@ const usePackageAnimation = (
           img,
           { opacity: 0, x: fromLeft ? -60 : 60, scale: 0.96 },
           { opacity: 1, x: 0, scale: 1, duration: 0.9 },
-          0.15
+          0.15,
         );
       }
 
@@ -147,7 +147,7 @@ const usePackageAnimation = (
           text,
           { opacity: 0, y: 40 },
           { opacity: 1, y: 0, duration: 0.8 },
-          0.3
+          0.3,
         );
       }
 
@@ -157,7 +157,7 @@ const usePackageAnimation = (
           deliverables,
           { opacity: 0, x: 20 },
           { opacity: 1, x: 0, duration: 0.4, stagger: 0.07 },
-          0.5
+          0.5,
         );
       }
 
@@ -167,7 +167,7 @@ const usePackageAnimation = (
           priceBlock,
           { opacity: 0, y: 16 },
           { opacity: 1, y: 0, duration: 0.5 },
-          "-=0.2"
+          "-=0.2",
         );
       }
 
@@ -177,7 +177,7 @@ const usePackageAnimation = (
           cta,
           { opacity: 0, y: 12, scale: 0.97 },
           { opacity: 1, y: 0, scale: 1, duration: 0.5 },
-          "-=0.2"
+          "-=0.2",
         );
       }
     }, el);
@@ -198,7 +198,7 @@ const PackagesSection = () => {
   return (
     <div id="packages-section" className="w-full min-h-screen">
       <hr className="border-t border-gray-500" />
-      <PackagesOffer/>
+      {/* <PackagesOffer /> */}
 
       {/* ── 01 The Foundation Site ── */}
       <div
@@ -206,45 +206,91 @@ const PackagesSection = () => {
         className="package1 flex flex-col lg:flex-row w-full h-auto gap-8 lg:gap-0 py-16"
       >
         <div className="leftdecor hidden lg:flex flex-[0_0_15%] lg:py-16 py-8">
-          <Image className="w-full h-full object-cover" src={Package11Image} alt="" />
+          <Image
+            className="w-full h-full object-cover"
+            src={Package11Image}
+            alt=""
+          />
         </div>
 
         <div className="centerimage flex-[0_0_35%] flex items-center justify-center p-8 lg:p-16">
           <div className="w-full max-w-md">
-            <Image src={Package1Image} alt="The Foundation Site" className="w-full h-auto" />
+            <Image
+              src={Package1Image}
+              alt="The Foundation Site"
+              className="w-full h-auto"
+            />
           </div>
         </div>
 
         <div className="textpart flex-[0_0_50%] p-8 lg:p-16 flex flex-col justify-center">
           <div className="max-w-xl">
-            <p className="pkg-number text-sm font-light mb-4 tracking-wider">01</p>
-            <h2 className="text-5xl lg:text-6xl font-serif mb-6 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
+            <p className="pkg-number text-sm font-light mb-4 tracking-wider">
+              01
+            </p>
+            <h2
+              className="text-5xl lg:text-6xl font-serif mb-6 leading-tight"
+              style={{ fontFamily: "Playfair Display, serif" }}
+            >
               The Foundation Site
             </h2>
             <p className="text-base leading-relaxed mb-8 text-gray-800">
-              Stop second-guessing every design choice. Start showing up with consistency and confidence. Your digital front door that actually works — a website that loads instantly, looks professional, and turns visitors into customers without the headaches of DIY builders.
+              Stop second-guessing every design choice. Start showing up with
+              consistency and confidence. Your digital front door that actually
+              works — a website that loads instantly, looks professional, and
+              turns visitors into customers without the headaches of DIY
+              builders.
             </p>
 
-            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">What's included</p>
+            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">
+              What's included
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-6">
               <div>
-                <div className="deliverable-item"><Deliverable bold="Custom-coded Website" normal="built from scratch" /></div>
-                <div className="deliverable-item"><Deliverable bold="Fast loading speeds" normal="and performance tuning" /></div>
-                <div className="deliverable-item"><Deliverable bold="Contact forms" normal="and essential integrations" /></div>
+                <div className="deliverable-item">
+                  <Deliverable
+                    bold="Custom-coded Website"
+                    normal="built from scratch"
+                  />
+                </div>
+                <div className="deliverable-item">
+                  <Deliverable
+                    bold="Fast loading speeds"
+                    normal="and performance tuning"
+                  />
+                </div>
+                <div className="deliverable-item">
+                  <Deliverable
+                    bold="Contact forms"
+                    normal="and essential integrations"
+                  />
+                </div>
               </div>
               <div>
-                <div className="deliverable-item"><Deliverable bold="SEO, analytics and copywriting" normal="for a strong launch" /></div>
-                <div className="deliverable-item"><Deliverable bold="Free hosting setup" normal="& domain guidance" /></div>
-                <div className="deliverable-item"><Deliverable bold="30 days" normal="of post-launch support" /></div>
+                <div className="deliverable-item">
+                  <Deliverable
+                    bold="SEO, analytics and copywriting"
+                    normal="for a strong launch"
+                  />
+                </div>
+                <div className="deliverable-item">
+                  <Deliverable
+                    bold="Free hosting setup"
+                    normal="& domain guidance"
+                  />
+                </div>
+                <div className="deliverable-item">
+                  <Deliverable bold="30 days" normal="of post-launch support" />
+                </div>
               </div>
             </div>
 
             <div className="price-block">
-            <PriceBlock
-  price="$225–$300"
-  originalPrice="$300–$400"
-  turnaround="1–2 weeks turnaround"
-/>
+              <PriceBlock
+                price="$299–$499"
+                // originalPrice="$750–$1,500"
+                turnaround="2–3 weeks turnaround"
+              />
             </div>
             <Link href="/enquiry" aria-label="Book The Foundation Site package">
               <button className="cta-btn px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
@@ -264,38 +310,99 @@ const PackagesSection = () => {
       >
         <div className="leftpart flex-1 p-8 lg:p-16 flex flex-col justify-center">
           <div className="max-w-md">
-            <p className="pkg-number text-sm font-light mb-4 tracking-wider">02</p>
-            <h2 className="text-5xl lg:text-6xl font-serif mb-6 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
+            <p className="pkg-number text-sm font-light mb-4 tracking-wider">
+              02
+            </p>
+            <h2
+              className="text-5xl lg:text-6xl font-serif mb-6 leading-tight"
+              style={{ fontFamily: "Playfair Display, serif" }}
+            >
               The Signature Site
             </h2>
-            <p className="text-base leading-relaxed text-gray-800" style={{ textAlign: "justify" }}>
-              Elevate your online presence with a website that commands attention and builds trust — the kind that makes potential customers think 'this business knows what they're doing'.
+            <p
+              className="text-base leading-relaxed text-gray-800"
+              style={{ textAlign: "justify" }}
+            >
+              Elevate your online presence with a website that commands
+              attention and builds trust — the kind that makes potential
+              customers think 'this business knows what they're doing'.
             </p>
           </div>
         </div>
 
         <div className="centerpart flex-1 flex items-center justify-center">
           <div className="w-full max-w-md">
-            <Image src={Package2Image} alt="The Signature Site" className="w-full h-auto" />
+            <Image
+              src={Package2Image}
+              alt="The Signature Site"
+              className="w-full h-auto"
+            />
           </div>
         </div>
 
         <div className="rightpart flex-1 p-8 lg:p-16 flex flex-col justify-center">
           <div className="max-w-md">
-            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">What's included</p>
-            <div className="deliverable-item"><Deliverable bold="Multi-page custom-coded website" normal="with advanced features" /></div>
-            <div className="deliverable-item"><Deliverable bold="Optimised for speed and SEO" normal="Core Web Vitals compliant" /></div>
-            <div className="deliverable-item"><Deliverable bold="Professional copywriting" normal="consultation session" /></div>
-            <div className="deliverable-item"><Deliverable bold="Advanced SEO implementation" normal="with schema markup" /></div>
-            <div className="deliverable-item"><Deliverable bold="Custom animations" normal="and interactive elements" /></div>
-            <div className="deliverable-item"><Deliverable bold="Analytics setup" normal="and conversion tracking" /></div>
-            <div className="deliverable-item"><Deliverable bold="Email marketing integration" normal="and lead capture forms" /></div>
-            <div className="deliverable-item"><Deliverable bold="60 days" normal="of post-launch support and updates" /></div>
-            <div className="deliverable-item"><Deliverable bold="Self-managed content system" normal="— no developer needed" /></div>
+            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">
+              What's included
+            </p>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Multi-page custom-coded website"
+                normal="with advanced features"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Optimised for speed and SEO"
+                normal="Core Web Vitals compliant"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Professional copywriting"
+                normal="consultation session"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Advanced SEO implementation"
+                normal="with schema markup"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Custom animations"
+                normal="and interactive elements"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Analytics setup"
+                normal="and conversion tracking"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Email marketing integration"
+                normal="and lead capture forms"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="60 days"
+                normal="of post-launch support and updates"
+              />
+            </div>
+            {/* <div className="deliverable-item">
+              <Deliverable
+                bold="Self-managed content system"
+                normal="— no developer needed"
+              />
+            </div> */}
             <div className="price-block">
               <PriceBlock
-                price="$375–$750"
-                originalPrice="$500–$1000"
+                price="$499–$999"
+                // originalPrice="$750–$1,500"
                 turnaround="3–4 weeks turnaround"
                 note="2-month payment plans available"
               />
@@ -318,20 +425,37 @@ const PackagesSection = () => {
       >
         <div className="leftimage flex-1 p-8 lg:p-16 flex items-center justify-center">
           <div className="w-full max-w-md">
-            <Image src={Package3Image} alt="The Complete Vision" className="w-full h-auto" />
+            <Image
+              src={Package3Image}
+              alt="The Complete Vision"
+              className="w-full h-auto"
+            />
           </div>
         </div>
 
         <div className="centercontent flex-1 p-8 lg:p-16 flex flex-col justify-center">
           <div className="max-w-lg">
-            <p className="pkg-number text-sm font-light mb-4 tracking-wider">03</p>
-            <h2 className="text-5xl lg:text-6xl font-serif mb-6 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
+            <p className="pkg-number text-sm font-light mb-4 tracking-wider">
+              03
+            </p>
+            <h2
+              className="text-5xl lg:text-6xl font-serif mb-6 leading-tight"
+              style={{ fontFamily: "Playfair Display, serif" }}
+            >
               The Complete Vision
             </h2>
-            <p className="text-base leading-relaxed mb-8 text-gray-800" style={{ textAlign: "justify" }}>
-              For businesses ready to stop playing small online. Every line of code written with intention, every detail designed to turn a first-time visitor into a repeat customer. This is the last website you'll ever need to build.
+            <p
+              className="text-base leading-relaxed mb-8 text-gray-800"
+              style={{ textAlign: "justify" }}
+            >
+              For businesses ready to stop playing small online. Every line of
+              code written with intention, every detail designed to turn a
+              first-time visitor into a repeat customer. This is the last
+              website you'll ever need to build.
             </p>
-            <h3 className="text-xs tracking-widest uppercase mb-6">Built to scale with you</h3>
+            <h3 className="text-xs tracking-widest uppercase mb-6">
+              Built to scale with you
+            </h3>
             <div className="space-y-4">
               {[
                 "Capture and nurture leads automatically",
@@ -339,14 +463,26 @@ const PackagesSection = () => {
                 "Premium presence that justifies higher prices",
                 "Turns visitors into customers through smart workflows",
               ].map((reason) => (
-                <div key={reason} className="deliverable-item flex items-start gap-3">
+                <div
+                  key={reason}
+                  className="deliverable-item flex items-start gap-3"
+                >
                   <div className="mt-1">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg
+                      className="w-5 h-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
                       <circle cx="12" cy="12" r="10" />
                       <path d="M9 12l2 2 4-4" />
                     </svg>
                   </div>
-                  <p className="text-base italic font-serif" style={{ fontFamily: "Playfair Display, serif" }}>
+                  <p
+                    className="text-base italic font-serif"
+                    style={{ fontFamily: "Playfair Display, serif" }}
+                  >
                     {reason}
                   </p>
                 </div>
@@ -357,18 +493,60 @@ const PackagesSection = () => {
 
         <div className="rightsidebar flex-1 p-8 lg:p-16 flex flex-col justify-center lg:border-l border-gray-300">
           <div className="max-w-md">
-            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">What's included</p>
-            <div className="deliverable-item"><Deliverable bold="Everything in The Signature Site," normal="plus:" /></div>
-            <div className="deliverable-item"><Deliverable bold="Fully custom web application" normal="with advanced functionality" /></div>
-            <div className="deliverable-item"><Deliverable bold="99+ PageSpeed scores" normal="performance-optimised code" /></div>
-            <div className="deliverable-item"><Deliverable bold="Custom CMS" normal="or e-commerce integration" /></div>
-            <div className="deliverable-item"><Deliverable bold="Custom admin panel" normal="for easy content and image updates" /></div>
-            <div className="deliverable-item"><Deliverable bold="Multi-platform compatibility" normal="and PWA features" /></div>
-            <div className="deliverable-item"><Deliverable bold="Ongoing maintenance" normal="and security updates included" /></div>
-            <div className="deliverable-item"><Deliverable bold="90 days priority support" normal="with unlimited revisions" /></div>
+            <p className="text-xs tracking-[0.22em] uppercase text-[#2a2a2a]/40 mb-5">
+              What's included
+            </p>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Everything in The Signature Site,"
+                normal="plus:"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Fully custom web application"
+                normal="with advanced functionality"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="99+ PageSpeed scores"
+                normal="performance-optimised code"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Custom CMS"
+                normal="or e-commerce integration"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Custom admin panel"
+                normal="for easy content and image updates"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Multi-platform compatibility"
+                normal="and PWA features"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="Ongoing maintenance"
+                normal="and security updates included"
+              />
+            </div>
+            <div className="deliverable-item">
+              <Deliverable
+                bold="90 days priority support"
+                normal="with unlimited revisions"
+              />
+            </div>
             <div className="price-block">
               <PriceBlock
-                price="$1,500+"
+                price="$2000+"
                 turnaround="6–8 weeks turnaround"
                 note="3-month payment plans available"
               />
@@ -384,8 +562,14 @@ const PackagesSection = () => {
 
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center">
         <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto font-sans">
-          Need something outside these packages? Custom quotes are available for e-commerce builds, web applications, or anything with specific requirements. All prices are in USD and exclude domain and hosting renewal costs. August's 25% discount applies to Foundation and Signature Site packages only.{" "}
-          <a href="/enquiry" className="underline underline-offset-2 hover:text-[#2a2a2a] transition-colors duration-200">
+          Need something outside these packages? Custom quotes are available for
+          e-commerce builds, web applications, or anything with specific
+          requirements. All prices are in USD and exclude domain and hosting
+          renewal costs.{" "}
+          <a
+            href="/enquiry"
+            className="underline underline-offset-2 hover:text-[#2a2a2a] transition-colors duration-200"
+          >
             Get in touch
           </a>{" "}
           and we'll figure out what makes sense.
