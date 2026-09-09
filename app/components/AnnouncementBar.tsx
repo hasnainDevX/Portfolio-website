@@ -1,11 +1,11 @@
 const announcementItems = [
   "Now Booking for October",
   "✦",              
-  "Hasnain Webstudio is rebranding...",
+  "Hasnain Webworks is now Hasnain Webstudio",
   "✦",
   "Now Booking for October",
   "✦",
-  "Hasnain Webstudio is rebranding...",
+  "Hasnain Webworks is now Hasnain Webstudio",
   "✦",
 ];
 
