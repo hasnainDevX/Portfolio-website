@@ -1,8 +1,8 @@
-# 🌐 Hasnain Webworks — Official Portfolio
+# 🌐 Hasnain Webstudio — Official Portfolio
 
 My official portfolio website — built to showcase my web development work, skills, and freelance services with a sleek, modern design.
 
-🔗 **Live Site:** [hasnainwebworks.vercel.app](https://hasnainwebworks.vercel.app)
+🔗 **Live Site:** [hasnainWebstudio.vercel.app](https://hasnainWebstudio.vercel.app)
 *(Custom domain coming soon)*
 
 ---
@@ -44,4 +44,4 @@ Software Engineering Student @ SSUET | MERN Stack Developer | Web Developer @ Fr
 
 - GitHub: [@hasnainDevX](https://github.com/hasnainDevX)
 - LinkedIn: [muhammadhasnain79](https://linkedin.com/in/muhammadhasnain79)
-- Instagram: [@hasnainwebworks](https://instagram.com/hasnainwebworks)
+- Instagram: [@hasnainWebstudio](https://instagram.com/hasnainWebstudio)

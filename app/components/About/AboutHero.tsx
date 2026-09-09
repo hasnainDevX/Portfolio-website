@@ -154,7 +154,7 @@ const AboutHero = () => {
                 />
               </defs>
               <text fill="black" fontSize="16" fontWeight="300" letterSpacing="3px" fontFamily="'Inter', 'Helvetica Neue', sans-serif">
-                <textPath href="#circle">• Hasnain Webworks • Web Design and Development</textPath>
+                <textPath href="#circle">• Hasnain Webstudio • Web Design and Development</textPath>
               </text>
             </svg>
           </div>

@@ -104,7 +104,7 @@ const PackagesAbout = () => {
           <Image
             ref={logoRef}
             src={logo}
-            alt="Hasnain Webworks logo"
+            alt="Hasnain Webstudio logo"
             className="w-20 h-20"
             style={{ opacity: 0 }}
           />

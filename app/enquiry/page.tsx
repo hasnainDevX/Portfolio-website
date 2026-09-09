@@ -6,8 +6,8 @@ import FAQSection from "../components/FAQ"
 import Footer from "../components/Footer"
 
 export const metadata: Metadata = {
-  title: "Enquiry | Hasnain Webworks",
-  description: "Ready to start your project? Get in touch with Hasnain Webworks to discuss your website needs and get a custom quote.",
+  title: "Enquiry | Hasnain Webstudio",
+  description: "Ready to start your project? Get in touch with Hasnain Webstudio to discuss your website needs and get a custom quote.",
 };
 
 const Enquiry = () => {

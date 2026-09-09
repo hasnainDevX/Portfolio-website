@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     quote:
-      "I had a great experience working with hasnainwebworks on my website (maceysmethod.co.uk) for my virtual assistant business. They were professional, creative, and really listened to my ideas. The final site is easy to navigate and perfectly represents my brand. I highly recommend them to anyone looking for a talented and reliable website designer!.",
+      "I had a great experience working with hasnainWebstudio on my website (maceysmethod.co.uk) for my virtual assistant business. They were professional, creative, and really listened to my ideas. The final site is easy to navigate and perfectly represents my brand. I highly recommend them to anyone looking for a talented and reliable website designer!.",
     name: "Macey",
     company: "Macey's Method - Virtual Assistant",
   },

@@ -8,7 +8,7 @@ import ExperienceSection from '../components/ExperienceSection'
 import Footer from '../components/Footer'
 
 export const metadata: Metadata = {
-  title: "About | Hasnain Webworks",
+  title: "About | Hasnain Webstudio",
   description: "Learn about Hasnain — a freelance web developer and software engineering student building custom websites for small businesses.",
 };
 

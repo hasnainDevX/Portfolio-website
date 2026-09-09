@@ -46,9 +46,9 @@ const Navbar = () => {
           href="/"
           className="text-xl tracking-wide text-center whitespace-nowrap px-6 transition-opacity hover:opacity-70"
           style={{ fontFamily: '"Libre Caslon Text", serif', color: "#2a2a2a" }}
-          aria-label="Hasnain Webworks Logo"
+          aria-label="Hasnain Webstudio Logo"
         >
-          Hasnain Webworks
+          Hasnain Webstudio
         </Link>
 
         {/* Right */}
@@ -87,8 +87,8 @@ const Navbar = () => {
 
           {/* Instagram */}
           <a
-            href="https://instagram.com/hasnainwebworks"
-            aria-label="Follow Hasnain Webworks on Instagram"
+            href="https://instagram.com/hasnainWebstudio"
+            aria-label="Follow Hasnain Webstudio on Instagram"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0"
@@ -127,7 +127,7 @@ const Navbar = () => {
               color: "#2a2a2a",
             }}
           >
-            Hasnain Webworks
+            Hasnain Webstudio
           </Link>
 
           {/* Hamburger */}

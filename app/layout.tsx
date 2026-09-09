@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hasnain Webworks",
+  title: "Hasnain Webstudio",
   description: "Custom-coded websites for service-based businesses. Fast, professional, and built to convert visitors into customers.",
 };
 

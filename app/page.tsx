@@ -26,7 +26,7 @@ const Home = () => {
         <Image
           className="h-[10vh] w-full object-cover"
           src={ribbon}
-          alt="Hasnain Webworks decorative ribbon"
+          alt="Hasnain Webstudio decorative ribbon"
           style={{ aspectRatio: "auto" }}
         />
       </div>
