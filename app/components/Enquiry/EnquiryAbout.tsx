@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.jpeg";
 import Image from "next/image";
 
 const EnquiryAbout = () => {

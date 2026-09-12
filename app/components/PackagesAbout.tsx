@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 import Link from "next/link";
 import leftImage from "../assets/ecomsite1.jpeg";
 import rightImage from "../assets/image2.png";

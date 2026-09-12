@@ -37,7 +37,7 @@ const Home = () => {
       <ExperienceSection />
       <Cta/>
       <MarqueeShowcase
-        data={["DEVELOPMENT MADE SIMPLE ✦ DESIGN & DEVELOPMENT"]}
+        data={["PROFESSIONAL AND HIGH CONVERTING WEBSITES✦ DESIGN & DEVELOPMENT"]}
         speed={20}
       />
       <Footer />
