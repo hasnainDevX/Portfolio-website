@@ -564,7 +564,7 @@ const PackagesSection = () => {
         <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto font-sans">
           Need something outside these packages? Custom quotes are available for
           e-commerce builds, web applications, or anything with specific
-          requirements. All prices are in USD and exclude domain and hosting
+          requirements. All prices are exclude domain and hosting
           renewal costs.{" "}
           <a
             href="/enquiry"

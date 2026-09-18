@@ -340,8 +340,7 @@ const ContactForm = () => {
         {/* Budget */}
         <div className="space-y-4">
           <label className={labelCls}>
-            Where does your budget roughly fall? (All prices in USD). All
-            budgets are welcome, this just helps me understand the scope
+            Where does your budget roughly fall?
             <span className="text-[#A68B44]">*</span>
           </label>
           <div className="flex flex-wrap gap-3">
