@@ -14,7 +14,7 @@ const faqs: FAQ[] = [
   {
     question: "How much does a website cost?",
     answer:
-      "Packages start from $299 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
+      "Packages start from $399 and go up depending on the scope — number of pages, features, animations, and so on. The packages page has a full breakdown, but if you're still unsure, just fill out the enquiry form and I'll give you a straight answer based on what you actually need.",
   },
   {
     question: "Why custom code instead of Wix, WordPress, or Squarespace?",

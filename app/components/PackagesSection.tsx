@@ -287,7 +287,7 @@ const PackagesSection = () => {
 
             <div className="price-block">
               <PriceBlock
-                price="$299–$499"
+                price="$399–$499"
                 // originalPrice="$750–$1,500"
                 turnaround="2–3 weeks turnaround"
               />

@@ -20,10 +20,9 @@ interface FormData {
 }
 
 const budgetOptions = [
-  "$300 – $500",
-  "$500 – $1000",
-  "$1000 – $2000",
-  "$2,000+",
+  "$399 – $499 (The Foundation Site)",
+  "$500 – $999 (The Signature Site)",
+  "$2,000+ (The Complete Vision)",
 ];
 
 const timelineOptions = [
