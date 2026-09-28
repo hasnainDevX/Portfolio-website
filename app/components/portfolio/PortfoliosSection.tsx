@@ -173,12 +173,12 @@ const PortfoliosSection = () => {
                         View Live Site
                       </button>
                     </Link>
-                    <span
+                    {/* <span
                       className="text-xs tracking-widest text-[#bbb]"
                       style={{ fontFamily: "system-ui, sans-serif" }}
                     >
                       {item.year}
-                    </span>
+                    </span> */}
                   </div>
 
                 </div>
