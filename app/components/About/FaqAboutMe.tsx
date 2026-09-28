@@ -49,7 +49,7 @@ const FAQ = () => {
               className="overflow-hidden transition-all duration-300 ease-in-out"
               style={{ maxHeight: open === i ? "300px" : "0px" }}
             >
-              <p className="px-8 pb-7 text-base sm:text-lg leading-relaxed font-sans">
+              <p className="px-8 pb-7 text-base sm:text-lg leading-relaxed  ns">
                 {faq.answer}
               </p>
             </div>

@@ -71,11 +71,11 @@ const StickyCard002 = ({ cards }: { cards: CardData[] }) => {
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full md:w-3/5 h-[65%] sm:h-[60%] md:h-full p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-center font-sans">
+                <div className="w-full md:w-3/5 h-[65%] sm:h-[60%] md:h-full p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-center">
                   <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 max-w-2xl">
                     <h2
                       className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight text-charcoal font-playfair"
-                      style={{ fontFamily: "Libre Caslon Text, serif" }}
+                     
                     >
                       {card.title}
                     </h2>
@@ -177,9 +177,9 @@ const StickyCard002 = ({ cards }: { cards: CardData[] }) => {
   );
 };
 
-import service1 from "../assets/maceysmethod4.png";
-import service2 from "../assets/allingoodhans1.png";
-import service3 from "../assets/telecomsite1.jpeg";
+import service1 from "../assets/allingoodhans1.png";
+import service2 from "../assets/lashedbytash.jpeg";
+import service3 from "../assets/cafesite.jpeg";
 import Link from "next/link";
 
 const Skiper17 = () => {

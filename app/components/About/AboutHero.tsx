@@ -86,7 +86,7 @@ const AboutHero = () => {
 
         {/* Main Heading */}
         <div ref={headingRef} style={{ opacity: 0 }}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl leading-[1.15] sm:leading-[1.12] md:leading-[1.1] mb-6 sm:mb-7 md:mb-8 px-2 sm:px-0 font-libre-caslon! md:capitalize uppercase tracking-wide">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl leading-[1.15] sm:leading-[1.12] md:leading-[1.1] mb-6 sm:mb-7 md:mb-8 px-2 sm:px-0  md:capitalize uppercase tracking-wide">
             Strategic website design for creative business owners who want their
             brand to be noticed, trusted, &amp; remembered
           </h1>
@@ -125,13 +125,13 @@ const AboutHero = () => {
             We build websites for ambitious businesses that are just as
             memorable as they are functional.
           </h3>
-          <h4 className="font-sans text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed">
             Working with a new developer shouldn't feel like handing your brand
             to a stranger and hoping for the best. Every project starts with
             understanding your business properly — what you do, who you're
             talking to, and what you actually need the site to do. From there
             it's built from scratch, with you involved the whole way through.
-          </h4>
+          </p>
           <Link href="/enquiry" aria-label="Enquire about my Business">
             <button className="px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
               Enquire Now

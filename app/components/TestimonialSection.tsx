@@ -60,10 +60,10 @@ const TestimonialsSection = () => {
     <div className="relative py-20">
       {/* Title - Will be pinned */}
       <div ref={headerRef} className="text-center mb-32 px-6">
-        <h2 className="text-5xl md:text-6xl lg:text-7xl mb-4" style={{ fontFamily: "Libre Caslon Text, serif" }}>
+        <h2 className="text-5xl md:text-6xl lg:text-7xl mb-4">
           My favourite <span className="">quotes</span>
         </h2>
-        <p className="text-xl text-gray-600">from clients</p>
+        <p className="text-xl text-">from clients</p>
       </div>
 
       {/* Cards Container - Scrolls normally */}
@@ -81,7 +81,7 @@ const TestimonialsSection = () => {
             <div className="relative">
               {/* Organic shaped background */}
               <div
-                className="absolute inset-0 md:bg-cream-bg/30 bg-cream-bg text-black rounded-[40px] shadow-2xl"
+                className="absolute inset-0 bg-gold/95 text-white rounded-[40px] shadow-2xl"
                 style={{
                   clipPath:
                     "polygon(3% 8%, 8% 2%, 92% 2%, 97% 8%, 97% 92%, 92% 97%, 8% 97%, 3% 92%)",
@@ -92,7 +92,7 @@ const TestimonialsSection = () => {
               <div className="relative p-8 md:p-12">
                 <div className="mb-6">
                   <svg
-                    className="w-10 h-10 text-gold opacity-70"
+                    className="w-10 h-10 text-white opacity-70"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -100,17 +100,17 @@ const TestimonialsSection = () => {
                   </svg>
                 </div>
 
-                <p className="md:etext-lg leading-relaxed mb-6 font-light">
+                <p className="md:text-lg leading-relaxed mb-6 font-light text-white">
                   {testimonial.quote}
                 </p>
 
                 <div className="flex items-center gap-3">
                   <div className="w-1 h-10 bg-gradient-to-b from-gold to-yellowish rounded-full" />
                   <div>
-                    <p className="font-semibold text-charcoal text-base uppercase tracking-wide">
+                    <p className="font-semibold text-white text-base uppercase tracking-wide">
                       {testimonial.name}
                     </p>
-                    <p className="text-gray-600 text-sm uppercase tracking-wider">
+                    <p className="text-white text-sm uppercase tracking-wider">
                       {testimonial.company}
                     </p>
                   </div>

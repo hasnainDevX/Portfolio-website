@@ -1,81 +1,103 @@
-"use client"
+"use client";
+
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Navbar from "./Navbar";
 import gsap from "gsap";
+
+import Navbar from "./Navbar";
 import heroImage from "../assets/heroimage.avif";
+
 const Hero = () => {
-  const labelRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const labelRef = useRef<HTMLParagraphElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const hero = heroRef.current;
+    if (!hero) return;
 
-    tl.fromTo(
-      overlayRef.current,
-      { opacity: 0.85 },
-      { opacity: 0.5, duration: 1.8 }
-    )
-    .fromTo(
-      labelRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      "-=1"
-    )
-    .fromTo(
-      headingRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1 },
-      "-=0.5"
-    )
-    .fromTo(
-      buttonRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.7 },
-      "-=0.4"
-    );
-
-    // Cursor spotlight
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!spotlightRef.current) return;
-      gsap.to(spotlightRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.6,
-        ease: "power2.out",
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({
+        defaults: { ease: "power3.out" },
       });
-    };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+      timeline
+        .fromTo(
+          overlayRef.current,
+          { opacity: 1 },
+          { opacity: 0.72, duration: 1.5 },
+        )
+        .fromTo(
+          labelRef.current,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.65 },
+          "-=0.8",
+        )
+        .fromTo(
+          headingRef.current,
+          { opacity: 0, y: 34 },
+          { opacity: 1, y: 0, duration: 1 },
+          "-=0.3",
+        )
+        .fromTo(
+          buttonRef.current,
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          "-=0.45",
+        );
+
+      const moveSpotlightX = gsap.quickTo(spotlightRef.current, "x", {
+        duration: 0.65,
+        ease: "power3.out",
+      });
+
+      const moveSpotlightY = gsap.quickTo(spotlightRef.current, "y", {
+        duration: 0.65,
+        ease: "power3.out",
+      });
+
+      const handleMouseMove = (event: MouseEvent) => {
+        moveSpotlightX(event.clientX);
+        moveSpotlightY(event.clientY);
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }, hero);
+
+    return () => context.revert();
   }, []);
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+    <section
+      ref={heroRef}
+      className="relative min-h-[100svh] overflow-hidden bg-charcoal"
       style={{
         backgroundImage: `url(${heroImage.src})`,
-        backgroundColor: "#F9F6F1",
-        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
       }}
     >
-      <div ref={overlayRef} className="absolute inset-0 bg-black/85" />
+      {/* Brand-colour image overlay */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75"
+      />
 
-      {/* Cursor spotlight */}
+      {/* Desktop cursor light */}
       <div
         ref={spotlightRef}
-        className="pointer-events-none absolute z-20"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-10 hidden h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 lg:block"
         style={{
-          width: "500px",
-          height: "500px",
-          borderRadius: "50%",
-          transform: "translate(-50%, -50%)",
-          background: "radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%)",
-          top: 0,
-          left: 0,
+          background:
+            "radial-gradient(circle, var(--color-lavender) 0%, transparent 68%)",
         }}
       />
 
@@ -83,34 +105,39 @@ const Hero = () => {
         <Navbar />
       </header>
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center text-white px-5 sm:px-6 md:px-8 lg:px-6 py-24 sm:py-32 md:py-40 lg:py-52 xl:py-64 max-w-6xl mx-auto min-h-screen">
-
-        <div
+      <div className="relative z-20 mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-5 pb-20 pt-32 text-center sm:px-8 sm:pb-24 sm:pt-36 lg:px-10 text-cream-bg">
+        <p
           ref={labelRef}
-          className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-6 sm:mb-7 md:mb-8 opacity-0"
+          className="mb-6 font-body text-[10px] font-medium uppercase tracking-[0.22em] text-lavender opacity-0 sm:mb-8 sm:text-xs"
         >
-          Website Design and Development
-        </div>
+          Website Design & Development
+        </p>
 
         <h1
           ref={headingRef}
-          className="text-[44px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl 2xl:text-8xl leading-[1.15] sm:leading-[1.12] md:leading-[1.1] mb-6 sm:mb-7 md:mb-8 px-2 sm:px-0 opacity-0 capitalize"
-          style={{ fontFamily: "Libre Caslon Text, serif" }}
+          className="max-w-5xl font-display text-5xl font-[200] leading-[0.9] tracking-[-0.045em] text-ivory opacity-0 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl "
         >
-          Designing & building impactful websites for businesses that are ready
-          to shine
+          Websites for businesses ready to{" "}
+          <span className="italic text-lavender">be remembered.</span>
         </h1>
 
-        <div ref={buttonRef} className="opacity-0">
-          <Link href="/packages" aria-label="Explore our packages and services">
-            <button className="px-16 py-3 bg-soft-beige text-charcoal border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 hover:border-yellowish cursor-pointer">
-              View Packages
-            </button>
+        <p className="mt-7 max-w-xl font-body text-sm leading-relaxed text-ivory/75 sm:mt-8 sm:text-base">
+          Strategy-led, custom-built digital experiences that help your
+          business look established, feel distinct, and move forward with
+          confidence.
+        </p>
+
+        <div ref={buttonRef} className="mt-9 opacity-0 sm:mt-10">
+          <Link
+            href="/packages"
+            aria-label="Explore website packages"
+            className="button button--lavender"
+          >
+            Explore packages ↗
           </Link>
         </div>
-
       </div>
-    </div>
+    </section>
   );
 };
 

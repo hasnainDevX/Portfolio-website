@@ -97,7 +97,7 @@ const FAQItem = ({ faq }: { faq: FAQ; index: number }) => {
         style={{ maxHeight: open ? "300px" : "0px" }}
       >
         <p
-          className="pb-8 leading-relaxed max-w-3xl font-sans px-10 md:px-16 lg:px-24"
+          className="pb-8 leading-relaxed max-w-3xl px-10 md:px-16 lg:px-24"
           style={{ fontSize: "1rem", color: "#6b6560" }}
         >
           {faq.answer}
@@ -150,7 +150,7 @@ const FAQSection = () => {
       <div className="mx-auto">
         <p
           ref={eyebrowRef}
-          className="text-xs tracking-[0.4em] uppercase text-[#999] mb-12 font-sans px-10 md:px-16 lg:px-24"
+          className="text-xs tracking-[0.4em] uppercase text-[#999] mb-12 px-10 md:px-16 lg:px-24"
           style={{ opacity: 0 }}
         >
           Frequently Asked Questions

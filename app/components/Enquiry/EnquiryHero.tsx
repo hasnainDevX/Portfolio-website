@@ -32,7 +32,6 @@ const EnquiryHero = () => {
               <span
                 key={i}
                 className="shrink-0 text-soft-beige text-6xl md:text-8xl lg:text-9xl font-normal leading-none mx-8"
-                style={{ fontFamily: '"Libre Caslon Text", serif' }}
               >
                 Work with Hasnain Webstudio &nbsp;~&nbsp;
               </span>

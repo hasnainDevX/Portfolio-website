@@ -81,7 +81,7 @@ const PackagesHero = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-center px-10 sm:px-14 md:px-16 lg:px-20 py-24 md:py-32">
           <p
             ref={eyebrowRef}
-            className="text-xs tracking-[0.22em] uppercase font-sans font-semibold mb-7"
+            className="text-xs tracking-[0.22em] uppercase font-semibold mb-7"
             style={{ color: "#b5973a", opacity: 0 }}
           >
             Brand Strategy &amp; Web Design
@@ -89,7 +89,7 @@ const PackagesHero = () => {
 
           <h1
             ref={headingRef}
-            className="font-libre-caslon font-normal leading-[1.1] text-4xl sm:text-5xl lg:text-[3.4rem] mb-8"
+            className="font-normal leading-[1.1] text-4xl sm:text-5xl lg:text-[3.4rem] mb-8"
             style={{ color: "#2a2a2a", opacity: 0 }}
           >
             Your website is often the first impression{" "}

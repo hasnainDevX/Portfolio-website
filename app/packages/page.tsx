@@ -20,7 +20,7 @@ const Packages = () => {
         {/* <PackagesOffer/> */}
         <PackagesSection/>
         <FAQSection/>
-        <MarqueeShowcase data={["DEVELOPMENT  MADE  SIMPLE / ✦ /  DESIGN  &  DEVELOPMENT"]} speed={20}/>
+        <MarqueeShowcase data={["SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart"]} speed={20}/>
         <OurProcess/>
         <Cta/>
         <Footer/>

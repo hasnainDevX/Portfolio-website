@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 body {
-  background-color: #FFFCF9;
+  background-color: #fffcf9;
   color: #2a2a2a;
-  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden !important;
+  font-family: var(--font-body);
 }
 
 @theme {
@@ -18,11 +17,44 @@ body {
   --color-soft-beige: #e8dfd5;
   --color-muted-sage: #a8998c;
   --color-gold: #b5973a;
-  
-  --font-lato: "Lato", sans-serif;
-  --font-playfair: "Playfair Display", serif;
-  --font-podium-soft: "Podium Soft", sans-serif;
-  --font-libre-caslon: "Libre Caslon Text", serif;
+
+  /* Typography */
+  --font-display: var(--font-editors-note);
+  --font-body: var(--font-source-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: var(--font-editors-note);
+  font-weight: 200;
+}
+
+
+@keyframes industry-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.industry-marquee {
+  animation: industry-marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.industry-marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .industry-marquee {
+    animation-play-state: paused;
+  }
 }
 
 /* ── Custom Scrollbar ── */
@@ -39,15 +71,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e8dfd5;        /* soft-beige */
+  background: #e8dfd5; /* soft-beige */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #b5973a;  /* gold */
+  background-color: #b5973a; /* gold */
   border-radius: 100px;
-  border: 2px solid #e8dfd5;  /* creates padding around thumb */
+  border: 2px solid #e8dfd5; /* creates padding around thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #2a2a2a;  /* charcoal on hover */
+  background-color: #2a2a2a; /* charcoal on hover */
 }

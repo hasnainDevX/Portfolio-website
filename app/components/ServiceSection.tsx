@@ -51,16 +51,15 @@ const Services = () => {
       <div className="pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-20 md:pb-12 px-5 sm:px-6 md:px-16 ">
         <h1
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center text-[#2A2A2A] "
-          style={{ fontFamily: "Libre Caslon Text, serif" }}
         >
           A Package Built for <span className="italic">Where You Are</span>
         </h1>
         <p
           ref={paraRef}
-          className="text-center text-gray-600 font-sans text-sm sm:text-base mt-4 max-w-xl mx-auto"
+          className="text-center text-gray-600  ns text-sm sm:text-base mt-4 max-w-xl mx-auto"
         >
-          Whether you're just starting out or ready to scale — there's a package
-          designed for exactly where you are right now.
+          Three considered ways to create a website that reflects where your
+          business is now—and where it is heading next.
         </p>
       </div>
 

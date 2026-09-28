@@ -37,7 +37,7 @@ const Home = () => {
       <ExperienceSection />
       <Cta/>
       <MarqueeShowcase
-        data={["PROFESSIONAL AND HIGH CONVERTING WEBSITES✦ DESIGN & DEVELOPMENT"]}
+        data={["SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart."]}
         speed={20}
       />
       <Footer />

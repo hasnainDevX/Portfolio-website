@@ -2,6 +2,7 @@
 import { useState } from "react";
 import  Link from "next/link";
 import emailjs from "@emailjs/browser";
+import { Http2ServerResponse } from "node:http2";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -169,11 +170,11 @@ const Footer = () => {
 
       {/* Large brand name */}
       <div className="w-full overflow-hidden px-2 pb-2">
-        <p
-          className="text-center font-normal leading-none select-none font-libre-caslon text-6xl md:text-7xl lg:text-[9.5rem] tracking-wider"
+        <h2
+          className="text-center font-normal leading-none select-none text-6xl md:text-7xl lg:text-[9.5rem] tracking-wider"
         >
           Hasnain Webstudio
-        </p>
+        </h2>
       </div>
 
       {/* Bottom Bar */}

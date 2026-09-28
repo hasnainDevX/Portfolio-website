@@ -14,7 +14,7 @@ const Portfolio = () => {
     <div className='bg-[#FFFCF9]'>
         <PortfolioHero/>
         <PortfoliosSection/>
-        <MarqueeShowcase data={["DEVELOPMENT  MADE  SIMPLE / ✦ /  DESIGN  &  DEVELOPMENT"]} speed={20}/>
+        <MarqueeShowcase data={["SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart"]} speed={20}/>
         <Cta/>
         <Footer/>
     </div>

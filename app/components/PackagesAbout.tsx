@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logo from "../assets/logo.jpeg";
 import Link from "next/link";
 import leftImage from "../assets/ecomsite1.jpeg";
-import rightImage from "../assets/image2.png";
+import rightImage from "../assets/lashedbytash.jpeg";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -120,7 +120,7 @@ const PackagesAbout = () => {
 
           <div
             ref={parasRef}
-            className="max-w-3xl space-y-5 text-gray-800 md:text-base text-sm leading-relaxed font-sans"
+            className="max-w-3xl space-y-5 text-gray-800 md:text-base text-sm leading-relaxed  ns"
           >
             <p style={{ opacity: 0 }}>
               Most small business websites have the same problem — they were

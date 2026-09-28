@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import Preloader from "./components/PreLoader";
+import { editorsNote, sourceSans } from "./fonts/font";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hasnainwebstudio.com"),
@@ -51,8 +53,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${editorsNote.variable} ${sourceSans.variable}`}
+    >
       <body>
+        <Preloader />
+        {/* <SmoothScroll /> */}
         {children}
 
         {/* Google Analytics */}

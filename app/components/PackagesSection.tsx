@@ -561,7 +561,7 @@ const PackagesSection = () => {
       </div>
 
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center">
-        <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto font-sans">
+        <p className="text-sm text-[#2a2a2a]/60 leading-relaxed max-w-2xl mx-auto  ns">
           Need something outside these packages? Custom quotes are available for
           e-commerce builds, web applications, or anything with specific
           requirements. All prices are exclude domain and hosting

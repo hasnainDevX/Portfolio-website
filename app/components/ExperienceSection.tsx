@@ -1,168 +1,119 @@
-"use client"
-import { useEffect, useRef } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const industries = [
   "Virtual Assistants",
-  "E-commerce Stores",
+  "E-commerce Brands",
   "Coaches & Consultants",
   "Cleaning Services",
   "Fitness & Wellness",
   "Internet Service Providers",
   "Real Estate",
   "Social Media Managers",
-  "Restaurants & Cafes",
+  "Restaurants & Cafés",
   "Creative Agencies",
   "Personal Brands",
-  "E Books & Courses",
+  "Courses & Digital Products",
   "Crowdfunding Platforms",
 ];
 
+const rowOne = industries.slice(0, 7);
+const rowTwo = industries.slice(7);
+
+const tagStyles = [
+  "border-charcoal/15 bg-cream-bg text-charcoal",
+  "border-charcoal/15 bg-vream-bg text-charcoal",
+] as const;
+
+function MarqueeRow({
+  items,
+  reverse = false,
+  colourOffset = 0,
+}: {
+  items: string[];
+  reverse?: boolean;
+  colourOffset?: number;
+}) {
+  return (
+    <div className="group overflow-hidden py-2">
+      <div
+        className={`industry-marquee flex w-max ${
+          reverse ? "industry-marquee-reverse" : ""
+        } group-hover:[animation-play-state:paused]`}
+        aria-hidden="true"
+      >
+        {[0, 1].map((copy) => (
+          <div
+            key={copy}
+            className="flex shrink-0 items-center gap-3 pr-3 sm:gap-4 sm:pr-4"
+          >
+            {items.map((industry, index) => (
+              <span
+                key={`${industry}-${copy}`}
+                className={`inline-flex shrink-0 items-center rounded-full border px-4 py-2 font-body text-xs font-medium tracking-[-0.01em] shadow-[0_5px_16px_rgba(48,50,51,0.06)] sm:px-5 sm:py-2.5 sm:text-sm ${
+                  tagStyles[(index + colourOffset) % tagStyles.length]
+                }`}
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const ExperienceSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const eyebrowRef = useRef<HTMLParagraphElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const ruleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
-        },
-      });
-
-      // Left column — staggered fade-up
-      tl.fromTo(
-        eyebrowRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-      )
-        .fromTo(
-          headingRef.current,
-          { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
-          "-=0.35"
-        )
-        .fromTo(
-          ruleRef.current,
-          { opacity: 0, scaleX: 0, transformOrigin: "left" },
-          { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out" },
-          "-=0.3"
-        )
-        .fromTo(
-          subtitleRef.current,
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-          "-=0.25"
-        )
-        .fromTo(
-          ctaRef.current,
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-          "-=0.25"
-        );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
-      className="w-full bg-[#F7F8F3] px-6 md:px-16 lg:px-24 py-24 md:py-32 overflow-hidden"
+      className="overflow-hidden bg-cream-bg py-24 sm:py-32 lg:py-40"
+      aria-labelledby="industries-heading"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-16 lg:gap-24">
-          {/* Left — heading column */}
-          <div className="lg:w-2/5 lg:sticky lg:top-32">
-            <p
-              ref={eyebrowRef}
-              className="text-xs tracking-[0.4em] uppercase text-[#b5973a] font-sans mb-6"
-              style={{ opacity: 0 }}
-            >
-              Experience
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-20">
+          <div>
+            <p className="font-body text-[10px] font-medium uppercase tracking-[0.22em] text-charcoal sm:text-xs">
+              Experience across industries
             </p>
 
             <h2
-              ref={headingRef}
-              className="font-normal leading-[1.1] text-[#1a1a1a] font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
-              style={{ opacity: 0 }}
+              id="industries-heading"
+              className="mt-5 max-w-lg font-display text-5xl font-[200] leading-[0.9] tracking-[-0.045em] text-charcoal sm:text-6xl md:text-7xl"
             >
-              Industries I've Worked With
+              Different industries.
+              <br />
+              <span className="italic">One clear standard.</span>
             </h2>
-
-            <div
-              ref={ruleRef}
-              className="mt-8"
-              style={{
-                opacity: 0,
-                height: "1px",
-                width: "48px",
-                backgroundColor: "#d6c9b8",
-              }}
-            />
-
-            <p
-              ref={subtitleRef}
-              className="text-charcoal font-sans leading-relaxed max-w-xs mt-6"
-              style={{ opacity: 0 }}
-            >
-              From solopreneurs to established studios — if you have a vision,
-              we know how to bring it to life online.
-            </p>
-
-            <div ref={ctaRef} className="mt-10" style={{ opacity: 0 }}>
-              <Link href="/portfolio" aria-label="See portfolio — view all projects">
-                <button className="px-16 py-3 bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 cursor-pointer">
-                  See Portfolio
-                </button>
-              </Link>
-            </div>
           </div>
 
-          {/* Right — tag cloud */}
-          <div className="lg:w-3/5">
-            <div className="flex flex-wrap gap-3">
-              {industries.map((industry, idx) => (
-                <div key={idx} className="tag-item group">
-                  <span
-                    className="inline-flex items-center gap-2 px-5 py-3 border font-sans text-sm cursor-default select-none
-                      transition-all duration-300
-                      hover:border-[#1a1a1a] hover:bg-gold hover:text-white!"
-                    style={{
-                      borderColor: "#d6c9b8",
-                      color: "#3a2a2a",
-                      borderRadius: "100px",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-300 group-hover:bg-white bg-gold" />
-                    {industry}
-                  </span>
-                </div>
-              ))}
+          <div className="max-w-xl lg:pb-1">
+            <p className="font-body text-sm leading-relaxed text-charcoal/70 sm:text-base">
+              From personal brands finding their voice to established businesses
+              refining their digital presence, every project begins with what
+              makes the business distinct.
+            </p>
 
-              {/* "& more" pill */}
-              <div className="tag-item" style={{ opacity: 0 }}>
-                <span
-                  className="inline-flex items-center px-5 py-3 font-sans text-sm italic"
-                  style={{ color: "#b5973a", borderRadius: "100px" }}
-                >
-                  & so much more
-                </span>
-              </div>
-            </div>
+            <Link href="/portfolio" className="button mt-7">
+              Explore selected work ↗
+            </Link>
           </div>
         </div>
       </div>
+
+      <div className="mt-16 to-periwinkle/35 py-7 sm:mt-20 sm:py-9">
+        <MarqueeRow items={rowOne} colourOffset={0} />
+        <MarqueeRow items={rowTwo} reverse colourOffset={3} />
+      </div>
+
+      <ul className="sr-only">
+        {industries.map((industry) => (
+          <li key={industry}>{industry}</li>
+        ))}
+      </ul>
+
+      <p className="mx-auto mt-8 max-w-6xl px-5 text-center font-body text-[10px] font-medium uppercase tracking-[0.18em] text-charcoal/50 sm:px-8 sm:text-xs lg:px-10">
+        And the next ambitious business could be yours.
+      </p>
     </section>
   );
 };

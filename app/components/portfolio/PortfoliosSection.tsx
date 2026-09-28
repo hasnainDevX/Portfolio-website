@@ -1,9 +1,10 @@
 "use client"
 import { useEffect, useRef, useState } from "react";
-import portfolio1 from "../../assets/allingoodhans1.png";
-import portfolio2 from "../../assets/maceysmethod2.png";
-import portfolio3 from "../../assets/telecomsite1.jpeg";
-import portfolio4 from "../../assets/noblesite1.jpeg";
+import portfolio1 from "../../assets/lashedbytash.jpeg";
+import portfolio2 from "../../assets/allingoodhans1.png";
+import portfolio3 from "../../assets/maceysmethod1.png";
+import portfolio4 from "../../assets/telecomsite1.jpeg";
+import portfolio5 from "../../assets/noblesite1.jpeg";
 import Image from "next/image";
 import Link from "next/link";
 import { StaticImageData } from "next/image";
@@ -21,36 +22,45 @@ interface Portfolio {
 const portfolioData: Portfolio[] = [
   {
     id: 1,
-    title: "All In Good Hans",
+    title: "Lashed By Tash",
     category: "Website Design",
     image: portfolio1,
-    desc: "A strategic website build for a UK-based Virtual Assistant supporting overwhelmed entrepreneurs with inbox management, systems, and client coordination. The design reflects the brand's calm, organised approach — positioning her as the dependable 'behind-the-scenes' partner who brings structure to business chaos.",
-    year: "2025",
-    link: "https://www.allingoodhans.co.uk/",
+    desc: "A strategic website for a certified lash artist in Steinbach, MB, built to bring her work beyond Instagram. Features an editorial brand identity, a lash menu with real pricing, a before/after slider, client testimonials, and a booking inquiry flow that sends requests straight to her inbox. Built with Next.js, Tailwind, and GSAP, with SEO and speed in mind.",
+    year: "2026",
+    link: "https://www.lashedbytash.ca",
   },
   {
     id: 2,
+    title: "All In Good Hans",
+    category: "Website Design",
+    image: portfolio2,
+    desc: "A strategic website build for a UK-based Virtual Assistant supporting overwhelmed entrepreneurs with inbox management, systems, and client coordination. The design reflects the brand's calm, organised approach — positioning her as the dependable 'behind-the-scenes' partner who brings structure to business chaos.",
+    year: "2026",
+    link: "https://www.allingoodhans.co.uk/",
+  },
+  {
+    id: 3,
     title: "Macey's Method",
     category: "Website Design + Development",
-    image: portfolio2,
+    image: portfolio3,
     desc: "A refined, service-led website for a Virtual Assistant business focused on operational support and streamlined workflows. The structure prioritises clarity, service breakdown, and trust-building — helping potential clients quickly understand the value of outsourcing their admin.",
     year: "2025",
     link: "https://maceysmethod.co.uk/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Go Quality Networks",
     category: "Website Development",
-    image: portfolio3,
+    image: portfolio4,
     desc: "A Houston-based telecom website built to present high-speed internet and connectivity solutions with clarity and authority. The platform is structured to simplify provider comparison, communicate coverage and reliability, and guide users toward confident service decisions.",
     year: "2023",
     link: "https://go-quality-networks.com/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Noble Cleaning Solutions",
     category: "Website Design + Development",
-    image: portfolio4,
+    image: portfolio5,
     desc: "A functional service website developed for a Edmonton-based cleaning business. The platform streamlines the booking process while clearly presenting residential and commercial services in a structured, easy-to-navigate layout.",
     year: "2023",
     link: "https://noble-cleaning-solutions.vercel.app/",
@@ -108,7 +118,6 @@ const PortfoliosSection = () => {
         </p>
         <h1
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wide"
-          style={{ fontFamily: '"Libre Caslon Text", serif' }}
         >
           Recent Projects
         </h1>
@@ -124,7 +133,7 @@ const PortfoliosSection = () => {
             {/* ── Text Part ── */}
             <div className="flex-1 flex items-center py-16 md:py-0">
               <FadeIn delay={100}>
-                <div className="px-8 md:px-16 lg:px-24 max-w-lg">
+                <div className="px-8 md:px-16 lg:px-24 max-w-xl">
 
                   {/* Category tag — small, quiet */}
                   <p
@@ -138,7 +147,6 @@ const PortfoliosSection = () => {
                   <h2
                     className="font-normal leading-[1.05] tracking-tight mb-7"
                     style={{
-                      fontFamily: '"Libre Caslon Text", serif',
                       fontSize: "clamp(2rem, 3.5vw, 3rem)",
                       color: "#1A1A1A",
                     }}

@@ -125,7 +125,7 @@ const AboutMe = () => {
         <div className="flex flex-col gap-7">
           <h2
             ref={headingRef}
-            className="font-libre-caslon italic text-[2.4rem] sm:text-5xl lg:text-6xl text-[#1a1a1a] leading-[1.1] tracking-tight md:mt-0 mt-4"
+            className="italic text-[2.4rem] sm:text-5xl lg:text-6xl text-[#1a1a1a] leading-[1.1] tracking-tight md:mt-0 mt-4"
             style={{ opacity: 0 }}
           >
             Hi, I'm Hasnain.
@@ -138,17 +138,17 @@ const AboutMe = () => {
           />
 
           <div ref={parasRef} className="flex flex-col gap-4">
-            <p className="font-sans text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
+            <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
               Web development found me in 2022 — and it stuck. What started as
               curiosity quickly became building real things for real businesses,
               and I never looked back.
             </p>
-            <p className="font-sans text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
+            <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
               I'm not your average freelancer. Studying software engineering
               means I understand how the web actually works — I build what no
               drag-and-drop builder can. Clean, custom, engineered to perform.
             </p>
-            <p className="font-sans text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
+            <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
               Over two years of freelancing, I've delivered projects for clients
               across the globe — working with virtual assistants, Social media managers,
               coaches and other service based businesses in the UK, Canada, US, and beyond, building sites that don't just look good. They

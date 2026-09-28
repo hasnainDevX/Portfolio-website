@@ -44,11 +44,11 @@ const referralOptions = [
 ];
 
 // ── Shared class strings ──────────────────────────────────────────────────────
-const labelCls = "block text-sm text-[#1A1A1A] font-sans mb-2 tracking-wide";
+const labelCls = "block text-sm text-[#1A1A1A] mb-2 tracking-wide";
 
 const inputCls =
   "w-full bg-transparent border-0 border-b border-[#1A1A1A] pb-3 pt-1 " +
-  "text-[#1A1A1A] text-base font-sans placeholder:text-[#BBBBBB] " +
+  "text-[#1A1A1A] text-base placeholder:text-[#BBBBBB] " +
   "focus:outline-none focus:border-[#A68B44] transition-colors duration-300";
 
 const BusinessPositionOptions = [
@@ -81,7 +81,7 @@ const PillRadio = ({
       className="sr-only"
     />
     <span
-      className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border text-sm font-sans transition-all duration-200 select-none ${
+      className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border text-sm transition-all duration-200 select-none ${
         checked
           ? "border-[#1A1A1A] bg-soft-beige text-[#1A1A1A]"
           : "border-[#C8C0B8] bg-transparent text-[#1A1A1A] hover:border-[#1A1A1A]"
@@ -162,7 +162,7 @@ const ContactForm = () => {
 
   if (submitted) {
     return (
-      <div className="w-full max-w-2xl mx-auto px-6 py-32 text-center font-sans">
+      <div className="w-full max-w-2xl mx-auto px-6 py-32 text-center">
         <div className="w-14 h-14 rounded-full border border-[#A68B44] flex items-center justify-center mx-auto mb-8">
           <svg
             className="w-6 h-6 text-[#A68B44]"
@@ -180,11 +180,10 @@ const ContactForm = () => {
         </div>
         <h2
           className="text-3xl text-[#1A1A1A] font-normal mb-4"
-          style={{ fontFamily: '"Libre Caslon Text", serif' }}
         >
           Thank you, {formData.firstName}.
         </h2>
-        <p className="text-[#555] text-sm leading-relaxed max-w-sm mx-auto font-sans">
+        <p className="text-[#555] text-sm leading-relaxed max-w-sm mx-auto">
           Your enquiry has been received. We'll be in touch within 48 hours to
           discuss your project.
         </p>
@@ -193,7 +192,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-6 py-12 font-sans">
+    <div className="w-full max-w-3xl mx-auto px-6 py-12">
       <form onSubmit={handleSubmit} className="space-y-10">
         {/* First Name */}
         <div>
@@ -446,7 +445,7 @@ const ContactForm = () => {
           />
           <div className="flex justify-end mt-1">
             <span
-              className={`text-xs font-sans ${formData.additionalInfo.length > 450 ? "text-[#A68B44]" : "text-[#BBB]"}`}
+              className={`text-xs ${formData.additionalInfo.length > 450 ? "text-[#A68B44]" : "text-[#BBB]"}`}
             >
               {formData.additionalInfo.length} / 500
             </span>
@@ -457,14 +456,14 @@ const ContactForm = () => {
         <div className="pt-4 flex justify-end">
           <button
             type="submit"
-            className="px-16 py-3 bg-soft-beige border border-charcoal rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 font-sans text-[#1A1A1A]"
+            className="px-16 py-3 bg-soft-beige border border-charcoal rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300  ns text-[#1A1A1A]"
           >
             Submit Enquiry
           </button>
         </div>
       </form>
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center mt-12">
-        <p className="text-sm text-[#2a2a2a]/50 leading-relaxed max-w-2xl mx-auto font-sans">
+        <p className="text-sm text-[#2a2a2a]/50 leading-relaxed max-w-2xl mx-auto">
           No commitment required — submitting this form is just the start of a
           conversation. I'll review your enquiry and get back to you within 48
           hours.

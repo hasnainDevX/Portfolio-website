@@ -28,7 +28,7 @@ const AnnouncementBar = () => {
           {loopedItems.map((announcementText, i) => (
             <span
               key={i}
-              className="text-white text-xs tracking-[0.25em] uppercase font-sans mx-6 shrink-0"
+              className="text-white text-xs tracking-[0.25em] uppercase mx-6 shrink-0"
             >
               {announcementText}
             </span>

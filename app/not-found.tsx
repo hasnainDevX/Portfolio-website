@@ -11,7 +11,6 @@ const NotFound = () => {
       </p>
       <h1
         className="text-6xl md:text-8xl font-light tracking-wide text-[#1a1a1a] mb-6"
-        style={{ fontFamily: '"Libre Caslon Text", serif' }}
       >
         Page Not Found
       </h1>

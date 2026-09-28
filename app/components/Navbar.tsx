@@ -44,8 +44,7 @@ const Navbar = () => {
         {/* Centre logo */}
         <Link
           href="/"
-          className="text-xl tracking-wide text-center whitespace-nowrap px-6 transition-opacity hover:opacity-70"
-          style={{ fontFamily: '"Libre Caslon Text", serif', color: "#2a2a2a" }}
+          className="text-xl tracking-wide text-center whitespace-nowrap px-6 transition-opacity hover:opacity-70 font-display"
           aria-label="Hasnain Webstudio Logo"
         >
           Hasnain Webstudio
@@ -123,7 +122,6 @@ const Navbar = () => {
             href="/"
             className="text-base tracking-wide hover:opacity-70 transition"
             style={{
-              fontFamily: '"Libre Caslon Text", serif',
               color: "#2a2a2a",
             }}
           >

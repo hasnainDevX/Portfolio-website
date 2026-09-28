@@ -64,7 +64,6 @@ const Cta = () => {
         <h1
           ref={headingRef}
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-16 font-light tracking-wide"
-          style={{ fontFamily: '"Libre Caslon Text", serif', opacity: 0 }}
         >
           BOOK YOUR PROJECT
         </h1>

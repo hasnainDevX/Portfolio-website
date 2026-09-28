@@ -28,7 +28,6 @@ const TextMarquee = ({
         suppressHydrationWarning
         style={{
           backgroundColor: bgColor,
-          fontFamily: "Libre Caslon Text, serif",
           height,
         }}
       >

@@ -24,11 +24,10 @@ const PortfolioSection = () => {
       <div className="headings my-16 md:my-28 lg:my-32 space-y-6 px-4 md:px-12">
         <h1
           className="text-[#2A2A2A] text-5xl md:text-2xl lg:text-5xl xl:text-6xl 2xl:text-7xl  text-center px-4 md:px-0 max-w-4xl mx-auto "
-          style={{ fontFamily: "Libre Caslon Text, serif" }}
         >
           Project <span className="">Spotlight</span>
         </h1>
-        <p className="text-sm md:text-lg font-sans text-gray-600 px-4 md:px-16 text-center max-w-7xl mx-auto">
+        <p className="text-sm md:text-lg text-gray-600 px-4 md:px-16 text-center max-w-7xl mx-auto">
           Every site was built from scratch — no templates, no shortcuts. Each
           one designed around a specific business, a specific audience, and a
           specific goal. Browse the work and see what's possible when the code
@@ -37,11 +36,11 @@ const PortfolioSection = () => {
       </div>
       <div className="card border border-dashed border-charcoal/40 max-w-5xl mx-auto shadow-2xl flex flex-col md:flex-row overflow-hidden rounded-xl bg-white">
         <div className="left-content w-full md:flex-[55%] p-8 sm:p-10 md:p-12 lg:p-16 xl:p-20 space-y-5 sm:space-y-6 md:space-y-7 flex flex-col justify-center">
-          <h2 className="text-[26px] sm:text-3xl md:text-4xl lg:text-[42px] xl:text-5xl font-light text-charcoal leading-tight tracking-tight font-libre-caslon">
+          <h2 className="text-[26px] sm:text-3xl md:text-4xl lg:text-[42px] xl:text-5xl font-light text-charcoal leading-tight tracking-tighta">
             Captivating and Converting{" "}
             <span className="text-[#7a6025]">Portfolio</span>
           </h2>
-          <p className="font-light text-[15px] sm:text-base md:text-[17px] lg:text-lg leading-relaxed sm:leading-relaxed md:leading-loose font-sans text-charcoal/75 max-w-xl">
+          <p className="font-light text-[15px] sm:text-base md:text-[17px] lg:text-lg leading-relaxed sm:leading-relaxed md:leading-loose  ns text-charcoal/75 max-w-xl">
             Some are service businesses. Some are e-commerce. All of them needed
             something that actually worked — not just looked good. That's what's
             in here.
