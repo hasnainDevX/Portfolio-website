@@ -280,7 +280,7 @@ const PackagesSection = () => {
                   />
                 </div>
                 <div className="deliverable-item">
-                  <Deliverable bold="30 days" normal="of post-launch support" />
+                  <Deliverable bold="10 days" normal="of post-launch support" />
                 </div>
               </div>
             </div>
@@ -389,7 +389,7 @@ const PackagesSection = () => {
             </div>
             <div className="deliverable-item">
               <Deliverable
-                bold="60 days"
+                bold="20 days"
                 normal="of post-launch support and updates"
               />
             </div>
@@ -401,7 +401,7 @@ const PackagesSection = () => {
             </div> */}
             <div className="price-block">
               <PriceBlock
-                price="$499–$999"
+                price="$499–$1199"
                 // originalPrice="$750–$1,500"
                 turnaround="3–4 weeks turnaround"
                 note="2-month payment plans available"
@@ -540,7 +540,7 @@ const PackagesSection = () => {
             </div>
             <div className="deliverable-item">
               <Deliverable
-                bold="90 days priority support"
+                bold="30 days priority support"
                 normal="with unlimited revisions"
               />
             </div>
