@@ -21,7 +21,7 @@ interface FormData {
 
 const budgetOptions = [
   "$399 – $499 (The Foundation Site)",
-  "$500 – $999 (The Signature Site)",
+  "$600 – 1200$ (The Signature Site)",
   "$2,000+ (The Complete Vision)",
 ];
 
