@@ -33,10 +33,10 @@ const faqs: FAQ[] = [
     answer:
       "The Foundation Site typically wraps up in 1–2 weeks. Larger projects run 3–8 weeks depending on scope. The biggest factor is usually how quickly content and feedback come through on your end — I'll always give you a clear timeline upfront so nothing drags.",
   },
-  {
-    question: "Why are your rates lower than most Web Designers?",
+   {
+    question: "Why are your rates lower than most web designers?",
     answer:
-      "Because the traditional agency model is broken. You pay $3,000 and half of it covers account managers, project coordinators, and internal meetings you're never in. I've cut all of that out by design — every penny goes into the actual build. The result is the same quality, delivered faster, with direct access to the person doing the work. That's not a compromise. That's a better deal.",
+      "Because I believe every small business deserves a premium website, not just the ones with a $5,000 budget. I keep my rates accessible so businesses starting out don't have to miss out on the value a professional site brings.",
   },
   {
     question: "Will my website work on mobile?",
