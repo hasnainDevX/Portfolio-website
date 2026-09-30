@@ -8,6 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   {
     quote:
+      "Hasnain was amazing to work with. A website is something I’ve wanted to do for years but as a full time business owner, finding time to build a space that represented me and my brand was very challenging. The website hasnain created was everything I could have imagined and am so grateful to have this checked off my to-do list. Highly recommend hasainwebstudio for all your website needs!",
+    name: "Natasha",
+    company: "Lashed By Tash",
+  },
+  {
+    quote:
       "I had a great experience working with hasnainWebstudio on my website (maceysmethod.co.uk) for my virtual assistant business. They were professional, creative, and really listened to my ideas. The final site is easy to navigate and perfectly represents my brand. I highly recommend them to anyone looking for a talented and reliable website designer!.",
     name: "Macey",
     company: "Macey's Method - Virtual Assistant",
@@ -75,7 +81,9 @@ const TestimonialsSection = () => {
           <div
             key={index}
             className={`w-full md:max-w-lg max-w-md ${
-              index % 2 === 0 ? "md:self-start md:ml-20" : "md:self-end md:mr-20"
+              index % 2 === 0
+                ? "md:self-start md:ml-20"
+                : "md:self-end md:mr-20"
             }`}
           >
             <div className="relative">
