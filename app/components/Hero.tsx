@@ -127,11 +127,11 @@ const Hero = () => {
           confidence.
         </p>
 
-        <div ref={buttonRef} className="mt-9 opacity-0 sm:mt-10">
+        <div ref={buttonRef} className="mt-9 opacity-0 sm:mt-10 ">
           <Link
             href="/packages"
             aria-label="Explore website packages"
-            className="button button--lavender"
+            className="button button--lavender border rounded-full px-5 py-3"
           >
             Explore packages ↗
           </Link>
