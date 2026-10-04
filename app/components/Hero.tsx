@@ -1,11 +1,15 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import Image from "next/image";
 
 import Navbar from "./Navbar";
-import heroImage from "../assets/heroimage.avif";
+import hero1 from "../assets/cafesite.jpeg";
+import hero2 from "../assets/lashedbytash.jpeg";
+import hero3 from "../assets/allingoodhans1.png";
+
+const heroImages = [hero1, hero2, hero3];
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -74,20 +78,78 @@ const Hero = () => {
     return () => context.revert();
   }, []);
 
+  const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const currentSlide = useRef(0);
+
+  useEffect(() => {
+    const slides = slidesRef.current.filter(Boolean) as HTMLDivElement[];
+    if (slides.length < 2) return;
+
+    const SHOW_TIME = 5000; // ms each image stays
+    const FADE_TIME = 1.5; // seconds for the crossfade
+
+    // Starting state: first slide visible, others hidden
+    gsap.set(slides, { opacity: 0, scale: 1.08, zIndex: 0 });
+    gsap.set(slides[0], { opacity: 1, zIndex: 1 });
+    gsap.to(slides[0], { scale: 1, duration: 7, ease: "none" });
+
+    const interval = setInterval(() => {
+      const current = slides[currentSlide.current];
+      const nextIndex = (currentSlide.current + 1) % slides.length;
+      const next = slides[nextIndex];
+      currentSlide.current = nextIndex;
+
+      gsap.set(next, { zIndex: 2, scale: 1.08 });
+      gsap.to(next, { opacity: 1, duration: FADE_TIME, ease: "power2.inOut" });
+      gsap.to(next, { scale: 1, duration: 7, ease: "none" });
+      gsap.to(current, {
+        opacity: 0,
+        duration: FADE_TIME,
+        ease: "power2.inOut",
+        onComplete: () => {
+          gsap.set(current, { zIndex: 0 });
+        },
+      });
+    }, SHOW_TIME);
+
+    return () => {
+      clearInterval(interval);
+      gsap.killTweensOf(slides);
+    };
+  }, []);
+
   return (
     <section
       ref={heroRef}
       className="relative min-h-[100svh] overflow-hidden bg-charcoal"
-      style={{
-        backgroundImage: `url(${heroImage.src})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
     >
-      {/* Brand-colour image overlay */}
+      {/* Background slideshow */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        {heroImages.map((img, i) => (
+          <div
+            key={i}
+            ref={(el) => {
+              slidesRef.current[i] = el;
+            }}
+            className="absolute inset-0"
+            style={{ opacity: i === 0 ? 1 : 0 }}
+          >
+            <Image
+              src={img}
+              alt=""
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Brand-colour image overlay (your existing one) */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75"
+        className="absolute inset-0 z-[1] bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75"
       />
 
       {/* Desktop cursor light */}
@@ -122,9 +184,8 @@ const Hero = () => {
         </h1>
 
         <p className="mt-7 max-w-xl font-body text-sm leading-relaxed text-ivory/75 sm:mt-8 sm:text-base">
-          Strategy-led, custom-built digital experiences that help your
-          business look established, feel distinct, and move forward with
-          confidence.
+          Strategy-led, custom-built digital experiences that help your business
+          look established, feel distinct, and move forward with confidence.
         </p>
 
         <div ref={buttonRef} className="mt-9 opacity-0 sm:mt-10 ">

@@ -1,4 +1,4 @@
-"use client";
+import Image from "next/image";
 import Hero from "./components/Hero";
 import ribbon from "./assets/image.png";
 import Portfolio from "./components/PortfolioSection";
@@ -7,15 +7,20 @@ import Testimonials from "./components/TestimonialSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ImagesMarquee from "./components/ImagesMarquee";
 import Footer from "./components/Footer";
-import dynamic from "next/dynamic";
-const MarqueeShowcase = dynamic(() => import("./components/TextMarquee"), {
-  ssr: false,
-});
 import AnnouncementBar from "./components/AnnouncementBar";
-import Image from "next/image";
 import Cta from "./components/Cta";
+import TextMarqueeClient from "./components/TextMarqueeClient";
+import { pageMetadata } from "./lib/Seo";
 
-const Home = () => {
+export const metadata = pageMetadata({
+  title: "Custom Websites for Ambitious Businesses | Hasnain Webstudio",
+  absoluteTitle: true,
+  description:
+    "Strategy-led, custom-coded websites for ambitious business owners. No templates or builders, built to be found on Google and turn visitors into enquiries.",
+  path: "/",
+});
+
+export default function Home() {
   return (
     <div className="smooth-wrapper">
       <div className="hidden md:block">
@@ -35,14 +40,14 @@ const Home = () => {
       <Portfolio />
       <Testimonials />
       <ExperienceSection />
-      <Cta/>
-      <MarqueeShowcase
-        data={["SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart."]}
+      <Cta />
+      <TextMarqueeClient
+        data={[
+          "SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart.",
+        ]}
         speed={20}
       />
       <Footer />
     </div>
   );
-};
-
-export default Home;
+}

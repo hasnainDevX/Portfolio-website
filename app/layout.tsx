@@ -2,28 +2,30 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import Preloader from "./components/PreLoader";
+import JsonLd from "./components/JsonLd";
+import { siteSchema } from "./components/Schema";
 import { editorsNote, sourceSans } from "./fonts/font";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hasnainwebstudio.com"),
+  // www is the version the site really serves (the apex redirects to it),
+  // so every relative URL below resolves to www.
+  metadataBase: new URL("https://www.hasnainwebstudio.com"),
 
   title: {
-    default: "Hasnain Webstudio | Custom Websites for Businesses",
+    default: "Custom Websites for Ambitious Businesses | Hasnain Webstudio",
     template: "%s | Hasnain Webstudio",
   },
 
   description:
-    "Custom-coded websites for service-based businesses. Fast, professional, and built to convert visitors into customers.",
+    "Strategy-led, custom-coded websites for ambitious business owners. No templates or builders, built to be found on Google and turn visitors into enquiries.",
 
-  alternates: {
-    canonical: "https://hasnainwebstudio.com",
-  },
+  // IMPORTANT: no `alternates.canonical` and no `openGraph.url` here.
+  // Anything set in the root layout is inherited by every page that does not
+  // override it, which is what made every page canonical to the homepage.
+  // Each page sets its own through pageMetadata() in app/lib/seo.ts.
 
+  // Shared fallbacks only (pages replace these via pageMetadata()).
   openGraph: {
-    title: "Hasnain Webstudio | Custom Websites for Businesses",
-    description:
-      "Custom-coded websites for service-based businesses. Fast, professional, and built to convert visitors into customers.",
-    url: "https://hasnainwebstudio.com",
     siteName: "Hasnain Webstudio",
     images: [
       {
@@ -35,6 +37,11 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.jpeg"],
   },
 
   robots: {
@@ -58,6 +65,9 @@ export default function RootLayout({
       className={`${editorsNote.variable} ${sourceSans.variable}`}
     >
       <body>
+        {/* Site-wide structured data (Organization, WebSite, Person) */}
+        <JsonLd data={siteSchema} />
+
         <Preloader />
         {/* <SmoothScroll /> */}
         {children}

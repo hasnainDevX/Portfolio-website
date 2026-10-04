@@ -180,8 +180,8 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/20">
         <div className="max-w-6xl mx-auto px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-base space-y-4 md:space-y-0 text-white/70">
-            <p className="te">© {new Date().getFullYear()} Hasnain Webstudio</p>
+          <div className="flex flex-col  justify-between items-center text-base space-y-4 md:space-y-0 text-white/70">
+            <p className="">© {new Date().getFullYear()} Hasnain Webstudio | All Rights Reserve</p>
           </div>
         </div>
       </div>
