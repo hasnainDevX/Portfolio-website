@@ -23,14 +23,14 @@ export const packages: Pkg[] = [
     image: FoundationImage,
     intro: [
       "When you're starting out, your website is often where a potential client decides whether to trust you. The Foundation Site is a single, carefully built page that explains what you offer and makes it easy to get in touch, so enquiries start arriving in your inbox.",
-      "It's custom coded from scratch and built to be found on Google from day one, with no template limits and no builder subscription.",
+      "It's custom coded and built to be found on Google from day one, with no template limits and no builder subscription.",
     ],
     included: [
       "A one-page website designed around your business, so you look credible from the start",
       "Search set up from day one, so your site is built to be found on Google",
       "A fast, smooth experience on phones, where most of your visitors arrive",
       "Enquiries sent straight to your inbox, with visitor stats that show where they come from",
-      "Help with your wording, plus hosting setup and domain guidance",
+      "Help with your wording, plus Hosting setup and domain guidance",
       "Ten days of support after launch",
     ],
     suitedTo: [
@@ -50,14 +50,14 @@ export const packages: Pkg[] = [
     name: "The Signature Site",
     image: SignatureImage,
     intro: [
-      "For businesses that want their website to work as hard as they do. A stronger design, more pages to answer questions before clients have to ask, and tracking that shows which pages bring in enquiries.",
-      "Search is built into every page from the start, and a wording session makes sure the words do as much as the design.",
+      "For businesses that want their website to work as hard as they do. A stronger design that gives you a professional and premium look, more pages to answer questions before clients have to ask, and tracking that shows which pages bring in enquiries.",
+      "Optimize for 90+ SEO and PERFORMANCE Score so your website can appear in top search results when people search for your services.",
     ],
     included: [
       "A multi-page custom website that explains your services and answers questions before clients ask",
       "Search built into every page, including the technical details Google looks for, on a site made to load fast",
       "Subtle motion and detail that make the site feel finished and trustworthy",
-      "A one-to-one session to sharpen the wording across your pages",
+      "A professional and strategic content that takes the user to inquiry",
       "Tracking that shows which pages lead to enquiries, plus sign-up forms to build your mailing list",
       "Twenty days of support and updates after launch",
     ],
@@ -90,11 +90,11 @@ export const packages: Pkg[] = [
       "A dashboard of your own for changing text and images, without waiting on a developer",
       "A site that works smoothly on every device, with app-like features on phones",
       "Ongoing maintenance and security updates, so it stays dependable and current",
-      "Thirty days of priority support, with unlimited revisions",
+      "Thirty days of priority support, with revisions",
     ],
     suitedTo: [
       "Are up against established competitors who already appear at the top of search results",
-      "Want a brand and a website that look like one business",
+      "Want a brand and a website that outlast and bring in clients automatically.",
       "Sell products or services online, or are about to",
       "Want to manage their own content without technical help",
       "See the website as a long-term asset built to outlast trends, not a one-off project",
