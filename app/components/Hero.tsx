@@ -5,11 +5,11 @@ import gsap from "gsap";
 import Image from "next/image";
 
 import Navbar from "./Navbar";
-import hero1 from "../assets/cafesite.jpeg";
+import hero1 from "../assets/bg.png";
 import hero2 from "../assets/lashedbytash.jpeg";
-import hero3 from "../assets/allingoodhans1.png";
+// import hero3 from "../assets/allingoodhans1.png";
 
-const heroImages = [hero1, hero2, hero3];
+const heroImages = [hero1];
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
