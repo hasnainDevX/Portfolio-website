@@ -190,7 +190,7 @@ const Hero = () => {
           <Link
             href="/packages"
             aria-label="Explore website packages"
-            className="button button--lavender border rounded-full px-5 py-3"
+            className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer"
           >
             Explore packages ↗
           </Link>

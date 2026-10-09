@@ -1,7 +1,11 @@
 "use client";
+
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import testimonialsBg from "../assets/abstract.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,7 +52,7 @@ const TestimonialsSection = () => {
 
     if (!header || !cardsContainer) return;
 
-    // Pin the header while cards scroll through
+    // Pin the header while the testimonial cards scroll past it.
     ScrollTrigger.create({
       trigger: cardsContainer,
       start: "top center",
@@ -63,72 +67,64 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <div className="relative py-20">
-      {/* Title - Will be pinned */}
-      <div ref={headerRef} className="text-center mb-32 px-6">
-        <h2 className="text-5xl md:text-6xl lg:text-7xl mb-4">
-          My favourite <span className="">quotes</span>
-        </h2>
-        <p className="text-xl text-">from clients</p>
-      </div>
+    <section className="relative overflow-hidden py-20">
+      {/* Full section background image. */}
+      <Image src={testimonialsBg} alt="" fill sizes="100vw" className="object-cover object-center" />
 
-      {/* Cards Container - Scrolls normally */}
-      <div
-        ref={cardsContainerRef}
-        className="flex flex-col items-center gap-8 px-4"
-      >
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className={`w-full md:max-w-lg max-w-md ${
-              index % 2 === 0
-                ? "md:self-start md:ml-20"
-                : "md:self-end md:mr-20"
-            }`}
-          >
-            <div className="relative">
-              {/* Organic shaped background */}
-              <div
-                className="absolute inset-0 bg-gold/95 text-white rounded-[40px] shadow-2xl"
-                style={{
-                  clipPath:
-                    "polygon(3% 8%, 8% 2%, 92% 2%, 97% 8%, 97% 92%, 92% 97%, 8% 97%, 3% 92%)",
-                }}
-              />
+      {/* Overlay controls how visible the background image is. */}
+      <div className="absolute inset-0 bg-cream-bg/80" />
 
-              {/* Content */}
-              <div className="relative p-8 md:p-12">
-                <div className="mb-6">
-                  <svg
-                    className="w-10 h-10 text-white opacity-70"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
+      {/* Everything stays above the background and overlay. */}
+      <div className="relative z-10">
+        {/* Title - Will be pinned */}
+        <div ref={headerRef} className="mb-32 px-6 text-center">
+          <h2 className="mb-4 text-5xl md:text-6xl lg:text-7xl">
+            My favourite <span>quotes</span>
+          </h2>
 
-                <p className="md:text-lg leading-relaxed mb-6 font-light text-white">
-                  {testimonial.quote}
-                </p>
+          <p className="text-xl">from clients</p>
+        </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-1 h-10 bg-gradient-to-b from-gold to-yellowish rounded-full" />
-                  <div>
-                    <p className="font-semibold text-white text-base uppercase tracking-wide">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-white text-sm uppercase tracking-wider">
-                      {testimonial.company}
-                    </p>
+        {/* Cards Container - Scrolls normally */}
+        <div ref={cardsContainerRef} className="flex flex-col items-center gap-8 px-4">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className={`w-full max-w-md md:max-w-lg ${index % 2 === 0 ? "md:self-start md:ml-20" : "md:self-end md:mr-20"}`}>
+              <div className="relative">
+                {/* Organic shaped background */}
+                <div className="absolute inset-0 rounded-[40px] bg-gold/95 text-white shadow-2xl" style={{ clipPath: "polygon(3% 8%, 8% 2%, 92% 2%, 97% 8%, 97% 92%, 92% 97%, 8% 97%, 3% 92%)" }} />
+
+                {/* Content */}
+                <div className="relative p-8 md:p-12">
+                  <div className="mb-6">
+                    <svg className="h-10 w-10 text-white opacity-70" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                  </div>
+
+                  <p className="mb-6 font-light leading-relaxed text-white md:text-lg">
+                    {testimonial.quote}
+                  </p>
+
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-1 rounded-full bg-gradient-to-b from-gold to-yellowish" />
+
+                    <div>
+                      <p className="text-base font-semibold uppercase tracking-wide text-white">
+                        {testimonial.name}
+                      </p>
+
+                      <p className="text-sm uppercase tracking-wider text-white">
+                        {testimonial.company}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

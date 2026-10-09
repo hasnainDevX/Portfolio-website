@@ -70,9 +70,9 @@ const PortfolioSection = () => {
                 <div className="mt-8">
                   <Link
                     href="/portfolio"
-                    className="inline-flex items-center justify-center rounded-full border border-charcoal px-8 py-3 text-xs uppercase tracking-[0.16em] text-charcoal transition-colors duration-300 hover:bg-charcoal hover:border-white hover:text-white sm:px-10 sm:text-sm lg:px-12 font-serif"
+                    className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white"
                   >
-                    See all projects
+                    See all projects ↗
                   </Link>
                 </div>
               </div>

@@ -1,4 +1,6 @@
+
 "use client";
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
@@ -43,21 +45,20 @@ const referralOptions = [
   "Other",
 ];
 
-// ── Shared class strings ──────────────────────────────────────────────────────
-const labelCls = "block text-sm text-[#1A1A1A] mb-2 tracking-wide";
-
-const inputCls =
-  "w-full bg-transparent border-0 border-b border-[#1A1A1A] pb-3 pt-1 " +
-  "text-[#1A1A1A] text-base placeholder:text-[#BBBBBB] " +
-  "focus:outline-none focus:border-[#A68B44] transition-colors duration-300";
-
 const BusinessPositionOptions = [
   "Just getting started & building my presence",
   "Established, ready for a refresh",
   "Growing, but my website is holding me back",
   "Ready for a long-term digital foundation",
 ];
-// ── Pill radio ────────────────────────────────────────────────────────────────
+
+const labelCls = "block text-sm text-[#1A1A1A] mb-2 tracking-wide";
+
+const inputCls = "w-full bg-transparent border-0 border-b border-[#1A1A1A] pb-3 pt-1 text-[#1A1A1A] text-base placeholder:text-[#BBBBBB] focus:outline-none focus:border-[#A68B44] transition-colors duration-300";
+
+const buttonCls = "button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer";
+
+// Radio selection buttons
 const PillRadio = ({
   name,
   value,
@@ -78,15 +79,10 @@ const PillRadio = ({
       value={value}
       checked={checked}
       onChange={onChange}
-      className="sr-only"
+      className="peer sr-only"
     />
-    <span
-      className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border text-sm transition-all duration-200 select-none ${
-        checked
-          ? "border-[#1A1A1A] bg-soft-beige text-[#1A1A1A]"
-          : "border-[#C8C0B8] bg-transparent text-[#1A1A1A] hover:border-[#1A1A1A]"
-      }`}
-    >
+
+    <span className={`${buttonCls} inline-flex items-center gap-1.5 text-sm select-none peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 ${checked ? "!bg-gold !text-white" : ""}`}>
       {checked && (
         <svg className="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none">
           <path
@@ -103,9 +99,9 @@ const PillRadio = ({
   </label>
 );
 
-// ── Main component ────────────────────────────────────────────────────────────
 const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
+
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -128,6 +124,7 @@ const ContactForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     emailjs
       .send(
         "service_oc2uvzh",
@@ -154,9 +151,7 @@ const ContactForm = () => {
       })
       .catch((error) => {
         console.error("Email sending error:", error);
-        alert(
-          "There was an error submitting your enquiry. Please try again later.",
-        );
+        alert("There was an error submitting your enquiry. Please try again later.");
       });
   };
 
@@ -164,28 +159,17 @@ const ContactForm = () => {
     return (
       <div className="w-full max-w-2xl mx-auto px-6 py-32 text-center">
         <div className="w-14 h-14 rounded-full border border-[#A68B44] flex items-center justify-center mx-auto mb-8">
-          <svg
-            className="w-6 h-6 text-[#A68B44]"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M5 13l4 4L19 7"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg className="w-6 h-6 text-[#A68B44]" viewBox="0 0 24 24" fill="none">
+            <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h2
-          className="text-3xl text-[#1A1A1A] font-normal mb-4"
-        >
+
+        <h2 className="text-3xl text-[#1A1A1A] font-normal mb-4">
           Thank you, {formData.firstName}.
         </h2>
+
         <p className="text-[#555] text-sm leading-relaxed max-w-sm mx-auto">
-          Your enquiry has been received. We'll be in touch within 48 hours to
-          discuss your project.
+          Your enquiry has been received. We'll be in touch within 48 hours to discuss your project.
         </p>
       </div>
     );
@@ -194,6 +178,7 @@ const ContactForm = () => {
   return (
     <div className="w-full max-w-3xl mx-auto px-6 py-12">
       <form onSubmit={handleSubmit} className="space-y-10">
+
         {/* First Name */}
         <div>
           <label htmlFor="firstName" className={labelCls}>
@@ -321,6 +306,7 @@ const ContactForm = () => {
             </Link>
             ?
           </label>
+
           <div className="flex gap-3 flex-wrap">
             {["Yes", "No"].map((val) => (
               <PillRadio
@@ -341,6 +327,7 @@ const ContactForm = () => {
             Where does your budget roughly fall?
             <span className="text-[#A68B44]">*</span>
           </label>
+
           <div className="flex flex-wrap gap-3">
             {budgetOptions.map((val) => (
               <PillRadio
@@ -361,6 +348,7 @@ const ContactForm = () => {
             Which best describes your business right now?
             <span className="text-[#A68B44]">*</span>
           </label>
+
           <div className="flex flex-wrap gap-3">
             {BusinessPositionOptions.map((val) => (
               <PillRadio
@@ -380,6 +368,7 @@ const ContactForm = () => {
           <label className={labelCls}>
             What's your timeline?<span className="text-[#A68B44]">*</span>
           </label>
+
           <div className="flex flex-wrap gap-3">
             {timelineOptions.map((val) => (
               <PillRadio
@@ -399,6 +388,7 @@ const ContactForm = () => {
           <label htmlFor="referralSource" className={labelCls}>
             How did you hear about us?<span className="text-[#A68B44]">*</span>
           </label>
+
           <select
             id="referralSource"
             name="referralSource"
@@ -414,18 +404,9 @@ const ContactForm = () => {
               </option>
             ))}
           </select>
-          <svg
-            className="absolute right-0 bottom-3.5 w-4 h-4 text-[#1A1A1A] pointer-events-none"
-            viewBox="0 0 16 16"
-            fill="none"
-          >
-            <path
-              d="M4 6l4 4 4-4"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+
+          <svg className="absolute right-0 bottom-3.5 w-4 h-4 text-[#1A1A1A] pointer-events-none" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
 
@@ -434,6 +415,7 @@ const ContactForm = () => {
           <label htmlFor="additionalInfo" className={labelCls}>
             Do you have questions or information you would like us to know?
           </label>
+
           <textarea
             id="additionalInfo"
             name="additionalInfo"
@@ -443,30 +425,25 @@ const ContactForm = () => {
             placeholder="Tell us about your vision, goals, or any questions..."
             className={`${inputCls} resize-none leading-relaxed`}
           />
+
           <div className="flex justify-end mt-1">
-            <span
-              className={`text-xs ${formData.additionalInfo.length > 450 ? "text-[#A68B44]" : "text-[#BBB]"}`}
-            >
+            <span className={`text-xs ${formData.additionalInfo.length > 450 ? "text-[#A68B44]" : "text-[#BBB]"}`}>
               {formData.additionalInfo.length} / 500
             </span>
           </div>
         </div>
 
-        {/* Submit */}
+        {/* Submit Button */}
         <div className="pt-4 flex justify-end">
-          <button
-            type="submit"
-            className="px-16 py-3 bg-soft-beige border border-charcoal rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300  ns text-[#1A1A1A]"
-          >
-            Submit Enquiry
+          <button type="submit" className={buttonCls}>
+            Submit Enquiry ↗
           </button>
         </div>
       </form>
+
       <div className="border-t border-gray-200 px-8 md:px-16 py-12 text-center mt-12">
         <p className="text-sm text-[#2a2a2a]/50 leading-relaxed max-w-2xl mx-auto">
-          No commitment required — submitting this form is just the start of a
-          conversation. I'll review your enquiry and get back to you within 48
-          hours.
+          No commitment required — submitting this form is just the start of a conversation. I'll review your enquiry and get back to you within 48 hours.
         </p>
       </div>
     </div>

@@ -149,8 +149,8 @@ const PackagesAbout = () => {
             aria-label="Enquire about a website package"
             style={{ opacity: 0 }}
           >
-            <button className="px-16 py-3 bg-soft-beige cursor-pointer border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
-              Enquire Now
+            <button className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer">
+              Enquire Now ↗
             </button>
           </Link>
         </div>

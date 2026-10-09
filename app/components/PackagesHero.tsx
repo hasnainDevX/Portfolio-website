@@ -92,12 +92,8 @@ const PackagesHero = () => {
             className="font-normal leading-[1.1] text-4xl sm:text-5xl lg:text-[3.4rem] mb-8"
             style={{ color: "#2a2a2a", opacity: 0 }}
           >
-            Your website is often the first impression{" "}
-            <br className="hidden lg:block" />
-            Let's make sure it's the right one.{" "}
-            <em style={{ color: "#b5973a", fontStyle: "italic" }}>
-              That's why every project starts with Brand Strategy.
-            </em>
+           Your website should do more than look beautiful. It should tell your story, show people what makes you different, and give the right clients every reason
+          <span className="italic"> to choose you.</span>
           </h1>
 
           <div
@@ -107,8 +103,8 @@ const PackagesHero = () => {
           />
 
           <a ref={ctaRef} href="#packages-section" aria-label="View packages — scroll to packages section" style={{ opacity: 0 }}>
-            <button className="px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300">
-              View Packages
+            <button className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer">
+              View Packages ↗
             </button>
           </a>
         </div>

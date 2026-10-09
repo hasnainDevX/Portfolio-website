@@ -74,7 +74,7 @@ const ExperienceSection = () => {
       />
 
       {/* Overlay — change opacity here */}
-      <div className="absolute inset-0 bg-cream-bg/80" />
+      <div className="absolute inset-0 bg-cream-bg/40" />
 
       {/* Main content */}
       <div className="relative z-10">
@@ -117,14 +117,6 @@ const ExperienceSection = () => {
                 first thing they judge. I build sites that do the selling: a
                 clear offer, easy booking, and a place on Google.
               </p>
-
-              {/*
-                Optional proof line. Only enable if it's true and verifiable today.
-                <p className="mt-4 font-body text-sm font-medium text-charcoal sm:text-base">
-                  [Client name] now ranks #1 for [search term].
-                </p>
-              */}
-
               <Link
                 href="/portfolio"
                 className="button mt-7"

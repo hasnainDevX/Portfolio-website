@@ -1,22 +1,23 @@
-"use client"
-import { useEffect, useRef, useState } from "react";
+
+"use client";
+
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
+
 import portfolio1 from "../../assets/lashedbytash.jpeg";
 import portfolio2 from "../../assets/allingoodhans1.png";
 import portfolio3 from "../../assets/maceysmethod1.png";
 import portfolio4 from "../../assets/telecomsite1.jpeg";
 import portfolio5 from "../../assets/noblesite1.jpeg";
-import Image from "next/image";
-import Link from "next/link";
-import { StaticImageData } from "next/image";
 
 interface Portfolio {
   id: number;
   title: string;
   category: string;
   image: StaticImageData;
-  desc?: string;
-  year: string;
-  link?: string;
+  desc: string;
+  link: string;
 }
 
 const portfolioData: Portfolio[] = [
@@ -25,8 +26,7 @@ const portfolioData: Portfolio[] = [
     title: "Lashed By Tash",
     category: "Website Design",
     image: portfolio1,
-    desc: "A strategic website for a certified lash artist in Steinbach, MB, built to bring her work beyond Instagram. Features an editorial brand identity, a lash menu with real pricing, a before/after slider, client testimonials, and a booking inquiry flow that sends requests straight to her inbox. Built with Next.js, Tailwind, and GSAP, with SEO and speed in mind.",
-    year: "2026",
+    desc: "Tash had the talent, the loyal clients, and the reputation to match. What she needed was a digital home that reflected it all. We brought her work to life through an editorial design, an easy-to-explore lash menu, real client stories, and a booking journey that makes taking the next step feel effortless.",
     link: "https://www.lashedbytash.ca",
   },
   {
@@ -34,8 +34,7 @@ const portfolioData: Portfolio[] = [
     title: "All In Good Hans",
     category: "Website Design",
     image: portfolio2,
-    desc: "A strategic website build for a UK-based Virtual Assistant supporting overwhelmed entrepreneurs with inbox management, systems, and client coordination. The design reflects the brand's calm, organised approach — positioning her as the dependable 'behind-the-scenes' partner who brings structure to business chaos.",
-    year: "2026",
+    desc: "When your business is built on making other people's lives easier, your website should do the same. For All In Good Hans, we created a calm, considered online space that communicates her value, showcases her services, and helps busy business owners see exactly why they need her in their corner.",
     link: "https://www.allingoodhans.co.uk/",
   },
   {
@@ -43,8 +42,7 @@ const portfolioData: Portfolio[] = [
     title: "Macey's Method",
     category: "Website Design + Development",
     image: portfolio3,
-    desc: "A refined, service-led website for a Virtual Assistant business focused on operational support and streamlined workflows. The structure prioritises clarity, service breakdown, and trust-building — helping potential clients quickly understand the value of outsourcing their admin.",
-    year: "2025",
+    desc: "Macey helps business owners get their time back. Her website needed to communicate that value without making visitors work for the answer. Clean layouts, thoughtful messaging, and a clear path to enquire come together in a digital presence that feels every bit as organised and dependable as the service behind it.",
     link: "https://maceysmethod.co.uk/",
   },
   {
@@ -52,8 +50,7 @@ const portfolioData: Portfolio[] = [
     title: "Go Quality Networks",
     category: "Website Development",
     image: portfolio4,
-    desc: "A Houston-based telecom website built to present high-speed internet and connectivity solutions with clarity and authority. The platform is structured to simplify provider comparison, communicate coverage and reliability, and guide users toward confident service decisions.",
-    year: "2023",
+    desc: "Internet solutions can get complicated fast. The website shouldn't. For this Houston-based telecom business, we developed a straightforward digital experience that brings services, connectivity options, and essential information into focus — so visitors can spend less time figuring things out and more time finding the right solution.",
     link: "https://go-quality-networks.com/",
   },
   {
@@ -61,23 +58,27 @@ const portfolioData: Portfolio[] = [
     title: "Noble Cleaning Solutions",
     category: "Website Design + Development",
     image: portfolio5,
-    desc: "A functional service website developed for a Edmonton-based cleaning business. The platform streamlines the booking process while clearly presenting residential and commercial services in a structured, easy-to-navigate layout.",
-    year: "2023",
+    desc: "Finding a reliable cleaning company shouldn't feel like another chore. We built Noble Cleaning Solutions a clean, approachable website that puts its residential and commercial services front and centre, answers the questions that matter, and makes getting in touch refreshingly simple.",
     link: "https://noble-cleaning-solutions.vercel.app/",
   },
 ];
 
-const FadeIn = ({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
+interface FadeInProps {
+  children: ReactNode;
   delay?: number;
-}) => {
+  className?: string;
+}
+
+const FadeIn = ({ children, delay = 0, className = "" }: FadeInProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -87,13 +88,17 @@ const FadeIn = ({
       },
       { threshold: 0.15 },
     );
-    if (ref.current) observer.observe(ref.current);
+
+    const element = ref.current;
+    if (element) observer.observe(element);
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={ref}
+      className={className}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
@@ -107,18 +112,14 @@ const FadeIn = ({
 
 const PortfoliosSection = () => {
   return (
-    <div className="w-full">
+    <section className="w-full">
       {/* Header */}
-      <div className="px-6 py-24 md:py-32 text-center">
-        <p
-          className="text-xs tracking-[0.4em] uppercase mb-6 text-charcoal"
-          style={{ fontFamily: "sans-serif" }}
-        >
+      <div className="px-6 py-24 text-center md:py-32">
+        <p className="mb-6 text-xs uppercase tracking-[0.4em] text-charcoal">
           Explore My Recent Work
         </p>
-        <h1
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wide"
-        >
+
+        <h1 className="text-5xl font-light tracking-wide md:text-6xl lg:text-7xl xl:text-8xl">
           Recent Projects
         </h1>
       </div>
@@ -126,85 +127,53 @@ const PortfoliosSection = () => {
       {/* Portfolio Rows */}
       <div className="w-full divide-y divide-[#E8E4DF] border-t border-[#E8E4DF]">
         {portfolioData.map((item, idx) => (
-          <div
-            key={idx}
-            className="w-full flex flex-col md:flex-row items-stretch min-h-[520px]"
-          >
-            {/* ── Text Part ── */}
-            <div className="flex-1 flex items-center py-16 md:py-0">
-              <FadeIn delay={100}>
-                <div className="px-8 md:px-16 lg:px-24 max-w-xl">
-
-                  {/* Category tag — small, quiet */}
-                  <p
-                    className="text-[10px] tracking-[0.28em] uppercase mb-6"
-                    style={{ color: "#aaa", fontFamily: "system-ui, sans-serif" }}
-                  >
+          <article key={item.id} className="flex w-full flex-col items-stretch md:min-h-[520px] md:flex-row">
+            {/* Text */}
+            <div className="flex flex-1 items-center py-16 md:py-0">
+              <FadeIn delay={100} className="w-full">
+                <div className="max-w-xl px-8 md:px-16 lg:px-24">
+                  <p className="mb-6 text-[10px] uppercase tracking-[0.28em] text-[#999]">
                     {item.category}
                   </p>
 
-                  {/* Title */}
-                  <h2
-                    className="font-normal leading-[1.05] tracking-tight mb-7"
-                    style={{
-                      fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                      color: "#1A1A1A",
-                    }}
-                  >
+                  <h2 className="mb-7 text-[clamp(2rem,3.5vw,3rem)] font-normal leading-[1.05] tracking-tight text-[#1A1A1A]">
                     {item.title}
                   </h2>
 
-                  {/* Description */}
-                  <p
-                    className="leading-[1.75] mb-10"
-                    style={{
-                      fontFamily: "system-ui, sans-serif",
-                      fontSize: "0.9rem",
-                      color: "#6B6560",
-                    }}
-                  >
+                  <p className="mb-10 text-[0.9rem] leading-[1.75] text-[#6B6560]">
                     {item.desc}
                   </p>
 
-                  {/* Year + button row */}
-                  <div className="flex items-center gap-6">
-                    <Link href={item.link || "#"} target="_blank" rel="noopener noreferrer">
-                      <button className="px-10 py-3 bg-soft-beige border border-charcoal rounded-xl hover:bg-charcoal text-xs tracking-widest uppercase hover:text-white transition-colors duration-300 cursor-pointer">
-                        View Live Site
-                      </button>
-                    </Link>
-                    {/* <span
-                      className="text-xs tracking-widest text-[#bbb]"
-                      style={{ fontFamily: "system-ui, sans-serif" }}
-                    >
-                      {item.year}
-                    </span> */}
-                  </div>
-
+                  <Link
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer"
+                  >
+                    Explore the website ↗
+                  </Link>
                 </div>
               </FadeIn>
             </div>
 
-            {/* ── Image Part ── */}
-            <div
-              className={`flex-1 w-full overflow-hidden ${
-                idx % 2 !== 0 ? "md:order-first" : ""
-              }`}
-              style={{ minHeight: 380 }}
-            >
-              <FadeIn delay={200}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                  style={{ minHeight: 380, display: "block" }}
-                />
+            {/* Image */}
+            <div className={`relative min-h-[380px] w-full flex-1 overflow-hidden ${idx % 2 !== 0 ? "md:order-first" : ""}`}>
+              <FadeIn delay={200} className="absolute inset-0">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} website design`}
+                    fill
+                    sizes="(max-width: 767px) 100vw, 50vw"
+                    className="object-cover object-center"
+                  />
+                </div>
               </FadeIn>
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 interface Approach {
   number: string;
@@ -10,27 +11,27 @@ const approaches: Approach[] = [
   {
     number: "01.",
     description:
-      "A detailed brief before anything else — what you love, what you don't, and exactly who you're building this for. No assumptions.",
+      "We start by talking. What you love, what you don't, and who you're trying to win over, so I'm never guessing what you want.",
   },
   {
     number: "02.",
     description:
-      "A site that feels like the next version of your brand, not a template someone else already has",
+      "A website that feels like the next version of your brand, not a template with your logo dropped in.",
   },
   {
     number: "03.",
     description:
-      "Section-by-section feedback throughout the build, so nothing gets to the end and surprises you",
+      "You see the site take shape section by section and tell me what you think as it goes, so there are no surprises at the end.",
   },
   {
     number: "04.",
     description:
-      "Unlimited revisions during development — it moves forward when you're happy with it, not when the clock runs out",
+      "Revisions while I'm building. We move forward when you're happy with it, not when the clock runs out.",
   },
   {
     number: "05.",
     description:
-      "Custom-coded from scratch. Fast, clean, and built to last — not something you'll need to rebuild in two years",
+      "Built by hand just for you, not stitched together from a template. Fast, clean, and made to last, so you're not rebuilding in two years.",
   },
 ];
 
@@ -226,7 +227,7 @@ const MyApproach = () => {
               color: "#2e1414",
             }}
           >
-            My Approach
+            What working with me is like
           </h2>
         </div>
         {approaches.map((item, idx) => (
@@ -259,13 +260,46 @@ const MyApproach = () => {
               color: "#2e1414",
             }}
           >
-            My Approach
+            What working with me is like
           </h2>
         </div>
 
         {approaches.map((item, idx) => (
           <DesktopCell key={idx} item={item} idx={idx} visible={visible} />
         ))}
+      </div>
+
+      {/* ── CLOSING CTA (mobile + desktop) ── */}
+      <div
+        className="flex flex-col items-center justify-center gap-6 px-8 py-12 text-center transition-all duration-700 bg-yellowish"
+        style={{
+          borderLeft: "1px solid #d6c9b8",
+          borderRight: "1px solid #d6c9b8",
+          borderBottom: "1px solid #d6c9b8",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transitionDelay: `${(approaches.length + 1) * 90}ms`,
+        }}
+      >
+        <p
+          className="max-w-xl leading-relaxed"
+          style={{
+            fontFamily: "'EB Garamond', Georgia, serif",
+            fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+            color: "#2e1414",
+          }}
+        >
+          No surprises, no guessing, no handoffs. Just you and the person
+          building your site.
+        </p>
+
+        <Link
+          href="/enquiry"
+          aria-label="Start the conversation about your website"
+          className="button button-lavender cursor-pointer border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white"
+        >
+          Start the conversation ↗
+        </Link>
       </div>
 
     </section>

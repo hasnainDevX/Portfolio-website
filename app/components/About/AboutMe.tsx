@@ -90,18 +90,19 @@ const AboutMe = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-yellowish/80 md:bg-yellowish min-h-screen flex items-center overflow-hidden"
+      className="md:bg-yellow min-h-screen flex items-center overflow-hidden"
     >
       <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        {/* LEFT: Stacked overlapping images */}
+        {/* LEFT: Stacked overlapping images
+            TODO: confirm project names (alts are guessed from filenames). */}
         <div className="relative h-[520px] sm:h-[600px] lg:h-[700px]">
           <div
             ref={img1Ref}
             className="absolute top-0 left-4 sm:left-10 w-[260px] sm:w-[320px] lg:w-[380px] shadow-2xl z-20 -rotate-6"
             style={{ opacity: 0 }}
           >
-            <Image src={image1} alt="Project" className="w-full h-auto object-cover block"  />
+            <Image src={image1} alt="Macey's Method website design" className="w-full h-auto object-cover block"  />
           </div>
 
           <div
@@ -109,7 +110,7 @@ const AboutMe = () => {
             className="absolute top-[140px] sm:top-[160px] left-[100px] sm:left-[140px] lg:left-[160px] w-[260px] sm:w-[310px] lg:w-[360px] shadow-2xl z-30 rotate-3"
             style={{ opacity: 0 }}
           >
-            <Image src={image2} alt="Project" className="w-full h-auto object-cover block" />
+            <Image src={image2} alt="All in Good Hans website design" className="w-full h-auto object-cover block" />
           </div>
 
           <div
@@ -117,7 +118,7 @@ const AboutMe = () => {
             className="absolute top-[300px] sm:top-[340px] left-0 w-[240px] sm:w-[290px] lg:w-[340px] shadow-2xl z-10 -rotate-[4deg]"
             style={{ opacity: 0 }}
           >
-            <Image src={image3} alt="Project" className="w-full max-h-[80%] object-cover block"  />
+            <Image src={image3} alt="Fruity website design" className="w-full max-h-[80%] object-cover block"  />
           </div>
         </div>
 
@@ -128,7 +129,7 @@ const AboutMe = () => {
             className="italic text-[2.4rem] sm:text-5xl lg:text-6xl text-[#1a1a1a] leading-[1.1] tracking-tight md:mt-0 mt-4"
             style={{ opacity: 0 }}
           >
-            Hi, I'm Hasnain.
+            Hi, I&apos;m Hasnain.
           </h2>
 
           <div
@@ -139,26 +140,28 @@ const AboutMe = () => {
 
           <div ref={parasRef} className="flex flex-col gap-4">
             <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
-              Web development found me in 2022 — and it stuck. What started as
-              curiosity quickly became building real things for real businesses,
-              and I never looked back.
+              I started building websites in 2022 out of curiosity. It
+              didn&apos;t stay a hobby for long: pretty soon I was building real
+              sites for real businesses, and I haven&apos;t stopped since.
             </p>
             <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
-              I'm not your average freelancer. Studying software engineering
-              means I understand how the web actually works — I build what no
-              drag-and-drop builder can. Clean, custom, engineered to perform.
+              I study software engineering, which is why the sites I build work
+              properly underneath. They&apos;re fast, they&apos;re made to be
+              found on Google, and they do exactly what your business needs,
+              which is more than a drag-and-drop template can promise.
             </p>
             <p className="text-base sm:text-lg text-[#1a1a1a] leading-relaxed" style={{ opacity: 0 }}>
-              Over two years of freelancing, I've delivered projects for clients
-              across the globe — working with virtual assistants, Social media managers,
-              coaches and other service based businesses in the UK, Canada, US, and beyond, building sites that don't just look good. They
-              work.
+              Over the past three years I&apos;ve built sites for virtual
+              assistants, social media managers, coaches and other service
+              businesses across the UK, Canada and the US. Different trades, same
+              goal: look as good as the work you do, and make it easy for the
+              right clients to say yes.
             </p>
           </div>
 
-          <Link ref={ctaRef} href="/portfolio" style={{ opacity: 0 }} aria-label="View my portfolio — see examples of my work">
-            <button className="px-16 py-3 cursor-pointer bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 my-4 max-w-xs">
-              See My Work
+          <Link ref={ctaRef} href="/portfolio" style={{ opacity: 0 }} aria-label="See what I've built: view my portfolio">
+            <button className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer">
+              See what I&apos;ve built
             </button>
           </Link>
         </div>
