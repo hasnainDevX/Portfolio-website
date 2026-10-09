@@ -1,11 +1,25 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { StaticImageData } from "next/image";
-import Image from "next/image";
+
+import { useEffect, useRef } from "react";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
+
+import bg from "../assets/waves.png";
+
+import service1 from "../assets/allingoodhans1.png";
+import service2 from "../assets/lashedbytash.jpeg";
+import service3 from "../assets/cafesite.jpeg";
+import packagesbg from "../assets/packagesbg.png"
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface CardData {
   id: number | string;
   image: StaticImageData | string;
+  backgroundImage: StaticImageData | string;
   alt?: string;
   title: string;
   timeline: string;
@@ -13,210 +27,279 @@ interface CardData {
   description: string;
 }
 
-const StickyCard002 = ({ cards }: { cards: CardData[] }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+interface StickyCardsProps {
+  cards: CardData[];
+  backgroundImage: StaticImageData | string;
+}
+
+// Gets the actual URL whether the image is imported or passed as a string.
+const getImageSrc = (image: StaticImageData | string) =>
+  typeof image === "string" ? image : image.src;
+
+const StickyCard002 = ({
+  cards,
+  backgroundImage,
+}: StickyCardsProps) => {
+  const containerRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const container = containerRef.current;
+
     if (!container) return;
 
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const containerTop = container.offsetTop;
-      const containerHeight = container.offsetHeight;
-      const windowHeight = window.innerHeight;
+    const cardElements = cardsRef.current.filter(
+      (card): card is HTMLElement => card !== null,
+    );
 
-      const scrollProgress =
-        (scrollTop - containerTop) / (containerHeight - windowHeight);
-      const cardIndex = Math.min(
-        Math.floor(scrollProgress * cards.length),
-        cards.length - 1,
-      );
+    if (!cardElements.length) return;
 
-      if (cardIndex >= 0 && cardIndex < cards.length) {
-        setCurrentIndex(cardIndex);
+    const ctx = gsap.context(() => {
+      // Start every card below the viewport, including its tab.
+      gsap.set(cardElements, {
+        y: () => window.innerHeight + 120,
+      });
+
+      // Pin the section while each card stacks over the previous one.
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: "+=600%",
+          scrub: 0.7,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Leave a short intro before the first card appears.
+      timeline.to({}, { duration: 0.35 });
+
+      // Foundation card.
+      if (cardElements[0]) {
+        timeline.to(cardElements[0], {
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+        });
+
+        timeline.to({}, { duration: 0.35 });
       }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+      // Signature card.
+      if (cardElements[1]) {
+        timeline.to(cardElements[1], {
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+        });
+
+        timeline.to({}, { duration: 0.35 });
+      }
+
+      // Complete Vision card.
+      if (cardElements[2]) {
+        timeline.to(cardElements[2], {
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+        });
+
+        // Hold the final card before the next section comes over it.
+        timeline.to({}, { duration: 1.4 });
+      }
+    }, container);
+
+    ScrollTrigger.refresh();
+
+    return () => ctx.revert();
   }, [cards.length]);
 
-  const isLast = currentIndex === cards.length - 1;
-
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full"
-      style={{ height: `${cards.length * 100}vh` }}
-    >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
-        <div className="relative h-[92vh] sm:h-[90vh] w-full max-w-7xl overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl">
-          {cards.map((card, i) => (
-            <div
-              key={card.id}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                i === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-            >
-              <div className="flex flex-col md:flex-row h-full">
-                {/* Image Section */}
-                <div className="w-full md:w-2/5 h-[35%] sm:h-[40%] md:h-full relative overflow-hidden">
-                  <Image
-                    src={card.image}
-                    alt={card.alt || card.title}
-                    className="h-full w-full object-cover"
-                  />
+    <section ref={containerRef} className="relative isolate h-screen w-full">
+      <div
+        className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url("${getImageSrc(backgroundImage)}")`,
+        }}
+      >
+        {/* Darkens the full Services background. */}
+        <div className="absolute inset-0 bg-black/45" />
+
+        {/* Main editorial heading. */}
+        <div className="absolute inset-x-0 top-[12vh] z-[2] px-5 text-center md:top-[30vh]">
+          <h2 className="mx-auto max-w-[760px] font-playfair text-[clamp(2.7rem,12vw,4rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white md:text-[clamp(3.6rem,6.8vw,6.4rem)]">
+            Take a{" "}
+            <span className="uppercase text-gold">
+              PEEK
+            </span>{" "}
+            at
+            <br />
+            <span className="uppercase">
+              MY SERVICES
+            </span>
+          </h2>
+
+          {/* Hide the paragraph on mobile so the card has more breathing room. */}
+          <p className="mx-auto mt-10 hidden max-w-[560px] text-[18px] leading-[1.7] text-white md:block">
+            Whether you need something simple or a complete digital experience,
+            each website is built around your business, your audience and your
+            goals.
+          </p>
+        </div>
+
+        {/* All cards live in the same stack. */}
+        <div className="absolute bottom-0 left-1/2 top-[36vh] z-10 w-[88%] -translate-x-1/2 sm:w-[82%] md:top-[27vh] md:w-[88%] md:max-w-[1140px] lg:w-[84%]">
+          {cards.map((card, i) => {
+            // Keep every tab aligned on mobile, then spread them on desktop.
+            const desktopTabClass =
+              i === 0
+                ? "md:left-[4%]"
+                : i === 1
+                  ? "md:left-[38%]"
+                  : "md:left-[72%]";
+
+            return (
+              <article
+                key={card.id}
+                ref={(el) => {
+                  cardsRef.current[i] = el;
+                }}
+                className="absolute inset-0"
+                style={{
+                  zIndex: i + 1,
+                  willChange: "transform",
+                }}
+              >
+                {/* Folder tab. */}
+                <div className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-[#F7F4EE] px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}>
+                  <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text- md:text-[10px] lg:text-[11px]">
+                    {card.title}
+                  </span>
                 </div>
 
-                {/* Content Section */}
-                <div className="w-full md:w-3/5 h-[65%] sm:h-[60%] md:h-full p-6 sm:p-8 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-center">
-                  <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 max-w-2xl">
-                    <h2
-                      className="text-[28px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight text-charcoal font-playfair"
-                     
-                    >
-                      {card.title}
-                    </h2>
+                {/* Main card. */}
+                <div
+                  className="relative h-[58vh] min-h-[470px] max-h-[560px] overflow-hidden rounded-t-[8px] border border-black/70 bg-cover bg-center bg-no-repeat md:h-[70vh] md:min-h-0 md:max-h-none md:rounded-t-[10px]"
+                  style={{
+                    backgroundImage: `url("${getImageSrc(
+                      card.backgroundImage,
+                    )}")`,
+                  }}
+                >
+                  {/* Your brand color sits over the background texture. */}
+                  <div className="absolute inset-0 bg-gold/90" />
 
-                    <p className="text-gray-800 leading-relaxed text-[15px] sm:text-base md:text-lg lg:text-xl font-light">
-                      {card.description}
-                    </p>
+                  {/* Mobile is text-only; desktop becomes a two-column layout. */}
+                  <div className="relative z-10 grid h-full grid-cols-1 md:grid-cols-[1fr_0.92fr]">
+                    {/* Text content. */}
+                    <div className="flex h-full flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-8 lg:px-[7%]">
+                      <div className="mx-auto w-full max-w-[370px] md:mx-0 md:max-w-[550px]">
+                        <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.22em] text-white md:mb-5 md:text-[10px] md:text-white lg:text-[11px]">
+                          {card.timeline}
+                        </p>
 
-                    <div className="rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 border border-gold md:bg-yellowish/50 bg-yellowish/30">
-                      <h3 className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] sm:tracking-[0.15em] mb-2 sm:mb-3 text-charcoal">
-                        Who Is This For?
-                      </h3>
-                      <p className="text-charcoal text-[13px] sm:text-sm md:text-base leading-relaxed">
-                        {card.wif}
-                      </p>
+                        <h3 className="max-w-[310px] font-playfair text-[clamp(2rem,9vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.045em] text-white sm:max-w-[360px] md:max-w-none md:text-[clamp(2.6rem,4vw,4.8rem)] md:text-white">
+                          {card.title}
+                        </h3>
+
+                        <p className="mt-6 max-w-[340px] text-[13px] leading-[1.65] text-white md:mt-7 md:max-w-lg md:text-[14px] md:text-white lg:text-[16px]">
+                          {card.description}
+                        </p>
+
+                        <p className="mt-5 max-w-[320px] text-[12px] leading-[1.6] text-white md:mt-5 md:max-w-md md:text-[13px] md:text-white/85 lg:text-sm">
+                          {card.wif}
+                        </p>
+
+                        <div className="mt-7 md:mt-8">
+                          <Link
+                            href="/packages"
+                            className="inline-flex h-[42px] items-center justify-center rounded-full border border-charcoal bg-[#FAF8F2] px-6 text-[9px] font-semibold uppercase tracking-[0.13em] text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-white md:h-[48px] md:border-black md:px-7 md:text-[11px] md:text-black hover:border-cream-bg"
+                          >
+                            Give me the details
+
+                            <span className="ml-3 text-base">
+                              ›
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-3 md:pt-4">
-                      <Link
-                        href="/enquiry"
-                        aria-label={`Get started with ${card.title}`}
-                      >
-                        <button className="px-16 py-3 bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 cursor-pointer w-full md:w-[250px] md:h-[60px]" aria-label={`Get started with ${card.title}`}>
-                          Get Started
-                        </button>
-                      </Link>
-                      <Link
-                        href="/packages"
-                        aria-label={`Learn more about {card.title}`}
-                        className="hidden md:block"
-                      >
-                        <button className="px-16 py-3 bg-soft-beige border-charcoal border-1 rounded-xl hover:bg-charcoal text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 cursor-pointer w-full md:w-auto md:h-[60px]" aria-label={`Learn more about ${card.title}`}>
-                          Learn More about {card.title}
-                        </button>
-                      </Link>
+                    {/* Website screenshot only appears on desktop. */}
+                    <div className="relative hidden min-h-0 overflow-hidden md:block">
+                      <div className="absolute left-1/2 top-1/2 h-[74%] w-[72%] -translate-x-1/2 -translate-y-1/2 rotate-[3deg] overflow-hidden rounded-[4px] shadow-[0_30px_70px_rgba(0,0,0,0.25)]">
+                        <Image
+                          src={card.image}
+                          alt={card.alt || card.title}
+                          fill
+                          sizes="45vw"
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Scroll indicator — outside the overflow-hidden card ── */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-          {/* Dot progress */}
-          <div className="flex gap-0 items-center mt-1">
-            {/* {cards.map((_, i) => (
-              <div
-                key={i}
-                className="rounded-full transition-all duration-400"
-                style={{
-                  width: i === currentIndex ? "20px" : "6px",
-                  height: "6px",
-                  backgroundColor:
-                    i === currentIndex ? "#2a2a2a" : "rgba(42,42,42,0.3)",
-                }}
-              />
-            ))} */}
-          </div>
-
-          {/* Scroll hint — hides on last card */}
-          <div
-            className="flex flex-col items-center gap-1 transition-opacity duration-500"
-            style={{ opacity: isLast ? 0 : 1 }}
-          >
-            <span
-              className="text-[12px] md:text-base uppercase tracking-[0.2em] text-[#2a2a2a]/80"
-              style={{ fontFamily: "system-ui, sans-serif" }}
-            >
-              scroll
-            </span>
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 16 16"
-              fill="none"
-              style={{ animation: "scrollBounce 1.6s ease-in-out infinite" }}
-            >
-              <path
-                d="M3 5.5l5 5 5-5"
-                stroke="rgba(42,42,42,0.5)"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
+              </article>
+            );
+          })}
         </div>
       </div>
-
-      <style>{`
-        @keyframes scrollBounce {
-          0%, 100% { transform: translateY(0); opacity: 0.5; }
-          50%       { transform: translateY(4px); opacity: 1; }
-        }
-      `}</style>
-    </div>
+    </section>
   );
 };
 
-import service1 from "../assets/allingoodhans1.png";
-import service2 from "../assets/lashedbytash.jpeg";
-import service3 from "../assets/cafesite.jpeg";
-import Link from "next/link";
-
 const Skiper17 = () => {
-  const defaultCards = [
+  const cards: CardData[] = [
     {
       id: 1,
       image: service1,
-      title: "The Foundation Website",
-      timeline: "1-2 weeks",
-      wif: "Perfect for small businesses and individuals who want a simple yet professional online presence.",
+      backgroundImage: bg,
+      title: "Foundation Website",
+      timeline: "1–2 Weeks",
+
       description:
-        "Your digital front door that actually works - a website that loads instantly, looks professional, and turns visitors into customers without the headaches of DIY builders.",
+        "A high-impact website designed to give your business a polished digital home and turn visitors into enquiries.",
+
+      wif:
+        "Perfect for small businesses and individuals who want a professional online presence.",
     },
+
     {
       id: 2,
       image: service2,
-      title: "The Signature Site",
-      timeline: "3-5 weeks",
-      wif: "For growing businesses ready to stand out from competitors with a website that commands attention and builds trust.",
+      backgroundImage: bg,
+      title: "Signature Site",
+      timeline: "3–5 Weeks",
+
       description:
-        "Elevate your online presence with a website that commands attention and builds trust - the kind that makes potential customers think 'this business knows what they're doing.'",
+        "A more intentional, brand-led website built around stronger storytelling, typography and conversion.",
+
+      wif:
+        "For growing businesses ready to look established, distinctive and premium.",
     },
+
     {
       id: 3,
       image: service3,
-      title: "The Complete Vision",
-      timeline: "5-10 weeks",
-      wif: "For established businesses, brands, and e-commerce stores ready to automate workflows, scale operations, and deliver premium customer experiences.",
+      backgroundImage: bg,
+      title: "Complete Vision",
+      timeline: "5–10 Weeks",
+
       description:
-        "The complete digital solution that handles complex business processes automatically - your website becomes a powerful business tool, not just a brochure.",
+        "A complete digital experience combining strategy, custom design, development and advanced functionality.",
+
+      wif:
+        "For established brands that need something completely custom.",
     },
   ];
 
   return (
-    <div className="w-full">
-      <StickyCard002 cards={defaultCards} />
-    </div>
+    <StickyCard002
+      cards={cards}
+      backgroundImage={packagesbg}
+    />
   );
 };
 
