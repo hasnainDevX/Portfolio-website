@@ -9,7 +9,13 @@ import portfolio2 from "../assets/fruitysite1.jpeg";
 import portfolio3 from "../assets/allingoodhans1.png";
 import portfolio4 from "../assets/rlestatesite.png";
 
-const images = [portfolio1, portfolio2, portfolio3, portfolio4];
+// TODO: confirm each project name below (alts are guessed from filenames).
+const projects = [
+  { src: portfolio1, alt: "Macey's Method website design" },
+  { src: portfolio2, alt: "Fruity website design" },
+  { src: portfolio3, alt: "All in Good Hans website design" },
+  { src: portfolio4, alt: "Real estate website design" },
+];
 
 const PortfolioSection = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -17,7 +23,7 @@ const PortfolioSection = () => {
   // Automatically cycles through the portfolio projects.
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % images.length);
+      setCurrentIdx((prev) => (prev + 1) % projects.length);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -31,12 +37,12 @@ const PortfolioSection = () => {
           
           {/* Section heading */}
           <div className="py-14 text-center sm:py-20 md:py-24 lg:py-28">
-            <h1 className="mx-auto max-w-4xl text-4xl leading-[0.95] tracking-[-0.03em] text-charcoal sm:text-5xl md:text-6xl lg:text-7xl">
-              Project <span className="italic">Spotlight</span>
-            </h1>
+            <h2 className="mx-auto max-w-4xl text-4xl leading-[0.95] tracking-[-0.03em] text-charcoal sm:text-5xl md:text-6xl lg:text-7xl">
+              What a better first impression<span className="italic"> looks like</span>
+            </h2>
 
             <p className="mx-auto mt-6 max-w-4xl text-sm leading-relaxed text-gray-600 sm:text-base md:mt-8 md:text-lg">
-              Every site was built from scratch — no templates, no shortcuts. Each one designed around a specific business, a specific audience, and a specific goal. Browse the work and see what's possible when the code actually fits the brand.
+              No templates, no page builders. Each site is designed and coded around one business, its ideal client, and the one action it needs that client to take: book, enquire, or get in touch. Here&apos;s what that looks like.
             </p>
           </div>
 
@@ -46,21 +52,27 @@ const PortfolioSection = () => {
             {/* Text content */}
             <div className="relative z-10 flex flex-col justify-center bg-white p-7 sm:p-10 md:min-h-[520px] md:p-12 lg:p-16 xl:p-20">
               <div className="max-w-xl">
-                <h2 className="text-[28px] font-light leading-[1.05] tracking-[-0.03em] text-charcoal sm:text-3xl md:text-4xl lg:text-[42px] xl:text-5xl">
-                  Captivating and Converting <span className="text-[#7a6025]">Portfolio</span>
-                </h2>
+                <h3 className="text-[28px] font-light leading-[1.05] tracking-[-0.03em] text-charcoal sm:text-3xl md:text-4xl lg:text-[42px] xl:text-5xl">
+                  Designed to get you <span className="text-[#7a6025]">booked</span>
+                </h3>
 
                 <p className="mt-6 text-[15px] font-light leading-[1.75] text-charcoal/75 sm:text-base md:text-[17px] lg:text-lg">
-                  Some are service businesses. Some are e-commerce. All of them needed something that actually worked — not just looked good. That's what's in here.
+                  Every project here started with the same question: what does this site need to do for the business? Then it was built to do exactly that.
                 </p>
+
+                {/*
+                  Optional proof line. Only enable if it's true and verifiable today.
+                  <p className="mt-4 text-[15px] font-medium leading-[1.75] text-charcoal sm:text-base md:text-[17px]">
+                    [Client name] now ranks #1 for [search term].
+                  </p>
+                */}
 
                 <div className="mt-8">
                   <Link
                     href="/portfolio"
-                    aria-label="View portfolio — see all projects"
                     className="inline-flex items-center justify-center rounded-full border border-charcoal px-8 py-3 text-xs uppercase tracking-[0.16em] text-charcoal transition-colors duration-300 hover:bg-charcoal hover:border-white hover:text-white sm:px-10 sm:text-sm lg:px-12 font-serif"
                   >
-                    View Portfolio
+                    See all projects
                   </Link>
                 </div>
               </div>
@@ -68,14 +80,14 @@ const PortfolioSection = () => {
 
             {/* Auto-changing project image */}
             <div className="relative h-[280px] w-full overflow-hidden sm:h-[360px] md:h-auto md:min-h-[520px]">
-              {images.map((image, idx) => (
+              {projects.map((project, idx) => (
                 <div
                   key={idx}
                   className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentIdx ? "opacity-100" : "pointer-events-none opacity-0"}`}
                 >
                   <Image
-                    src={image}
-                    alt={`Portfolio project ${idx + 1}`}
+                    src={project.src}
+                    alt={project.alt}
                     fill
                     sizes="(max-width: 767px) 100vw, 45vw"
                     className="object-cover"

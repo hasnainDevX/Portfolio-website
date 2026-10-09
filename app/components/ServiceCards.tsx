@@ -25,6 +25,9 @@ interface CardData {
   timeline: string;
   wif: string;
   description: string;
+  cta: string;
+  href: string;
+  badge?: string;
 }
 
 interface StickyCardsProps {
@@ -130,22 +133,18 @@ const StickyCard002 = ({
         {/* Main editorial heading. */}
         <div className="absolute inset-x-0 top-[12vh] z-[2] px-5 text-center md:top-[30vh]">
           <h2 className="mx-auto max-w-[760px] font-playfair text-[clamp(2.7rem,12vw,4rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white md:text-[clamp(3.6rem,6.8vw,6.4rem)]">
-            Take a{" "}
-            <span className="uppercase text-gold">
-              PEEK
-            </span>{" "}
-            at
+            Look the part.
             <br />
-            <span className="uppercase">
-              MY SERVICES
+            <span className="uppercase text-gold">
+              Charge like it.
             </span>
           </h2>
 
           {/* Hide the paragraph on mobile so the card has more breathing room. */}
           <p className="mx-auto mt-10 hidden max-w-[560px] text-[18px] leading-[1.7] text-white md:block">
-            Whether you need something simple or a complete digital experience,
-            each website is built around your business, your audience and your
-            goals.
+            Three ways to work together, each built around your business, your
+            audience and your goals. Not sure which fits? Tell me where you are
+            and I&apos;ll point you to the right one.
           </p>
         </div>
 
@@ -174,7 +173,7 @@ const StickyCard002 = ({
               >
                 {/* Folder tab. */}
                 <div className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-[#F7F4EE] px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}>
-                  <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text- md:text-[10px] lg:text-[11px]">
+                  <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text-charcoal md:text-[10px] lg:text-[11px]">
                     {card.title}
                   </span>
                 </div>
@@ -196,9 +195,17 @@ const StickyCard002 = ({
                     {/* Text content. */}
                     <div className="flex h-full flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-8 lg:px-[7%]">
                       <div className="mx-auto w-full max-w-[370px] md:mx-0 md:max-w-[550px]">
-                        <p className="mb-4 text-[9px] font-semibold uppercase tracking-[0.22em] text-white md:mb-5 md:text-[10px] md:text-white lg:text-[11px]">
-                          {card.timeline}
-                        </p>
+                        <div className="mb-4 flex flex-wrap items-center gap-3 md:mb-5">
+                          <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white md:text-[10px] lg:text-[11px]">
+                            {card.timeline}
+                          </p>
+
+                          {card.badge && (
+                            <span className="rounded-full border border-white/70 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.18em] text-white md:text-[9px]">
+                              {card.badge}
+                            </span>
+                          )}
+                        </div>
 
                         <h3 className="max-w-[310px] font-playfair text-[clamp(2rem,9vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.045em] text-white sm:max-w-[360px] md:max-w-none md:text-[clamp(2.6rem,4vw,4.8rem)] md:text-white">
                           {card.title}
@@ -212,16 +219,23 @@ const StickyCard002 = ({
                           {card.wif}
                         </p>
 
-                        <div className="mt-7 md:mt-8">
+                        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4 md:mt-8">
                           <Link
-                            href="/packages"
-                            className="inline-flex h-[42px] items-center justify-center rounded-full border border-charcoal bg-[#FAF8F2] px-6 text-[9px] font-semibold uppercase tracking-[0.13em] text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-white md:h-[48px] md:border-black md:px-7 md:text-[11px] md:text-black hover:border-cream-bg"
+                            href={card.href}
+                            className="inline-flex h-[42px] items-center justify-center rounded-full border border-charcoal bg-[#FAF8F2] px-6 text-[9px] font-semibold uppercase tracking-[0.13em] text-charcoal transition-colors duration-300 hover:border-cream-bg hover:bg-charcoal hover:text-white md:h-[48px] md:px-7 md:text-[11px]"
                           >
-                            Give me the details
+                            {card.cta}
 
                             <span className="ml-3 text-base">
                               ›
                             </span>
+                          </Link>
+
+                          <Link
+                            href="/packages"
+                            className="text-[10px] font-semibold uppercase tracking-[0.13em] text-white underline underline-offset-4 transition-opacity duration-300 hover:opacity-80 md:text-[11px]"
+                          >
+                            See what&apos;s included
                           </Link>
                         </div>
                       </div>
@@ -257,13 +271,17 @@ const Skiper17 = () => {
       image: service1,
       backgroundImage: bg,
       title: "Foundation Website",
-      timeline: "1–2 Weeks",
+      timeline: "Live in 1–2 weeks",
 
       description:
-        "A high-impact website designed to give your business a polished digital home and turn visitors into enquiries.",
+        "Online and taking enquiries in weeks, not months. A clean, fast, custom-coded site that makes you look as good as you are.",
 
       wif:
-        "Perfect for small businesses and individuals who want a professional online presence.",
+        "Best for: new and solo businesses, or anyone replacing a DIY site.",
+
+      cta: "Get my Foundation site",
+      // The enquiry form only pre-selects the package if it reads this param.
+      href: "/enquiry?package=foundation",
     },
 
     {
@@ -271,13 +289,17 @@ const Skiper17 = () => {
       image: service2,
       backgroundImage: bg,
       title: "Signature Site",
-      timeline: "3–5 Weeks",
+      timeline: "Live in 3–5 weeks",
+      badge: "Popular",
 
       description:
-        "A more intentional, brand-led website built around stronger storytelling, typography and conversion.",
+        "A brand-led site that earns trust before your first message: custom design, sharper storytelling, a clear path to booking.",
 
       wif:
-        "For growing businesses ready to look established, distinctive and premium.",
+        "Best for: growing businesses that want to be the premium pick, not the cheapest.",
+
+      cta: "Start my Signature Site",
+      href: "/enquiry?package=signature",
     },
 
     {
@@ -285,13 +307,16 @@ const Skiper17 = () => {
       image: service3,
       backgroundImage: bg,
       title: "Complete Vision",
-      timeline: "5–10 Weeks",
+      timeline: "Live in 5–10 weeks",
 
       description:
-        "A complete digital experience combining strategy, custom design, development and advanced functionality.",
+        "Strategy, custom design and development in one build, with advanced features shaped around how your business makes money.",
 
       wif:
-        "For established brands that need something completely custom.",
+        "Best for: established brands with bigger goals than a package can hold.",
+
+      cta: "Scope my project",
+      href: "/enquiry?package=complete-vision",
     },
   ];
 
