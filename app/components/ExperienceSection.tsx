@@ -7,15 +7,14 @@ import experienceBg from "../assets/waves.png";
 // Put verticals you've actually shipped sites for first.
 const industries = [
   "Lash & Brow Artists",
-  "Coaches & Consultants",
   "Photographers",
   "Event & Wedding Planners",
   "Fitness & Wellness",
   "Hair Stylists",
   "Cleaning Services",
   "Real Estate",
-  "Virtual Assistants",
-  "Branding Studios",
+  "Virtual Assistants and Coaches",
+  "Brandinga and SMM Studios",
 ];
 
 function MarqueeRow({
