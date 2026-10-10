@@ -147,7 +147,7 @@ export default function ScrollShowcase({
         {showText && (
           <div className={combined ? "statement-stage sticky top-0 z-0 col-start-1 row-start-1 flex h-[100svh] self-start items-center justify-center px-5 py-10 sm:px-8 lg:px-12" : "relative px-5 py-20 sm:px-8 md:py-28 lg:px-12"}>
             <div className="mx-auto w-full max-w-[1080px] text-center">
-              <h2 ref={headingRef} aria-label={lines.join(" ")} className="font-serif text-[clamp(2rem,8vw,6.75rem)] font-normal leading-[1.06] tracking-[-0.035em] md:text-[clamp(4rem,7.2vw,7.25rem)]">
+              <h2 ref={headingRef} aria-label={lines.join(" ")} className="font- text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display leading-[1.06] tracking-[-0.035em] md:text-[clamp(4rem,7.2vw,7.25rem)]">
                 <span aria-hidden="true">
                   {lines.map((line, lineIndex) => (
                     <span key={lineIndex} className="block">
