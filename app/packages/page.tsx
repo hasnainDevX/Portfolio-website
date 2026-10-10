@@ -10,6 +10,7 @@ import TextMarqueeClient from "../components/TextMarqueeClient";
 import JsonLd from "../components/JsonLd";
 import { packagesSchema } from "../components/Schema";
 import { pageMetadata } from "../lib/Seo";
+import ImagesMarquee from "../components/ImagesMarquee";
 
 export const metadata = pageMetadata({
   title: "Custom Website Packages & Pricing",
@@ -35,6 +36,7 @@ const Packages = () => {
       />
       <OurProcess />
       <Cta />
+      <ImagesMarquee/>
       <Footer />
     </div>
   );

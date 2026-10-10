@@ -9,7 +9,7 @@ import bg from "../assets/waves.png";
 import service1 from "../assets/allingoodhans1.png";
 import service2 from "../assets/lashedbytash.jpeg";
 import service3 from "../assets/cafesite.jpeg";
-import packagesbg from "../assets/packagesbg.png"
+import packagesbg from "../assets/packagesbg.png";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -39,10 +39,7 @@ interface StickyCardsProps {
 const getImageSrc = (image: StaticImageData | string) =>
   typeof image === "string" ? image : image.src;
 
-const StickyCard002 = ({
-  cards,
-  backgroundImage,
-}: StickyCardsProps) => {
+const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
   const containerRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
@@ -68,7 +65,7 @@ const StickyCard002 = ({
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: "+=600%",
+          end: () => (window.innerWidth < 768 ? "+=450%" : "+=600%"),
           scrub: 0.7,
           pin: true,
           anticipatePin: 1,
@@ -132,12 +129,12 @@ const StickyCard002 = ({
 
         {/* Main editorial heading. */}
         <div className="absolute inset-x-0 top-[12vh] z-[2] px-5 text-center md:top-[30vh]">
-          <h2 className="mx-auto max-w-[760px] font-playfair text-[clamp(2.7rem,12vw,4rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white md:text-[clamp(3.6rem,6.8vw,6.4rem)]">
-            Look the part.
+          <h2 className="mx-auto max-w-[860px] font-playfair text-[clamp(2.7rem,12vw,4rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white md:text-[clamp(3.6rem,6.8vw,6.4rem)]">
+            Design that gets
             <br />
-            <span className="uppercase text-gold">
-              Charge like it.
-            </span>
+            dream clients to
+            <br />
+            <span className="uppercase text-gold">say yes.</span>
           </h2>
 
           {/* Hide the paragraph on mobile so the card has more breathing room. */}
@@ -149,7 +146,7 @@ const StickyCard002 = ({
         </div>
 
         {/* All cards live in the same stack. */}
-        <div className="absolute bottom-0 left-1/2 top-[36vh] z-10 w-[88%] -translate-x-1/2 sm:w-[82%] md:top-[27vh] md:w-[88%] md:max-w-[1140px] lg:w-[84%]">
+        <div className="absolute left-1/2 top-[60%] z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 -translate-y-1/2 sm:w-[82%] md:bottom-0 md:top-[27vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
           {cards.map((card, i) => {
             // Keep every tab aligned on mobile, then spread them on desktop.
             const desktopTabClass =
@@ -172,7 +169,9 @@ const StickyCard002 = ({
                 }}
               >
                 {/* Folder tab. */}
-                <div className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-[#F7F4EE] px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}>
+                <div
+                  className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-[#F7F4EE] px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}
+                >
                   <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text-charcoal md:text-[10px] lg:text-[11px]">
                     {card.title}
                   </span>
@@ -226,9 +225,7 @@ const StickyCard002 = ({
                           >
                             {card.cta}
 
-                            <span className="ml-3 text-base">
-                              ›
-                            </span>
+                            <span className="ml-3 text-base">›</span>
                           </Link>
 
                           <Link
@@ -276,8 +273,7 @@ const Skiper17 = () => {
       description:
         "Online and taking enquiries in weeks, not months. A clean, fast, custom-coded site that makes you look as good as you are.",
 
-      wif:
-        "Best for: new and solo businesses, or anyone replacing a DIY site.",
+      wif: "Best for: new and solo businesses, or anyone replacing a DIY site.",
 
       cta: "Get my Foundation site",
       // The enquiry form only pre-selects the package if it reads this param.
@@ -295,8 +291,7 @@ const Skiper17 = () => {
       description:
         "A brand-led site that earns trust before your first message: custom design, sharper storytelling, a clear path to booking.",
 
-      wif:
-        "Best for: growing businesses that want to be the premium pick, not the cheapest.",
+      wif: "Best for: growing businesses that want to be the premium pick, not the cheapest.",
 
       cta: "Start my Signature Site",
       href: "/enquiry?package=signature",
@@ -312,20 +307,14 @@ const Skiper17 = () => {
       description:
         "Strategy, custom design and development in one build, with advanced features shaped around how your business makes money.",
 
-      wif:
-        "Best for: established brands with bigger goals than a package can hold.",
+      wif: "Best for: established brands with bigger goals than a package can hold.",
 
       cta: "Scope my project",
       href: "/enquiry?package=complete-vision",
     },
   ];
 
-  return (
-    <StickyCard002
-      cards={cards}
-      backgroundImage={packagesbg}
-    />
-  );
+  return <StickyCard002 cards={cards} backgroundImage={packagesbg} />;
 };
 
 export { Skiper17, StickyCard002 };

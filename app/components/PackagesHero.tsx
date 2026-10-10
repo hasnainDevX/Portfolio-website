@@ -93,12 +93,12 @@ const PackagesHero = () => {
             style={{ color: "#2a2a2a", opacity: 0 }}
           >
            Your website should do more than look beautiful. It should tell your story, show people what makes you different, and give the right clients every reason
-          <span className="italic"> to choose you.</span>
+          <span className="italic text-gold"> to choose you.</span>
           </h1>
 
           <div
             ref={dividerRef}
-            className="w-10 h-px mb-10"
+            className="w-10 h-px mb-2"
             style={{ backgroundColor: "#b5973a", opacity: 0 }}
           />
 

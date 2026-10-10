@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import testimonialsBg from "../assets/abstract.png";
+import testimonialsBg from "../assets/charcoal.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

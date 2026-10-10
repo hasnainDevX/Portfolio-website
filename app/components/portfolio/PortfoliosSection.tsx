@@ -116,11 +116,11 @@ const PortfoliosSection = () => {
       {/* Header */}
       <div className="px-6 py-24 text-center md:py-32">
         <p className="mb-6 text-xs uppercase tracking-[0.4em] text-charcoal">
-          Explore My Recent Work
+          Explore My Work
         </p>
 
         <h1 className="text-5xl font-light tracking-wide md:text-6xl lg:text-7xl xl:text-8xl">
-          Recent Projects
+          Take a peak at some of our favorite projects.
         </h1>
       </div>
 

@@ -1,18 +1,18 @@
 "use client";
-import image1 from "../assets/dashboard1.jpeg";
+import image1 from "../assets/amrsocialp1.png";
 import image5 from "../assets/maceysmethod2.png";
 import image2 from "../assets/telecomsite2.png";
 import image3 from "../assets/fruitysite1.jpeg";
-import image7 from "../assets/nnsite1.jpeg";
-import image4 from "../assets/getmeachai1.png";
+import image7 from "../assets/amrsocialm2.png";
+import image4 from "../assets/lashedbytash.jpeg";
 import image6 from "../assets/vasite4.jpeg";
 import Image from "next/image";
 
 const marqueeImages = [
-  { src: image1, alt: "Project 1" },
-  { src: image2, alt: "Project 2" },
-  { src: image3, alt: "MetaSite 1" },
-  { src: image4, alt: "MetaSite 2" },
+  { src: image1, alt: "AMR Social" },
+  { src: image2, alt: "Telecom Site" },
+  { src: image3, alt: "MetaSite" },
+  { src: image4, alt: "Lashed By Tash" },
   { src: image5, alt: "Restaurant Site 1" },
   { src: image6, alt: "Restaurant Site 2" },
   { src: image7, alt: "Fruity Site 1" },

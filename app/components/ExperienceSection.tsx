@@ -9,12 +9,12 @@ const industries = [
   "Lash & Brow Artists",
   "Photographers",
   "Event & Wedding Planners",
-  "Fitness & Wellness",
-  "Hair Stylists",
   "Cleaning Services",
   "Real Estate",
   "Virtual Assistants and Coaches",
-  "Brandinga and SMM Studios",
+  "Branding and SMM Agencies",
+  "Content Creators",
+  "Aesthetic Clinics"
 ];
 
 function MarqueeRow({

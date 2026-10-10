@@ -5,7 +5,9 @@ import MyApproach from "../components/About/MyApproach";
 import Cta from "../components/Cta";
 import ExperienceSection from "../components/ExperienceSection";
 import Footer from "../components/Footer";
+import ImagesMarquee from "../components/ImagesMarquee";
 import { pageMetadata } from "../lib/Seo";
+import ScrollShowcase from "../components/BrandStatement";
 
 export const metadata = pageMetadata({
   title: "About Hasnain, Web Designer & Developer",
@@ -18,11 +20,19 @@ const About = () => {
   return (
     <div>
       <AboutHero />
-      <AboutMe />
+      <ScrollShowcase
+        mode="text"
+        heading={[
+          "You’ve put years into your craft.",
+          "I believe your website should",
+          "reflect that same care.",
+        ]}
+      />
       <FAQ />
       <MyApproach />
       <ExperienceSection />
       <Cta />
+      <ImagesMarquee />
       <Footer />
     </div>
   );

@@ -7,11 +7,9 @@ import gsap from "gsap";
 import AnnouncementBar from "../AnnouncementBar";
 import Navbar from "../Navbar";
 
-import hero1 from "../../assets/allingoodhans2.png";
-import hero2 from "../../assets/cafesite.jpeg";
-import hero3 from "../../assets/lashedbytash.jpeg";
+import hero1 from "../../assets/packagesbg.png";
 
-const heroImages = [hero1, hero2, hero3];
+const heroImages = [hero1];
 
 const EnquiryHero = () => {
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
