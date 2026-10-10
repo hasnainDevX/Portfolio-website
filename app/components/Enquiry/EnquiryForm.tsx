@@ -324,7 +324,7 @@ const ContactForm = () => {
         {/* Budget */}
         <div className="space-y-4">
           <label className={labelCls}>
-            Where does your budget roughly fall?
+            How much you are willing to invest in this project?
             <span className="text-[#A68B44]">*</span>
           </label>
 
