@@ -22,7 +22,7 @@ interface FormData {
 }
 
 const budgetOptions = [
-  "$399 – $499 (The Foundation Site)",
+  "$399 – $599 (The Foundation Site)",
   "$600 – 1200$ (The Signature Site)",
   "$2,000+ (The Complete Vision)",
 ];
@@ -325,6 +325,7 @@ const ContactForm = () => {
         <div className="space-y-4">
           <label className={labelCls}>
             How much you are willing to invest in this project?
+
             <span className="text-[#A68B44]">*</span>
           </label>
 
