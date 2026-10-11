@@ -1,13 +1,12 @@
+import showcaseBg from "../assets/charcoal.png";
 import AboutHero from "../components/About/AboutHero";
-import AboutMe from "../components/About/AboutMe";
 import FAQ from "../components/About/FaqAboutMe";
 import MyApproach from "../components/About/MyApproach";
-import Cta from "../components/Cta";
-import ExperienceSection from "../components/ExperienceSection";
+import ScrollShowcase from "../components/BrandStatement";
 import Footer from "../components/Footer";
 import ImagesMarquee from "../components/ImagesMarquee";
+import WhyWorkWithMe from "../components/WhyWorkWithMe";
 import { pageMetadata } from "../lib/Seo";
-import ScrollShowcase from "../components/BrandStatement";
 
 export const metadata = pageMetadata({
   title: "About Hasnain, Web Designer & Developer",
@@ -22,6 +21,9 @@ const About = () => {
       <AboutHero />
       <ScrollShowcase
         mode="text"
+        backgroundImage={showcaseBg}
+        backgroundOverlay={0.1}
+        inset
         heading={[
           "You’ve put years into your craft.",
           "I believe your website should",
@@ -30,8 +32,8 @@ const About = () => {
       />
       <FAQ />
       <MyApproach />
-      <ExperienceSection />
-      <Cta />
+      {/* <ExperienceSection /> */}
+      <WhyWorkWithMe />
       <ImagesMarquee />
       <Footer />
     </div>

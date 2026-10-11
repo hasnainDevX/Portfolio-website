@@ -14,6 +14,9 @@ type ScrollShowcaseProps = {
   heading?: string | string[];
   description?: string;
   images?: ShowcaseImage[];
+  backgroundImage?: StaticImageData | string;
+  backgroundOverlay?: number;
+  inset?: boolean;
   id?: string;
   label?: string;
   className?: string;
@@ -40,9 +43,12 @@ export default function ScrollShowcase({
   heading = "",
   description,
   images = [],
+  backgroundImage,
+  backgroundOverlay = 0.5,
+  inset = false,
   id,
   label,
-  className = "bg-cream-bg text-charcoal",
+  className,
 }: ScrollShowcaseProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -142,12 +148,19 @@ export default function ScrollShowcase({
   );
 
   return (
-    <section ref={sectionRef} id={id} aria-label={label ?? (showText ? undefined : "Selected work")} className={`relative isolate ${className}`}>
-      <div className="relative grid grid-cols-1">
+    <section ref={sectionRef} id={id} aria-label={label ?? (showText ? undefined : "Selected work")} className={`relative isolate ${inset ? "mx-4 md:mx-8 lg:mx-[60px]" : ""} ${className ?? (backgroundImage ? "bg-charcoal text-white" : "bg-cream-bg text-charcoal")}`}>
+      {/* Optional background */}
+      {backgroundImage && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <Image src={backgroundImage} alt="" fill sizes={inset ? "(min-width: 1024px) calc(100vw - 120px), (min-width: 768px) calc(100vw - 64px), calc(100vw - 32px)" : "100vw"} className="object-cover object-center" />
+          <div className="absolute inset-0 bg-black" style={{ opacity: Math.min(1, Math.max(0, backgroundOverlay)) }} />
+        </div>
+      )}
+      <div className="relative z-10 grid grid-cols-1">
         {showText && (
           <div className={combined ? "statement-stage sticky top-0 z-0 col-start-1 row-start-1 flex h-[100svh] self-start items-center justify-center px-5 py-10 sm:px-8 lg:px-12" : "relative px-5 py-20 sm:px-8 md:py-28 lg:px-12"}>
             <div className="mx-auto w-full max-w-[1080px] text-center">
-              <h2 ref={headingRef} aria-label={lines.join(" ")} className="font- text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display leading-[1.06] tracking-[-0.035em] md:text-[clamp(4rem,7.2vw,7.25rem)]">
+              <h2 ref={headingRef} aria-label={lines.join(" ")} className="font-serif text-[clamp(2rem,8vw,6.75rem)] font-normal leading-[1.06] tracking-[-0.035em] md:text-[clamp(4rem,7.2vw,7.25rem)]">
                 <span aria-hidden="true">
                   {lines.map((line, lineIndex) => (
                     <span key={lineIndex} className="block">

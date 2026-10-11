@@ -86,7 +86,7 @@ const AboutHero = () => {
   }, []);
 
   return (
-    <main className="relative overflow-hidden bg-[#F8F6F1] text-charcoal">
+    <main className="relative overflow-hidden text-charcoal">
       <header className="relative z-50">
         <Navbar />
       </header>
@@ -105,12 +105,17 @@ const AboutHero = () => {
           {/* Oversized editorial heading */}
           <h1
             ref={headingRef}
-            className="relative z-20 mx-auto max-w-[1100px] text-center font-display text-[clamp(3rem,9vw,6.5rem)] uppercase font-[300] leading-[0.82] tracking-[-0.055em] text-gold"
+            className="relative z-20 mx-auto max-w-[1100px] text-center font-display text-[clamp(3rem,9vw,6.5rem)] whitespace-nowrap font-serif font-light uppercase leading-none text-transparentleading-[0.82] tracking-[-0.055em] text-gold"
             style={{ opacity: 0 }}
           >
-            Hi, I&apos;m
-            <br />
-            <span className="">Hasnain.</span>
+            
+           
+            <span  style={{
+            WebkitTextStroke: "1px #b5973a",
+            fontSize: "clamp(2rem, 9vw, 6rem)",
+          }} className="whitespace-nowrap font-serif font-light uppercase leading-none text-transparent">Hi, I&apos;m</span> 
+           <br />
+           Hasnain
           </h1>
 
           {/* Project slideshow */}
