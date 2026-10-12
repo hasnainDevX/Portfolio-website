@@ -81,7 +81,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         timeline.to(cardElements[0], {
           y: 0,
           duration: 0.65,
-          ease: "power3.out",
+          // ease: "power3.out",
         });
 
         timeline.to({}, { duration: 0.35 });
@@ -92,7 +92,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         timeline.to(cardElements[1], {
           y: 0,
           duration: 0.65,
-          ease: "power3.out",
+          // ease: "power3.out",
         });
 
         timeline.to({}, { duration: 0.35 });
@@ -103,7 +103,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         timeline.to(cardElements[2], {
           y: 0,
           duration: 0.65,
-          ease: "power3.out",
+          // ease: "power3.out",
         });
 
         // Hold the final card before the next section comes over it.
@@ -130,7 +130,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         {/* Main editorial heading. */}
         <div className="absolute inset-x-0 top-[12vh] z-[2] px-5 text-center md:top-[30vh]">
           <h2 className="mx-auto max-w-[860px] font-playfair text-[clamp(2.7rem,12vw,4rem)] font-normal leading-[0.88] tracking-[-0.045em] text-white md:text-[clamp(3.6rem,6.8vw,6.4rem)]">
-            Design that gets
+            Websites that gets
             <br />
             dream clients to
             <br />
@@ -187,50 +187,51 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                   }}
                 >
                   {/* Your brand color sits over the background texture. */}
-                  <div className="absolute inset-0 bg-gold/90" />
+                  <div className="absolute inset-0 bg-soft-beige" />
 
                   {/* Mobile is text-only; desktop becomes a two-column layout. */}
                   <div className="relative z-10 grid h-full grid-cols-1 md:grid-cols-[1fr_0.92fr]">
-                    {/* Text content. */}
-                    <div className="flex h-full flex-col justify-center px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-8 lg:px-[7%]">
-                      <div className="mx-auto w-full max-w-[370px] md:mx-0 md:max-w-[550px]">
-                        <div className="mb-4 flex flex-wrap items-center gap-3 md:mb-5">
-                          <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white md:text-[10px] lg:text-[11px]">
+                    {/* Text content */}
+                    <div className="m-2 flex min-w-0 flex-col justify-center rounded-[4px] bg-[#f5f2eb] px-5 py-5 text-charcoal sm:px-7 md:m-4 md:mr-0 md:px-7 md:py-6 lg:px-9">
+                      <div className="mx-auto w-full max-w-[440px] md:mx-0">
+                        <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 md:mb-5">
+                          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal/75">
                             {card.timeline}
                           </p>
 
                           {card.badge && (
-                            <span className="rounded-full border border-white/70 px-2.5 py-1 text-[8px] font-semibold uppercase tracking-[0.18em] text-white md:text-[9px]">
+                            <span className="border-l border-charcoal/25 pl-4 text-[11px] italic text-charcoal">
                               {card.badge}
                             </span>
                           )}
                         </div>
 
-                        <h3 className="max-w-[310px] font-playfair text-[clamp(2rem,9vw,2.8rem)] uppercase leading-[0.9] tracking-[-0.045em] text-white sm:max-w-[360px] md:max-w-none md:text-[clamp(2.6rem,4vw,4.8rem)] md:text-white">
+                        <h3 className="font-serif text-[clamp(2.25rem,9vw,3rem)] font-normal leading-[1.04] tracking-[-0.025em] text-charcoal md:text-[clamp(2.5rem,3.8vw,3.75rem)]">
                           {card.title}
                         </h3>
 
-                        <p className="mt-6 max-w-[340px] text-[13px] leading-[1.65] text-white md:mt-7 md:max-w-lg md:text-[14px] md:text-white lg:text-[16px]">
+                        <p className="mt-4 text-[15px] leading-[1.55] text-charcoal md:mt-5 lg:text-[16px]">
                           {card.description}
                         </p>
 
-                        <p className="mt-5 max-w-[320px] text-[12px] leading-[1.6] text-white md:mt-5 md:max-w-md md:text-[13px] md:text-white/85 lg:text-sm">
+                        <p className="mt-4 max-w-[400px] text-[14px] leading-[1.55] text-charcoal/75">
                           {card.wif}
                         </p>
 
-                        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4 md:mt-8">
+                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 md:mt-6">
                           <Link
                             href={card.href}
-                            className="inline-flex h-[42px] items-center justify-center rounded-full border border-charcoal bg-[#FAF8F2] px-6 text-[9px] font-semibold uppercase tracking-[0.13em] text-charcoal transition-colors duration-300 hover:border-cream-bg hover:bg-charcoal hover:text-white md:h-[48px] md:px-7 md:text-[11px]"
+                            className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer"
                           >
                             {card.cta}
-
-                            <span className="ml-3 text-base">›</span>
+                            {/* <span aria-hidden="true" className="text-base">
+                             
+                            </span> */}
                           </Link>
 
                           <Link
                             href="/packages"
-                            className="text-[10px] font-semibold uppercase tracking-[0.13em] text-white underline underline-offset-4 transition-opacity duration-300 hover:opacity-80 md:text-[11px]"
+                            className="inline-flex min-h-11 items-center text-[12px] text-charcoal underline decoration-charcoal/35 underline-offset-4 transition-colors duration-200 hover:decoration-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
                           >
                             See what&apos;s included
                           </Link>
@@ -240,7 +241,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
 
                     {/* Website screenshot only appears on desktop. */}
                     <div className="relative hidden min-h-0 overflow-hidden md:block">
-                      <div className="absolute left-1/2 top-1/2 h-[74%] w-[72%] -translate-x-1/2 -translate-y-1/2 rotate-[3deg] overflow-hidden rounded-[4px] shadow-[0_30px_70px_rgba(0,0,0,0.25)]">
+                      <div className="absolute left-1/2 top-1/2 h-[92%] w-[92%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[4px] shadow-[0_30px_70px_rgba(0,0,0,0.25)]">
                         <Image
                           src={card.image}
                           alt={card.alt || card.title}

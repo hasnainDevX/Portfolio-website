@@ -2,10 +2,10 @@
 import image1 from "../assets/amrsocialp1.png";
 import image5 from "../assets/maceysmethod2.png";
 import image2 from "../assets/telecomsite2.png";
-import image3 from "../assets/fruitysite1.jpeg";
+import image3 from "../assets/lashedbytashmobile.png";
 import image7 from "../assets/amrsocialm2.png";
 import image4 from "../assets/lashedbytash.jpeg";
-import image6 from "../assets/vasite4.jpeg";
+import image6 from "../assets/allingoodhans.png";
 import Image from "next/image";
 
 const marqueeImages = [

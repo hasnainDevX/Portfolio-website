@@ -1,15 +1,25 @@
 "use client";
-
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
+import ScrollShowcase from "../BrandStatement";
 
 import AnnouncementBar from "../AnnouncementBar";
 import Navbar from "../Navbar";
 
-import hero1 from "../../assets/waves.png";
+import imageBottomLeft from "../../assets/allingoodhans1.png";
+import imageRight from "../../assets/amrsocialm2.png";
+import imageLeft from "../../assets/amrsocialp1.png";
+import imageBottomRight from "../../assets/cafesite.jpeg";
+import imageCenter from "../../assets/lashedbytash.jpeg";
+import bgImage from "../../assets/amrsocialp1.png"
 
-const heroImages = [hero1];
+const portfolioImages = [
+  { src: imageLeft, alt: "Amr.socials website design" },
+  { src: imageCenter, alt: "Lashed by Tash website design" },
+  { src: imageRight, alt: "Amr.socials mobile website" },
+  { src: imageBottomLeft, alt: "All in Good Hans website design" },
+  { src: imageBottomRight, alt: "Cafe website design" },
+];
 
 const PortfolioHero = () => {
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -58,64 +68,14 @@ const PortfolioHero = () => {
       {/* ── Navbar ── */}
       <Navbar />
 
-      {/* ── Hero slideshow ── */}
-      <div
-        className="relative w-full overflow-hidden bg-charcoal"
-        style={{ height: "80vh" }}
-      >
-        {/* Background slideshow */}
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          {heroImages.map((img, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                slidesRef.current[i] = el;
-              }}
-              className="absolute inset-0"
-              style={{ opacity: i === 0 ? 1 : 0 }}
-            >
-              <Image
-                src={img}
-                alt=""
-                fill
-                sizes="100vw"
-                priority={i === 0}
-                className="object-cover object-center"
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Brand-colour image overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75" />
-
-        {/* ── Scrolling text at bottom ── */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden">
-          <div
-            className="flex whitespace-nowrap"
-            style={{
-              animation: "heromarquee 59s linear infinite",
-              width: "max-content",
-            }}
-          >
-            {Array.from({ length: 4 }).map((_, i) => (
-              <span
-                key={i}
-                className="shrink-0 font-serif text-soft-beige text-6xl md:text-8xl lg:text-9xl font-normal leading-none mx-8"
-              >
-                Captivating and Converting Portfolio &nbsp;~&nbsp;
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes heromarquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+      <ScrollShowcase
+        mode="both"
+        heading={["Built to be found.", "Designed to be chosen."]}
+        description="Strategic, conversion-first websites for brands who wants to stand out in their industry not just looks good"
+        images={portfolioImages}
+        // backgroundImage={bgImage}
+        // backgroundOverlay={0.2}
+      />
     </div>
   );
 };

@@ -16,6 +16,8 @@ import Services from "./components/ServiceSection";
 import Testimonials from "./components/TestimonialSection";
 import TextMarqueeClient from "./components/TextMarqueeClient";
 import { pageMetadata } from "./lib/Seo";
+import WhyWorkWithMe from "./components/WhyWorkWithMe";
+import ImagesMarquee from "./components/ImagesMarquee";
 
 const portfolioImages = [
   { src: imageLeft, alt: "Amr.socials website design" },
@@ -58,6 +60,7 @@ export default function Home() {
       <Services />
       <Portfolio />
       <Testimonials />
+      <WhyWorkWithMe/>
       <ExperienceSection />
       <Cta />
       <TextMarqueeClient
@@ -66,6 +69,7 @@ export default function Home() {
         ]}
         speed={20}
       />
+      <ImagesMarquee/>
       <Footer />
     </div>
   );

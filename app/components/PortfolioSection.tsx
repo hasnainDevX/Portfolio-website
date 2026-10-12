@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import portfolio1 from "../assets/maceysmethod3.png";
-import portfolio2 from "../assets/fruitysite1.jpeg";
+import portfolio2 from "../assets/telecomsite2.png";
 import portfolio3 from "../assets/allingoodhans1.png";
-import portfolio4 from "../assets/rlestatesite.png";
+import portfolio4 from "../assets/lashedbytash.jpeg";
 
 // TODO: confirm each project name below (alts are guessed from filenames).
 const projects = [
@@ -59,13 +59,6 @@ const PortfolioSection = () => {
                 <p className="mt-6 text-[15px] font-light leading-[1.75] text-charcoal/75 sm:text-base md:text-[17px] lg:text-lg">
                   Every project here started with the same question: what does this site need to do for the business? Then it was built to do exactly that.
                 </p>
-
-                {/*
-                  Optional proof line. Only enable if it's true and verifiable today.
-                  <p className="mt-4 text-[15px] font-medium leading-[1.75] text-charcoal sm:text-base md:text-[17px]">
-                    [Client name] now ranks #1 for [search term].
-                  </p>
-                */}
 
                 <div className="mt-8">
                   <Link

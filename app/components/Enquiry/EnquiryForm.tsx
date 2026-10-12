@@ -176,7 +176,7 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-6 py-12">
+    <div className="w-full max-w-3xl mx-auto px-6 py-12 ">
       <form onSubmit={handleSubmit} className="space-y-10">
 
         {/* First Name */}
