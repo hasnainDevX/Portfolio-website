@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import portfolio1 from "../assets/maceysmethod3.png";
+import portfolio1 from "../assets/amrsocialp1.png"
+import portfolio5 from "../assets/maceysmethod3.png";
 import portfolio2 from "../assets/telecomsite2.png";
 import portfolio3 from "../assets/allingoodhans1.png";
 import portfolio4 from "../assets/lashedbytash.jpeg";
 
 // TODO: confirm each project name below (alts are guessed from filenames).
 const projects = [
-  { src: portfolio1, alt: "Macey's Method website design" },
-  { src: portfolio2, alt: "Fruity website design" },
-  { src: portfolio3, alt: "All in Good Hans website design" },
-  { src: portfolio4, alt: "Real estate website design" },
+  { src: portfolio1, alt: "Amr Socials" },
+  { src: portfolio5, alt: "Macey's Method" },
+  { src: portfolio2, alt: "Go Quality Networks" },
+  { src: portfolio3, alt: "All in Good Hans" },
+  { src: portfolio4, alt: "Lashed By Tash" },
 ];
 
 const PortfolioSection = () => {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import processBg from "../assets/waves2.png";
+import processBg from "../assets/bg4.png";
 
 const OurProcess = () => {
   return (

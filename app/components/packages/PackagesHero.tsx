@@ -3,7 +3,7 @@
 import AnnouncementBar from "../AnnouncementBar";
 import Navbar from "../Navbar";
 import ImageTrail from "../ImageTrail";
-import PortfolioMarquees from "../PortfolioMarquees";
+import BrandMarquee from "../BrandMarquee";
 
 import imageBottomLeft from "../../assets/allingoodhans.png";
 import imageRight from "../../assets/amrsocialm2.png";
@@ -39,23 +39,24 @@ export default function PortfolioHero() {
           <div className="relative z-0 mx-auto w-full max-w-6xl text-center">
             <h1
               id="portfolio-heading"
-              className="font-serif text-[clamp(2.75rem,7.6vw,7rem)] font-normal leading-[1.03] tracking-[-0.045em] text-charcoal"
+              className="font-serif text-[clamp(2.75rem,7.6vw,5rem)] font-normal leading-[1.03] tracking-[-0.045em] text-charcoal lg:text-[clamp(5.25rem,4.6vw,4.75rem)]"
             >
               <span className="block">
-                High-end conversion focused website design
+                High-end conversion focus website design
               </span>
               <span className="block">built with your whole
-                business in mind.</span>
+                business in mind.</span>  
             </h1>
-            {/* <p className="mx-auto mt-6 max-w-[42rem] font-display text-lg leading-relaxed text-charcoal md:mt-8 md:text-xl">
+
+            <p className="mx-auto mt-6 max-w-[42rem] font-display text-lg leading-relaxed text-charcoal md:mt-8 md:text-xl">
               Strategic, conversion-first websites for brands who want to stand
               out in their industry, not just look good.
-            </p> */}
+            </p>
           </div>
         </ImageTrail>
 
         {/* Bottom strips */}
-        <PortfolioMarquees className="mt-auto pb-4 md:pb-6" />
+        <BrandMarquee count={2} className="mt-auto pb-4 md:pb-6" />
       </section>
     </div>
   );

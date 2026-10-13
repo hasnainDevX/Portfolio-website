@@ -4,12 +4,12 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-
-import portfolio1 from "../../assets/lashedbytash.jpeg";
-import portfolio2 from "../../assets/allingoodhans1.png";
-import portfolio3 from "../../assets/maceysmethod2.png";
-import portfolio4 from "../../assets/telecomsite1.jpeg";
-import portfolio5 from "../../assets/noblesite1.jpeg";
+import portfolio1 from "../../assets/amrsocialp1.png"
+import portfolio2 from "../../assets/lashedbytash.jpeg";
+import portfolio3 from "../../assets/allingoodhans1.png";
+import portfolio4 from "../../assets/maceysmethod2.png";
+import portfolio5 from "../../assets/telecomsite1.jpeg";
+import portfolio6 from "../../assets/noblesite1.jpeg";
 
 interface Portfolio {
   id: number;
@@ -21,43 +21,51 @@ interface Portfolio {
 }
 
 const portfolioData: Portfolio[] = [
-  {
+   {
     id: 1,
+    title: "Amr.socials",
+    category: "Foundation Website",
+    image: portfolio1,
+    desc: "Shiza helps brands and creators grow online without compromising their values. Her website needed to reflect that same thoughtful approach. We created a Foundation Website that introduces the person behind Amr.socials and puts her approach to content at the centre — giving potential clients a clear sense of who she is and what she stands for.",
+    link: "https://amrsocials.site/",
+  },
+  {
+    id: 2,
     title: "Lashed By Tash",
     category: "Website Design",
-    image: portfolio1,
+    image: portfolio2,
     desc: "Tash had the talent, the loyal clients, and the reputation to match. What she needed was a digital home that reflected it all. We brought her work to life through an editorial design, an easy-to-explore lash menu, real client stories, and a booking journey that makes taking the next step feel effortless.",
     link: "https://www.lashedbytash.ca",
   },
   {
-    id: 2,
+    id: 3,
     title: "All In Good Hans",
     category: "Website Design",
-    image: portfolio2,
+    image: portfolio3,
     desc: "When your business is built on making other people's lives easier, your website should do the same. For All In Good Hans, we created a calm, considered online space that communicates her value, showcases her services, and helps busy business owners see exactly why they need her in their corner.",
     link: "https://www.allingoodhans.co.uk/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Macey's Method",
     category: "Website Design + Development",
-    image: portfolio3,
+    image: portfolio4,
     desc: "Macey helps business owners get their time back. Her website needed to communicate that value without making visitors work for the answer. Clean layouts, thoughtful messaging, and a clear path to enquire come together in a digital presence that feels every bit as organised and dependable as the service behind it.",
     link: "https://maceysmethod.co.uk/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Go Quality Networks",
     category: "Website Development",
-    image: portfolio4,
+    image: portfolio5,
     desc: "Internet solutions can get complicated fast. The website shouldn't. For this Houston-based telecom business, we developed a straightforward digital experience that brings services, connectivity options, and essential information into focus — so visitors can spend less time figuring things out and more time finding the right solution.",
     link: "https://go-quality-networks.com/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Noble Cleaning Solutions",
     category: "Website Design + Development",
-    image: portfolio5,
+    image: portfolio6,
     desc: "Finding a reliable cleaning company shouldn't feel like another chore. We built Noble Cleaning Solutions a clean, approachable website that puts its residential and commercial services front and centre, answers the questions that matter, and makes getting in touch refreshingly simple.",
     link: "https://noble-cleaning-solutions.vercel.app/",
   },

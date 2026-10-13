@@ -1,230 +1,222 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-
 import Navbar from "../Navbar";
+
 import image1 from "../../assets/amrsocialm2.png";
 import image2 from "../../assets/allingoodhans2.png";
 import image3 from "../../assets/rlestatesite.png";
 import image4 from "../../assets/lashedbytash.jpeg";
 
-const images = [image1, image2, image3, image4];
-
-const imageAlts = [
-  "Macey's Method website design",
-  "All In Good Hans website design",
-  "Real estate website design",
-  "Lashed By Tash website design",
+const columns = [
+  [image1, image4, image2, image3],
+  [image3, image2, image1, image4],
 ];
 
-const AboutHero = () => {
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const labelRef = useRef<HTMLParagraphElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const circleRef = useRef<HTMLDivElement>(null);
+const DESKTOP_SPEED = 32; // Pixels per second
+const MOBILE_SPEED = 20;
+const COPIES = 3;
 
-  // Cycle through selected website projects.
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % images.length);
-    }, 3000);
+export default function AboutHero() {
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const trackRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-    return () => clearInterval(interval);
-  }, []);
+  useLayoutEffect(() => {
+    const gallery = galleryRef.current;
+    const tracks = trackRefs.current.filter(
+      (track): track is HTMLDivElement => track !== null,
+    );
+    if (!gallery || tracks.length !== 2) return;
 
-  // Reveal hero content in sequence.
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-        delay: 0.2,
-      });
+    const media = gsap.matchMedia();
 
-      tl.fromTo(
-        labelRef.current,
-        { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: 0.6 },
-      )
-        .fromTo(
-          headingRef.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 1 },
-          "-=0.3",
-        )
-        .fromTo(
-          imageRef.current,
-          { opacity: 0, y: 40, scale: 0.98 },
-          { opacity: 1, y: 0, scale: 1, duration: 1 },
-          "-=0.55",
-        )
-        .fromTo(
-          contentRef.current,
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.4",
-        )
-        .fromTo(
-          circleRef.current,
-          { opacity: 0, scale: 0.7, rotate: -30 },
-          {
-            opacity: 1,
-            scale: 1,
-            rotate: 0,
-            duration: 1,
-            ease: "back.out(1.4)",
-          },
-          "-=0.6",
+    media.add(
+      {
+        desktop: "(min-width: 1024px)",
+        mobile: "(max-width: 1023px)",
+        reduce: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        if (context.conditions?.reduce) return;
+
+        const speed = context.conditions?.desktop
+          ? DESKTOP_SPEED
+          : MOBILE_SPEED;
+        const tweens: (gsap.core.Tween | undefined)[] = [];
+        const distances = [0, 0];
+        const groups = tracks.map(
+          (track) => track.firstElementChild as HTMLDivElement,
         );
-    });
+        let visible = false;
 
-    return () => ctx.revert();
+        const syncPlayback = () => {
+          tweens.forEach((tween) => tween?.paused(!visible || document.hidden));
+        };
+
+        const measure = () => {
+          tracks.forEach((track, index) => {
+            const distance = groups[index].offsetHeight;
+            if (!distance || Math.abs(distance - distances[index]) < 0.5)
+              return;
+
+            const progress =
+              tweens[index]?.progress() ?? (index === 0 ? 0 : 0.3);
+            tweens[index]?.kill();
+            distances[index] = distance;
+
+            // Left moves up, right moves down.
+            tweens[index] = gsap
+              .fromTo(
+                track,
+                { yPercent: index === 0 ? 0 : -100 / COPIES },
+                {
+                  yPercent: index === 0 ? -100 / COPIES : 0,
+                  duration: distance / speed,
+                  ease: "none",
+                  repeat: -1,
+                  paused: true,
+                },
+              )
+              .progress(progress);
+          });
+
+          syncPlayback();
+        };
+
+        measure();
+
+        const resizeObserver = new ResizeObserver(measure);
+        groups.forEach((group) => resizeObserver.observe(group));
+
+        const visibilityObserver = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          syncPlayback();
+        });
+
+        visibilityObserver.observe(gallery);
+        document.addEventListener("visibilitychange", syncPlayback);
+
+        return () => {
+          resizeObserver.disconnect();
+          visibilityObserver.disconnect();
+          document.removeEventListener("visibilitychange", syncPlayback);
+          tweens.forEach((tween) => tween?.kill());
+          gsap.set(tracks, { clearProps: "transform" });
+        };
+      },
+    );
+
+    return () => media.revert();
   }, []);
 
   return (
-    <main className="relative overflow-hidden text-charcoal">
-      <header className="relative z-50">
-        <Navbar />
-      </header>
+    <main className="relative mb-12 text-charcoal md:mb-16">
+      <Navbar />
 
-      <section className="relative min-h-screen px-5 pb-20 pt-40 sm:px-8 sm:pt-44 md:px-10 md:pt-48 lg:px-12 lg:pb-28 lg:pt-52">
-        <div className="relative mx-auto max-w-[1200px]">
-          {/* Small intro label */}
-          <p
-            ref={labelRef}
-            className="mb-7 text-center text-[10px] font-medium uppercase tracking-[0.28em] text-charcoal/60 sm:text-xs"
-            style={{ opacity: 0 }}
-          >
-            About Hasnain Webstudio
-          </p>
-
-          {/* Oversized editorial heading */}
-          <h1
-            ref={headingRef}
-            className="relative z-20 mx-auto max-w-[1100px] text-center font-display text-[clamp(3rem,9vw,6.5rem)] whitespace-nowrap font-serif font-light uppercase leading-none text-transparentleading-[0.82] tracking-[-0.055em] text-gold"
-            style={{ opacity: 0 }}
-          >
-            
-           
-            <span  style={{
-            WebkitTextStroke: "1px #b5973a",
-            fontSize: "clamp(2rem, 9vw, 6rem)",
-          }} className="whitespace-nowrap font-serif font-light uppercase leading-none text-transparent">Hi, I&apos;m</span> 
-           <br />
-           Hasnain
-          </h1>
-
-          {/* Project slideshow */}
-          <div
-            ref={imageRef}
-            className="relative z-10 mx-auto -mt-[1.5rem] h-[330px] w-full max-w-[1020px] overflow-hidden sm:-mt-[2rem] sm:h-[430px] md:-mt-[2.5rem] md:h-[520px] lg:-mt-[3rem] lg:h-[620px]"
-            style={{ opacity: 0 }}
-          >
-            {images.map((image, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentIdx ? "opacity-100" : "opacity-0"}`}
+      <section
+        aria-labelledby="about-heading"
+        className="relative isolate overflow-hidden bg-transparent pt-32 sm:pt-36 lg:grid lg:h-[calc(100svh-24px)] lg:grid-cols-[65%_35%] lg:pt-0"
+      >
+        {/* About text */}
+        <div className="relative z-10 mx-auto w-full px-6 md:px-12 lg:mx-0 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:overflow-y-auto lg:pb-8 lg:pl-[clamp(2.5rem,6vw,6rem)] lg:pr-[clamp(1.5rem,3vw,3rem)] lg:pt-24">
+          <div className="mx-auto max-w-xl lg:mx-0 lg:my-auto lg:w-full lg:max-w-[46rem] lg:shrink-0">
+            <h1
+              id="about-heading"
+              className="text-center font-serif text-[clamp(3.5rem,10vw,6rem)] font-light  leading-[1] tracking-[-0.035em] text-gold lg:text-left lg:text-[clamp(3.5rem,5vw,5rem)]"
+            >
+              <span
+                className="block text-transparent lg:inline"
+                style={{ WebkitTextStroke: "1px #b5973a" }}
               >
-                <Image
-                  src={image}
-                  alt={imageAlts[idx]}
-                  fill
-                  priority={idx === 0}
-                  sizes="(max-width: 768px) 100vw, 1020px"
-                  className="object-cover object-center"
-                />
+                Hi, I&apos;m
+              </span>{" "}
+              <span className="block lg:inline">Hasnain</span>
+            </h1>
+
+            <div className="mt-8 space-y-4 text-base leading-[1.65] text-charcoal sm:text-lg lg:mt-6 lg:space-y-4 lg:text-base lg:leading-[1.55]">
+              <h2 className="max-w-[32ch] font-serif text-[1.75rem] font-normal leading-[1.2] tracking-[-0.02em] sm:text-3xl lg:max-w-none lg:text-[clamp(1.5rem,2vw,1.875rem)]">
+                I started building websites in 2023 out of curiosity.
+              </h2>
+
+              <p>
+                It didn&apos;t stay a hobby for long: pretty soon I was building
+                real sites for real businesses, and I haven&apos;t stopped
+                since.
+              </p>
+
+              <p>
+                I study software engineering, which is why the sites I build
+                work properly underneath. They&apos;re fast, they&apos;re made
+                to be found on Google, and they do exactly what your business
+                needs, which is more than a drag-and-drop template can promise.
+              </p>
+
+              <p>
+                Over the years, I&apos;ve built websites for virtual assistants,
+                social media agencies, beauty professionals, coaches and other
+                service businesses. Different industries, same goal: look as
+                good as the work you do, and make it easy for the right clients
+                to say yes.
+              </p>
+            </div>
+
+            <div className="mt-8 text-center lg:mt-6 lg:text-left">
+              <Link
+                href="/portfolio"
+                aria-label="See what I've built: view my portfolio"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-charcoal/30 px-7 py-3 text-sm leading-normal tracking-[0.02em] text-charcoal transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold lg:min-h-11 lg:py-2.5"
+              >
+                See what I&apos;ve built
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Moving project columns */}
+        <div
+          ref={galleryRef}
+          aria-hidden="true"
+          className="pointer-events-none relative z-0 mt-12 h-[clamp(20rem,100vw,32rem)] w-full overflow-hidden sm:mt-16 lg:mt-0 lg:h-full lg:min-h-0"
+        >
+          <div className="absolute -inset-y-[20%] inset-x-4 grid rotate-[-5deg] grid-cols-2 items-start gap-3 sm:inset-x-8 sm:gap-5 lg:-right-5 lg:left-5 lg:rotate-[-7deg] lg:gap-4">
+            {columns.map((images, columnIndex) => (
+              <div
+                key={columnIndex}
+                ref={(element) => {
+                  trackRefs.current[columnIndex] = element;
+                }}
+                className="will-change-transform motion-reduce:will-change-auto"
+              >
+                {Array.from({ length: COPIES }, (_, copy) => (
+                  <div
+                    key={copy}
+                    className="flex flex-col gap-3 pb-3 sm:gap-5 sm:pb-5 lg:gap-4 lg:pb-4"
+                  >
+                    {images.map((src, imageIndex) => (
+                      <div
+                        key={imageIndex}
+                        className="relative aspect-[3/4] w-full overflow-hidden rounded-lg border border-charcoal/15 lg:rounded-xl"
+                      >
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 18vw, 48vw"
+                          className="object-cover object-center"
+                          draggable={false}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             ))}
-
-            <div className="absolute inset-0 bg-black/10" />
-          </div>
-
-          {/* Sub content and CTA */}
-          <div
-            ref={contentRef}
-            className="container mx-auto max-w-xl space-y-6 py-10"
-            style={{ opacity: 0 }}
-          >
-            <h3 className="mt-8 font-playfair font-medium uppercase tracking-wide text-gray-700 md:text-lg text-center">
-              I started building websites in 2022 out of curiosity.
-            </h3>
-
-            <p className="leading-relaxed text-charcoal text-center">
-              It didn&apos;t stay a hobby for long: pretty soon I was building
-              real sites for real businesses, and I haven&apos;t stopped since.
-            </p>
-
-            <p className="leading-relaxed text-charcoal text-center">
-              I study software engineering, which is why the sites I build work
-              properly underneath. They&apos;re fast, they&apos;re made to be
-              found on Google, and they do exactly what your business needs,
-              which is more than a drag-and-drop template can promise.
-            </p>
-
-            <p className="leading-relaxed text-charcoal text-center">
-              Over the years, I&apos;ve built websites for virtual assistants,
-              social media agencies, beauty professionals, coaches and other
-              service businesses. Different industries, same goal: look as good
-              as the work you do, and make it easy for the right clients to say
-              yes.
-            </p>
-
-            <Link
-              href="/portfolio"
-              aria-label="See what I've built: view my portfolio"
-              className="w-full flex items-center  justify-center"
-            >
-              <button className=" button button-lavender cursor-pointer rounded-full border px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white">
-                See what I&apos;ve built
-              </button>
-            </Link>
-          </div>
-
-          {/* Rotating circular text */}
-          <div
-            ref={circleRef}
-            className="absolute -right-[10vh] top-[24vh] z-10 hidden h-52 w-52 md:block 2xl:scale-125"
-            style={{ opacity: 0 }}
-          >
-            <div
-              className="absolute inset-0 animate-spin"
-              style={{ animationDuration: "15s" }}
-            >
-              <svg
-                width="224"
-                height="224"
-                viewBox="0 0 224 224"
-                className="absolute inset-0"
-              >
-                <defs>
-                  <path
-                    id="circle"
-                    d="M 112,112 m -90,0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0"
-                  />
-                </defs>
-
-                <text
-                  fill="black"
-                  fontSize="16"
-                  fontWeight="300"
-                  letterSpacing="3px"
-                  fontFamily="'Inter', 'Helvetica Neue', sans-serif"
-                >
-                  <textPath href="#circle">
-                    • Hasnain Webstudio • Web Design and Development
-                  </textPath>
-                </text>
-              </svg>
-            </div>
           </div>
         </div>
       </section>
     </main>
   );
-};
-
-export default AboutHero;
+}

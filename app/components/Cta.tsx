@@ -1,8 +1,11 @@
-'use client';
+"use client";
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Image from "next/image";
+import ctaBg from "../assets/bg4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,48 +49,33 @@ const Cta = () => {
   }, []);
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative bg-[#2a2a2a] min-h-[80vh] flex items-center justify-center px-6"
-    >
-      <div className="max-w-6xl mx-auto text-center text-white">
-        {/* Top Tagline */}
-        <p
-          ref={taglineRef}
-          className="text-sm md:text-base tracking-[0.3em] uppercase mb-12 font-light"
-          style={{ fontFamily: "sans-serif", opacity: 0 }}
-        >
+    <div ref={sectionRef} className="relative overflow-hidden bg-[#2a2a2a] min-h-[80vh] flex items-center justify-center px-6">
+      {/* Background image */}
+      <Image src={ctaBg} alt="" fill sizes="100vw" className="pointer-events-none object-cover object-center" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-charcoal/70" />
+
+      <div className="relative z-10 max-w-6xl mx-auto text-center text-white">
+        {/* Top tagline */}
+        <p ref={taglineRef} className="text-sm md:text-base tracking-[0.3em] uppercase mb-12 font-light" style={{ fontFamily: "sans-serif", opacity: 0 }}>
           ARE YOU READY TO REFINE YOUR BRAND?
         </p>
 
-        {/* Main Heading */}
-        <h1
-          ref={headingRef}
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-16 font-light tracking-wide"
-        >
+        {/* Main heading */}
+        <h1 ref={headingRef} className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-16 font-light tracking-wide">
           BOOK YOUR PROJECT
         </h1>
 
-        {/* CTA Buttons */}
-        <div
-          ref={btnsRef}
-          className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16"
-        >
+        {/* CTA buttons */}
+        <div ref={btnsRef} className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
           <a href="/enquiry" className="group relative inline-block" style={{ opacity: 0 }}>
-            <span
-              className="text-base md:text-lg tracking-[0.15em] uppercase font-light transition-opacity duration-300 group-hover:opacity-70"
-              style={{ fontFamily: "sans-serif" }}
-            >
+            <span className="text-base md:text-lg tracking-[0.15em] uppercase font-light transition-opacity duration-300 group-hover:opacity-70" style={{ fontFamily: "sans-serif" }}>
               BOOK YOUR DISCOVERY CALL
             </span>
             <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white transform origin-left transition-transform duration-300 group-hover:scale-x-110" />
           </a>
 
           <Link href="/enquiry" className="group relative inline-block" style={{ opacity: 0 }}>
-            <span
-              className="text-base md:text-lg tracking-[0.15em] uppercase font-light transition-opacity duration-300 group-hover:opacity-70"
-              style={{ fontFamily: "sans-serif" }}
-            >
+            <span className="text-base md:text-lg tracking-[0.15em] uppercase font-light transition-opacity duration-300 group-hover:opacity-70" style={{ fontFamily: "sans-serif" }}>
               APPLY TO WORK TOGETHER
             </span>
             <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white transform origin-left transition-transform duration-300 group-hover:scale-x-110" />

@@ -47,27 +47,38 @@ const TestimonialsSection = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const header = headerRef.current;
-    const cardsContainer = cardsContainerRef.current;
+  const header = headerRef.current;
+  const cardsContainer = cardsContainerRef.current;
 
-    if (!header || !cardsContainer) return;
+  if (!header || !cardsContainer) return;
 
-    // Pin the header while the testimonial cards scroll past it.
-    ScrollTrigger.create({
-      trigger: cardsContainer,
-      start: "top center",
-      end: "bottom center",
-      pin: header,
-      pinSpacing: false,
-    });
+  const media = gsap.matchMedia();
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+  media.add(
+    {
+      desktop: "(min-width: 1024px)",
+      mobile: "(max-width: 1023px)",
+    },
+    (context) => {
+      const desktop = context.conditions?.desktop;
+
+      ScrollTrigger.create({
+        trigger: desktop ? header : cardsContainer,
+        start: desktop ? "top 120px" : "top center",
+        endTrigger: cardsContainer,
+        end: "bottom center",
+        pin: header,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+    }
+  );
+
+  return () => media.revert();
+}, []);
 
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-20 lg:pt-32">
       {/* Full section background image. */}
       <Image src={testimonialsBg} alt="" fill sizes="100vw" className="object-cover object-center" />
 

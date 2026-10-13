@@ -6,14 +6,31 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type PortfolioMarqueesProps = {
+type BrandMarqueeProps = {
+  count?: 1 | 2;
   marqueeText?: string;
   scrollText?: string;
+  marqueeBg?: string;
+  marqueeColor?: string;
+  scrollBg?: string;
+  scrollColor?: string;
+  scrollOutline?: boolean;
   duration?: number;
   className?: string;
 };
 
-export default function PortfolioMarquees({ marqueeText = "What you build now determines where you go next", scrollText = "What you build now determines where you go next", duration = 59, className = "" }: PortfolioMarqueesProps) {
+export default function BrandMarquee({
+  count = 2,
+  marqueeText = "What you build now determines where you go next",
+  scrollText = "What you build now determines where you go next",
+  marqueeBg = "bg-gold",
+  marqueeColor = "text-white",
+  scrollBg = "bg-transparent",
+  scrollColor = "text-charcoal",
+  scrollOutline = true,
+  duration = 59,
+  className = "",
+}: BrandMarqueeProps) {
   const stripsRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const rowRef = useRef<HTMLDivElement>(null);
@@ -24,29 +41,39 @@ export default function PortfolioMarquees({ marqueeText = "What you build now de
     const marquee = marqueeRef.current;
     const row = rowRef.current;
     const track = trackRef.current;
-    if (!strips || !marquee || !row || !track) return;
+
+    if (!strips || !marquee) return;
 
     const media = gsap.matchMedia();
 
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const context = gsap.context(() => {
-        gsap.fromTo(track, { x: () => -Math.min(row.clientWidth * 0.3, 360) }, {
-          x: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: row,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        });
+        if (!row || !track) return;
+
+        gsap.fromTo(
+          track,
+          { x: () => -Math.min(row.clientWidth * 0.3, 360) },
+          {
+            x: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: row,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
       }, strips);
 
       const observer = new IntersectionObserver(([entry]) => {
         marquee.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
       });
-      observer.observe(marquee.parentElement!);
+
+      if (marquee.parentElement) {
+        observer.observe(marquee.parentElement);
+      }
 
       return () => {
         observer.disconnect();
@@ -56,15 +83,18 @@ export default function PortfolioMarquees({ marqueeText = "What you build now de
     });
 
     return () => media.revert();
-  }, []);
+  }, [count]);
 
   return (
-    <div ref={stripsRef} className={`relative w-full font-serif text-charcoal ${className}`} style={{ fontFamily: "var(--font-editors-note, var(--font-serif, serif))" }}>
-      <p className="sr-only">{marqueeText}. {scrollText}.</p>
+    <div ref={stripsRef} className={`relative w-full font-serif ${className}`}>
+      <p className="sr-only">
+        {marqueeText}
+        {count === 2 && scrollText !== marqueeText ? ` — ${scrollText}` : ""}
+      </p>
 
       {/* Continuous marquee */}
-      <div aria-hidden="true" className="hw-portfolio-zigzag overflow-hidden bg-gold py-2 text-white">
-        <div ref={marqueeRef} className="flex w-max animate-[hw-portfolio-marquee_59s_linear_infinite] motion-reduce:animate-none" style={{ animationDuration: `${duration}s`, animationPlayState: "paused" }}>
+      <div aria-hidden="true" className={`hw-portfolio-zigzag overflow-hidden py-2 ${marqueeBg} ${marqueeColor}`}>
+        <div ref={marqueeRef} className="flex w-max animate-[hw-portfolio-marquee_59s_linear_infinite] motion-reduce:animate-none" style={{ animationDuration: `${Math.max(1, duration)}s`, animationPlayState: "paused" }}>
           {[0, 1].map((copy) => (
             <div key={copy} className="flex min-w-[100vw] shrink-0 items-center justify-around whitespace-nowrap text-[clamp(2rem,4vw,4.5rem)] font-normal leading-[1.05] tracking-[-0.025em]">
               <span>{marqueeText}</span>
@@ -74,18 +104,23 @@ export default function PortfolioMarquees({ marqueeText = "What you build now de
         </div>
       </div>
 
-      {/* Moves only with scroll */}
-      <div ref={rowRef} aria-hidden="true" className="overflow-hidden bg-transparent py-1 text-charcoal">
-        <div ref={trackRef} className="flex w-max text-transparent" style={{ WebkitTextStroke: "1px #2a2a2a" }}>
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex min-w-[100vw] shrink-0 items-center justify-around whitespace-nowrap text-[clamp(2rem,4vw,4.5rem)] font-normal leading-[1.05] tracking-[-0.025em]">
-              {[0, 1].map((item) => (
-                <span key={item} className="inline-flex items-center">{scrollText}<span className="mx-6 md:mx-10">—</span></span>
-              ))}
-            </div>
-          ))}
+      {/* Scroll marquee */}
+      {count === 2 && (
+        <div ref={rowRef} aria-hidden="true" className={`overflow-hidden py-1 ${scrollBg} ${scrollColor}`}>
+          <div ref={trackRef} className="flex w-max" style={scrollOutline ? { WebkitTextStroke: "1px currentColor", WebkitTextFillColor: "transparent" } : undefined}>
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex min-w-[100vw] shrink-0 items-center justify-around whitespace-nowrap text-[clamp(2rem,4vw,4.5rem)] font-normal leading-[1.05] tracking-[-0.025em]">
+                {[0, 1].map((item) => (
+                  <span key={item} className="inline-flex items-center">
+                    {scrollText}
+                    <span className="mx-6 md:mx-10">—</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <style>{`
         .hw-portfolio-zigzag {

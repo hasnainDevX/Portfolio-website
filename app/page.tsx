@@ -53,14 +53,18 @@ export default function Home() {
       {/* <ImagesMarquee /> */}
       <ScrollShowcase
         mode="both"
-        heading={["Good work deserves", "a website that does", "it justice."]}
-        description="You're ready to stand out, attract higher-paying clients, and have a website that feels as premium as the work you deliver."
+        heading={[
+          "We create premium, conversion-focused websites",
+          "that attract the right clients",
+          "and help your business grow.",
+        ]}
+        // description="Your website should reflect the quality of your work—and make it easy for the right clients to take the next step."
         images={portfolioImages}
       />
       <Services />
       <Portfolio />
       <Testimonials />
-      <WhyWorkWithMe/>
+      <WhyWorkWithMe />
       <ExperienceSection />
       <Cta />
       <TextMarqueeClient
@@ -69,7 +73,7 @@ export default function Home() {
         ]}
         speed={20}
       />
-      <ImagesMarquee/>
+      <ImagesMarquee />
       <Footer />
     </div>
   );
