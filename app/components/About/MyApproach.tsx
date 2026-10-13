@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import cardBg from "../../assets/image.png";
+import cardBg from "../../assets/bg2.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,11 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 const SCROLL_PACE = 1.15;
 
 const approaches = [
-  { number: "01", title: "Listen", image: cardBg, background: "#b5973a", description: "We start by talking. What you love, what you don't, and who you're trying to win over, so I'm never guessing what you want." },
-  { number: "02", title: "Design", image: cardBg, background: "#b5973a", description: "A website that feels like the next version of your brand, not a template with your logo dropped in." },
-  { number: "03", title: "Collaborate", image: cardBg, background: "#b5973a", description: "You see the site take shape section by section and tell me what you think as it goes, so there are no surprises at the end." },
-  { number: "04", title: "Refine", image: cardBg, background: "#b5973a", description: "Revisions while I'm building. We move forward when you're happy with it, not when the clock runs out." },
-  { number: "05", title: "Build", image: cardBg, background: "#b5973a", description: "Built by hand just for you, not stitched together from a template. Fast, clean, and made to last, so you're not rebuilding in two years." },
+  { number: "01", title: "Listen", image: cardBg, background: "#2a2a2a", description: "We start by talking. What you love, what you don't, and who you're trying to win over, so I'm never guessing what you want." },
+  { number: "02", title: "Design", image: cardBg, background: "#2a2a2a", description: "A website that feels like the next version of your brand, not a template with your logo dropped in." },
+  { number: "03", title: "Collaborate", image: cardBg, background: "#2a2a2a", description: "You see the site take shape section by section and tell me what you think as it goes, so there are no surprises at the end." },
+  { number: "04", title: "Refine", image: cardBg, background: "#2a2a2a", description: "Revisions while I'm building. We move forward when you're happy with it, not when the clock runs out." },
+  { number: "05", title: "Build", image: cardBg, background: "#2a2a2a", description: "Built by hand just for you, not stitched together from a template. Fast, clean, and made to last, so you're not rebuilding in two years." },
 ];
 
 export default function MyApproach() {
@@ -139,7 +139,7 @@ export default function MyApproach() {
               {approaches.map((item) => (
                 <li key={item.number} data-step className="approach-step" style={{ backgroundColor: item.background }}>
                   {/* Card background */}
-                  <Image src={item.image} alt="" fill sizes="(max-width: 767px) calc(100vw - 32px), 480px" className="pointer-events-none object-cover object-center opacity-20" />
+                  <Image src={item.image} alt="" fill sizes="(max-width: 767px) calc(100vw - 32px), 480px" className="pointer-events-none object-cover object-center opacity-40" />
                   <div data-step-content className="relative z-10 w-full shrink-0 p-6">
                     <span className="mb-4 block font-display text-xs tracking-[0.2em] text-white" aria-hidden="true">{item.number} / 05</span>
                     <h3 className="mb-4 font-serif text-[clamp(2.5rem,4vw,3rem)] font-normal leading-[1.02] tracking-[-0.035em]">{item.title}</h3>

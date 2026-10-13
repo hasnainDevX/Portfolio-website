@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
-import FoundationImage from "../assets/allingoodhans2.png";
-import SignatureImage from "../assets/lashedbytash.jpeg";
-import CompleteImage from "../assets/ecomsite1.jpeg";
+import FoundationImage from "../../assets/allingoodhans2.png";
+import SignatureImage from "../../assets/lashedbytash.jpeg";
+import CompleteImage from "../../assets/amrsocialp1.png";
 
 export type Pkg = {
   id: string;

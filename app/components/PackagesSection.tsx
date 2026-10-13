@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { packages, type Pkg } from "./PackagesContent";
+import { packages, type Pkg } from "./packages/PackagesContent";
 
 gsap.registerPlugin(ScrollTrigger);
 

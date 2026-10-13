@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import portfolio1 from "../../assets/lashedbytash.jpeg";
 import portfolio2 from "../../assets/allingoodhans1.png";
-import portfolio3 from "../../assets/maceysmethod1.png";
+import portfolio3 from "../../assets/maceysmethod2.png";
 import portfolio4 from "../../assets/telecomsite1.jpeg";
 import portfolio5 from "../../assets/noblesite1.jpeg";
 

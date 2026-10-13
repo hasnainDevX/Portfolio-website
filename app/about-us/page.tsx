@@ -1,7 +1,8 @@
-import showcaseBg from "../assets/charcoal.png";
+import showcaseBg from "../assets/waves.png";
 import AboutHero from "../components/About/AboutHero";
 import FAQ from "../components/About/FaqAboutMe";
 import MyApproach from "../components/About/MyApproach";
+import AnnouncementBar from "../components/AnnouncementBar";
 import ScrollShowcase from "../components/BrandStatement";
 import Footer from "../components/Footer";
 import ImagesMarquee from "../components/ImagesMarquee";
@@ -18,11 +19,12 @@ export const metadata = pageMetadata({
 const About = () => {
   return (
     <div>
+      <AnnouncementBar/>
       <AboutHero />
       <ScrollShowcase
         mode="text"
         backgroundImage={showcaseBg}
-        backgroundOverlay={0.1}
+        backgroundOverlay={0.5}
         inset
         heading={[
           "You’ve put years into your craft.",
