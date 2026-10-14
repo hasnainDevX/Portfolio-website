@@ -170,7 +170,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
               >
                 {/* Folder tab. */}
                 <div
-                  className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-[#F7F4EE] px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}
+                  className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-soft-beige px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}
                 >
                   <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text-charcoal md:text-[10px] lg:text-[11px]">
                     {card.title}
@@ -187,12 +187,12 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                   }}
                 >
                   {/* Your brand color sits over the background texture. */}
-                  <div className="absolute inset-0 bg-soft-beige" />
+                  <div className="absolute inset-0 bg-cream-bg" />
 
                   {/* Mobile is text-only; desktop becomes a two-column layout. */}
                   <div className="relative z-10 grid h-full grid-cols-1 md:grid-cols-[1fr_0.92fr]">
                     {/* Text content */}
-                    <div className="m-2 flex min-w-0 flex-col justify-center rounded-[4px] bg-[#f5f2eb] px-5 py-5 text-charcoal sm:px-7 md:m-4 md:mr-0 md:px-7 md:py-6 lg:px-9">
+                    <div className="m-2 flex min-w-0 flex-col justify-center rounded-[4px] bg-white px-5 py-5 text-charcoal sm:px-7 md:m-4 md:mr-0 md:px-7 md:py-6 lg:px-9">
                       <div className="mx-auto w-full max-w-[440px] md:mx-0">
                         <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 md:mb-5">
                           <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal/75">

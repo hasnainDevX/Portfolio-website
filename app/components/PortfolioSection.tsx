@@ -32,7 +32,7 @@ const PortfolioSection = () => {
   }, []);
 
   return (
-    <section className="relative z-30 -mt-[100dvh] min-h-[100dvh] overflow-hidden rounded-t-[28px] bg-white md:-mt-[100vh] md:min-h-screen md:rounded-t-[36px]">
+    <section className="relative z-30 -mt-[100dvh] min-h-[100dvh] overflow-hidden bg-white md:-mt-[100vh] md:min-h-screen border-t hw-portfolio-zigzag">
       {/* Keeps the content slightly below the wrapping edge. */}
       <div className="pt-[8dvh] md:pt-[10vh]">
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-10 lg:px-12">
@@ -96,6 +96,14 @@ const PortfolioSection = () => {
           <div className="h-20 sm:h-24 md:h-32" />
         </div>
       </div>
+       <style>{`
+        .hw-portfolio-zigzag {
+          --zigzag-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 6L6 0L12 6Z' fill='black'/%3E%3C/svg%3E");
+          --zigzag-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 0H12L6 6Z' fill='black'/%3E%3C/svg%3E");
+          -webkit-mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+          mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+        }
+      `}</style>
     </section>
   );
 };

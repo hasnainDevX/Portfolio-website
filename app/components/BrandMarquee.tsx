@@ -28,7 +28,7 @@ export default function BrandMarquee({
   scrollBg = "bg-transparent",
   scrollColor = "text-charcoal",
   scrollOutline = true,
-  duration = 59,
+  duration = 29,
   className = "",
 }: BrandMarqueeProps) {
   const stripsRef = useRef<HTMLDivElement>(null);

@@ -148,7 +148,7 @@ export default function ScrollShowcase({
   );
 
   return (
-    <section ref={sectionRef} id={id} aria-label={label ?? (showText ? undefined : "Selected work")} className={`relative isolate ${inset ? "mx-4 md:mx-8 lg:mx-[60px]" : ""} ${className ?? (backgroundImage ? "bg-charcoal text-white" : "bg-cream-bg text-charcoal")}`}>
+    <section ref={sectionRef} id={id} aria-label={label ?? (showText ? undefined : "Selected work")} className={`relative isolate ${inset ? "mx-4 md:mx-8 lg:mx-[60px]" : ""} ${className ?? (backgroundImage ? "bg-charcoal text-white" : "bg-white text-charcoal")}`}>
       {/* Optional background */}
       {backgroundImage && (
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">

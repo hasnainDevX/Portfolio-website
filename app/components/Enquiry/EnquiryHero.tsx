@@ -1,121 +1,72 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Image from "next/image";
-import gsap from "gsap";
-
 import AnnouncementBar from "../AnnouncementBar";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
+import ImageTrail from "../ImageTrail";
+import BrandMarquee from "../BrandMarquee";
+import CircularText from "../CircularText";
 
-import hero1 from "../../assets/packagesbg.png";
+import imageBottomLeft from "../../assets/allingoodhans.png";
+import imageRight from "../../assets/amrsocialm2.png";
+import imageLeft from "../../assets/amrsocialp1.png";
+import imageBottomRight from "../../assets/cafesite.jpeg";
+import imageCenter from "../../assets/lashedbytash.jpeg";
+import Image from "next/image";
+import heroBg from "../../assets/waves.png";
 
-const heroImages = [hero1];
+const portfolioImages = [
+  { src: imageLeft, alt: "Amr.socials website design" },
+  { src: imageCenter, alt: "Lashed by Tash website design" },
+  { src: imageRight, alt: "Amr.socials mobile website" },
+  { src: imageBottomLeft, alt: "All in Good Hans website design" },
+  { src: imageBottomRight, alt: "Cafe website design" },
+];
 
-const EnquiryHero = () => {
-  const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
-  const currentSlide = useRef(0);
-
-  useEffect(() => {
-    const slides = slidesRef.current.filter(Boolean) as HTMLDivElement[];
-    if (slides.length < 2) return;
-
-    const SHOW_TIME = 5000; // ms each image stays
-    const FADE_TIME = 1.5; // seconds for the crossfade
-
-    gsap.set(slides, { opacity: 0, scale: 1.08, zIndex: 0 });
-    gsap.set(slides[0], { opacity: 1, zIndex: 1 });
-    gsap.to(slides[0], { scale: 1, duration: 7, ease: "none" });
-
-    const interval = setInterval(() => {
-      const current = slides[currentSlide.current];
-      const nextIndex = (currentSlide.current + 1) % slides.length;
-      const next = slides[nextIndex];
-      currentSlide.current = nextIndex;
-
-      gsap.set(next, { zIndex: 2, scale: 1.08 });
-      gsap.to(next, { opacity: 1, duration: FADE_TIME, ease: "power2.inOut" });
-      gsap.to(next, { scale: 1, duration: 7, ease: "none" });
-      gsap.to(current, {
-        opacity: 0,
-        duration: FADE_TIME,
-        ease: "power2.inOut",
-        onComplete: () => {
-          gsap.set(current, { zIndex: 0 });
-        },
-      });
-    }, SHOW_TIME);
-
-    return () => {
-      clearInterval(interval);
-      gsap.killTweensOf(slides);
-    };
-  }, []);
-
+export default function EnquiryHero() {
   return (
-    <div className="w-full">
+    <div className="w-full text-charcoal">
       <AnnouncementBar />
-      <Navbar />
+      {/* <Navbar /> */}
 
-      <div
-        className="relative w-full overflow-hidden bg-charcoal"
-        style={{ height: "80vh" }}
+      <section
+        aria-labelledby="portfolio-heading"
+        className="relative flex min-h-[calc(100svh-24px)] flex-col bg-transparent pt-24 md:pt-28"
       >
-        {/* Background slideshow */}
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          {heroImages.map((img, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                slidesRef.current[i] = el;
-              }}
-              className="absolute inset-0"
-              style={{ opacity: i === 0 ? 1 : 0 }}
-            >
-              <Image
-                src={img}
-                alt=""
-                fill
-                sizes="100vw"
-                priority={i === 0}
-                className="object-cover object-center"
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Brand-colour image overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75" />
-
-        {/* Marquee text */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden">
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "nowrap",
-              width: "max-content",
-              animation: "heromarquee 59s linear infinite",
-            }}
-          >
-            {Array.from({ length: 4 }).map((_, i) => (
-              <span
-                key={i}
-                className="shrink-0 font-serif text-soft-beige text-6xl md:text-8xl lg:text-9xl font-normal leading-none mx-8"
-              >
-                Work with Hasnain Webstudio &nbsp;~&nbsp;
-              </span>
-            ))}
+        {/* Heading and image trail */}
+        <ImageTrail
+          items={portfolioImages}
+          imageWidth={170}
+          threshold={96}
+          className="flex flex-1 flex-col justify-center px-6 py-12 md:px-12"
+        >
+          <div className="absolute z-20 mb-4 mr-6 self-end -top-5 -right-5 md:right-12 md:top-6 md:m-0">
+            <CircularText
+              text="HASNAIN*WEBSTUDIO*"
+              onHover="speedUp"
+              spinDuration={20}
+              // className="text-sm!"
+            />
           </div>
-        </div>
-      </div>
+          <div className="relative z-0 mx-auto w-full max-w-6xl text-center">
+            <h1
+              id="enquiry-heading"
+              className="font-serif text-[clamp(2.75rem,7.6vw,5rem)] font-normal leading-[1.03] tracking-[-0.045em] text-charcoal lg:text-[clamp(5.25rem,4.6vw,4.75rem)]"
+            >
+              <span className="block">Your Next Chapter</span>
+              <span className="block">Starts Here.</span>
+            </h1>
 
-      <style>{`
-        @keyframes heromarquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+            <p className="mx-auto mt-6 max-w-[42rem] font-display text-lg leading-relaxed text-charcoal md:mt-8 md:text-xl">
+              Whether you&apos;re establishing your business online or ready for
+              a website that reflects how far you&apos;ve come, I&apos;ll help
+              you take the next step.
+            </p>
+          </div>
+        </ImageTrail>
+
+        {/* Bottom strips */}
+        <BrandMarquee count={2} className="mt-auto pb-4 md:pb-6" />
+      </section>
     </div>
   );
-};
-
-export default EnquiryHero;
+}
