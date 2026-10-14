@@ -44,7 +44,7 @@ const PortfolioSection = () => {
             </h2>
 
             <p className="mx-auto mt-6 max-w-4xl text-sm leading-relaxed text-gray-600 sm:text-base md:mt-8 md:text-lg">
-              No templates, no page builders. Each site is designed and coded around one business, its ideal client, and the one action it needs that client to take: book, enquire, or get in touch. Here&apos;s what that looks like.
+              No templates, no page builders. Each site is designed and coded around one business, its ideal client, and the one action it needs that client to take: book, enquire, or get in touch.
             </p>
           </div>
 

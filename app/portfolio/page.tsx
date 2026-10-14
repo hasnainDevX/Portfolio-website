@@ -1,3 +1,4 @@
+import BrandMarquee from "../components/BrandMarquee";
 import Cta from "../components/Cta";
 import Footer from "../components/Footer";
 import PortfolioHero from "../components/portfolio/PortfolioHero";
@@ -17,13 +18,14 @@ const Portfolio = () => {
     <div className="bg-[#FFFCF9]">
       <PortfolioHero />
       <PortfoliosSection />
+      {/* <BrandMarquee count={1} /> */}
+      <Cta />
       <TextMarqueeClient
         data={[
           "SCROLL-STOPPING AND HIGH CONVERTING WEBSITES ✦ Design with purpose. Strategy with heart",
         ]}
         speed={20}
       />
-      <Cta />
       <Footer />
     </div>
   );

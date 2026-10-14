@@ -21,7 +21,7 @@ const OurProcess = () => {
               </h1>
 
               <p className="font-serif text-lg leading-relaxed md:text-xl lg:text-2xl">
-                Every project starts with understanding — not assumptions. Before a single line of code is written, I take the time to learn your business, your goals, and exactly what you want your website to do. The result is a custom-coded site that performs, converts, and actually feels like you.
+                Every project starts with understanding — not assumptions. Before I start buiding, I take the time to learn your business, your goals, and exactly what you want your website to do. The result is a custom-coded site that performs, converts, and actually feels like you.
               </p>
             </div>
 
@@ -46,7 +46,7 @@ const OurProcess = () => {
                   <h2 className="font-serif text-3xl italic md:text-4xl lg:text-5xl">Build</h2>
                 </div>
                 <p className="text-base leading-relaxed text-white/80">
-                  Your site is custom-coded from scratch — no page builders, no bloat. I build section by section and share progress throughout so you're never left waiting to see the full thing. Unlimited revisions during development means we don't move forward until each part is right.
+                  Your site is custom-coded from scratch — no page builders. I build section by section and share progress throughout so you're never left waiting to see the full thing.  Revisions during development means we don't move forward until each part is right.
                 </p>
               </div>
 

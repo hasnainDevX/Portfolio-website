@@ -5,19 +5,19 @@ const faqs = [
   {
     question: "WHAT YOU CAN EXPECT FROM ME...",
     answer:
-      "Clear communication, honest timelines, and a website built properly — not patched together. You'll get a developer who actually understands your business goals, keeps you in the loop throughout, and delivers something you're proud to share. No templates, no shortcuts, no ghosting after handoff.",
+      "Clear communication, honest timelines, and a website built properly — not patched together. You'll get a designer who actually understands your business goals, keeps you in the loop throughout, and delivers something you're proud to share. No templates, no shortcuts, no ghosting after handoff.",
     bg: "bg-charcoal/90 text-[#ffffff]",
   },
   {
     question: "WHAT YOU WON'T GET FROM ME...",
     answer:
-      "Cookie-cutter designs, bloated page builders, or a site that falls apart the moment you try to update it. I don't do rushed work, vague timelines, or projects I'm not confident I can do justice. If it's not the right fit, I'll tell you upfront.",
+      "Cookie-cutter designs, bloated page builders, or a site that falls apart. I don't do rushed work, vague timelines, or projects I'm not confident I can do justice. If it's not the right fit, I'll tell you upfront.",
     bg: "bg-charcoal/90 text-[#ffffff]",
   },
   {
     question: "WHO AM I, EXACTLY...",
     answer:
-      "A solo developer — not an agency, not a team. Just me. I work directly with every client from brief to launch, which means faster communication, lower overhead, and no account managers playing telephone between you and the person actually building your site. Every project gets my full attention.",
+      "A solo studio. I work directly with every client from brief to launch, which means faster communication, lower overhead, and no account managers playing telephone between you and the person actually building your site. Every project gets my full attention.",
     bg: "bg-charcoal/90 text-[#ffffff]",
   },
 ];

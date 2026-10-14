@@ -18,6 +18,40 @@ import TextMarqueeClient from "./components/TextMarqueeClient";
 import { pageMetadata } from "./lib/Seo";
 import WhyWorkWithMe from "./components/WhyWorkWithMe";
 import ImagesMarquee from "./components/ImagesMarquee";
+import MobileTestimonials from "./components/MobileTestimonials";
+
+const testimonials = [
+  {
+    quote:
+      "Hasnain was amazing to work with. A website is something I’ve wanted to do for years but as a full time business owner, finding time to build a space that represented me and my brand was very challenging. The website hasnain created was everything I could have imagined and am so grateful to have this checked off my to-do list. Highly recommend hasainwebstudio for all your website needs!",
+    name: "Natasha",
+    company: "Lashed By Tash",
+  },
+  {
+    quote:
+      "I had a great experience working with hasnainWebstudio on my website (maceysmethod.co.uk) for my virtual assistant business. They were professional, creative, and really listened to my ideas. The final site is easy to navigate and perfectly represents my brand. I highly recommend them to anyone looking for a talented and reliable website designer!.",
+    name: "Macey",
+    company: "Macey's Method - Virtual Assistant",
+  },
+  {
+    quote:
+      "Hasnain has created a website for me that truly represents who I am. I can tell he put a lot of work into it and took on board any feedback I had throughout the process.",
+    name: "Hannah",
+    company: "All In Good Hans - Virtual Assistant",
+  },
+  {
+    quote:
+      "Hasnain did an incredible job on our website. We needed something clean, professional, and easy to navigate — and he delivered exactly that. His communication was clear throughout the process, and the final result represents our brand perfectly. Highly recommend him if you want a website that actually works for your business.",
+    name: "Jason Malik",
+    company: "Manager at Go Quality Networks",
+  },
+  {
+    quote:
+      "I had a vision for a sleek, modern website that could clearly explain our services and help us book clients — and Hasnain nailed it. He was responsive, detail-oriented, and honestly cared about getting it right. Our site looks great and functions perfectly. I’m so glad we chose his services.",
+    name: "Jenn",
+    company: "Founder of Noble Cleaning Solution",
+  },
+];
 
 const portfolioImages = [
   { src: imageLeft, alt: "Amr.socials website design" },
@@ -63,7 +97,19 @@ export default function Home() {
       />
       <Services />
       <Portfolio />
-      <Testimonials />
+      <div className="hidden md:block">
+        <Testimonials />
+      </div>
+      <div className="block md:hidden">
+        <MobileTestimonials
+          testimonials={testimonials.map((testimonial) => ({
+            id: `${testimonial.name}-${testimonial.company}`,
+            quote: testimonial.quote,
+            name: testimonial.name,
+            role: testimonial.company,
+          }))}
+        />
+      </div>
       <WhyWorkWithMe />
       <ExperienceSection />
       <Cta />

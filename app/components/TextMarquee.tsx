@@ -4,10 +4,10 @@ import { useRef } from "react";
 const TextMarquee = ({
   data,
   speed = 20,
-  bgColor = "#2A2A2A",
+  bgColor = "#2a2a2a",
   textColor = "#ffffff",
   hoverColor = "#b5973a",
-  textSize = "1.875rem",
+  textSize = "1.5rem",
   height = "auto",
 }: {
   data: string[];
@@ -18,7 +18,9 @@ const TextMarquee = ({
   textSize?: string;
   height?: string;
 }) => {
-  const marqueeId = useRef(`marquee-${Math.random().toString(36).slice(2, 7)}`).current;
+  const marqueeId = useRef(
+    `marquee-${Math.random().toString(36).slice(2, 7)}`,
+  ).current;
   const loopedData = [...data, ...data];
 
   return (
@@ -32,18 +34,19 @@ const TextMarquee = ({
         }}
       >
         <div
+          className="font-display"
           id={marqueeId}
           style={{
             display: "inline-flex",
             flexWrap: "nowrap",
-            width: "max-content", 
+            width: "max-content",
             alignItems: "center",
             fontSize: textSize,
             color: textColor,
             fontWeight: 900,
             textTransform: "uppercase",
-            paddingTop: height === "auto" ? "1.5rem" : undefined,
-            paddingBottom: height === "auto" ? "1.5rem" : undefined,
+            paddingTop: height === "auto" ? "1rem" : undefined,
+            paddingBottom: height === "auto" ? "1rem" : undefined,
             height: height !== "auto" ? height : undefined,
           }}
         >

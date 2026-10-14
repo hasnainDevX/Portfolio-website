@@ -39,7 +39,7 @@ export default function EnquiryHero() {
           threshold={96}
           className="flex flex-1 flex-col justify-center px-6 py-12 md:px-12"
         >
-          <div className="absolute z-20 mb-4 mr-6 self-end -top-5 -right-5 md:right-12 md:top-6 md:m-0">
+          <div className="absolute hidden md:block z-20 mb-4 mr-6 self-end -top-5 -right-5 md:right-12 md:top-6 md:m-0">
             <CircularText
               text="HASNAIN*WEBSTUDIO*"
               onHover="speedUp"
