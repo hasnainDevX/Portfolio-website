@@ -270,15 +270,12 @@ const Skiper17 = () => {
       backgroundImage: bg,
       title: "Foundation Website",
       timeline: "Live in 1–2 weeks",
-
       description:
         "Online and taking enquiries in weeks, not months. A clean, fast, custom-coded site that makes you look as good as you are.",
-
-      wif: "Best for: new and solo businesses, or anyone replacing a DIY site.",
-
+      wif: "Best for: new and solo businesses, or anyone who needs professional presence to get ideal clients from the start as well as look crediible.",
       cta: "Get my Foundation site",
       // The enquiry form only pre-selects the package if it reads this param.
-      href: "/enquiry?package=foundation",
+      href: "/enquiry",
     },
 
     {
@@ -286,16 +283,13 @@ const Skiper17 = () => {
       image: service2,
       backgroundImage: bg,
       title: "Signature Site",
-      timeline: "Live in 3–5 weeks",
+      timeline: "Live in 2-4 weeks",
       badge: "Popular",
-
       description:
         "A brand-led site that earns trust before your first message: custom design, sharper storytelling, a clear path to booking.",
-
       wif: "Best for: growing businesses that want to be the premium pick, not the cheapest.",
-
       cta: "Start my Signature Site",
-      href: "/enquiry?package=signature",
+      href: "/enquiry",
     },
 
     {
@@ -303,15 +297,12 @@ const Skiper17 = () => {
       image: service3,
       backgroundImage: bg,
       title: "Complete Vision",
-      timeline: "Live in 5–10 weeks",
-
+      timeline: "Live in 4–8 weeks",
       description:
         "Strategy, custom design and development in one build, with advanced features shaped around how your business makes money.",
-
-      wif: "Best for: established brands with bigger goals than a package can hold.",
-
+      wif: "Best for: established brands with bigger goals and vision.",
       cta: "Scope my project",
-      href: "/enquiry?package=complete-vision",
+      href: "/enquiry",
     },
   ];
 
