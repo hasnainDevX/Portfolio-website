@@ -170,22 +170,22 @@ const Hero = () => {
           ref={labelRef}
           className="mb-6 font-body text-[10px] font-medium uppercase tracking-[0.22em] text-lavender opacity-0 sm:mb-8 sm:text-xs"
         >
-          Website Design & Development
+          Brand-led Strategic Websites
         </p>
 
         <h1
           ref={headingRef}
-          className="max-w-5xl font-display text-5xl font-[200] leading-[0.9] tracking-[-0.045em] text-ivory opacity-0 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl "
+          className="max-w-5xl font-display text-5xl font-[200] leading-[0.9] tracking-[-0.045em] text-ivory opacity-0 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
         >
-          Websites for businesses ready to{" "}
-          <span className="italic text-lavender">be remembered.</span>
+          Make your Business{" "}
+          <span className="italic text-lavender">the obvious choice.</span>
         </h1>
 
         <p className="mt-7 max-w-xl font-body text-sm leading-relaxed text-ivory/75 sm:mt-8 sm:text-base">
-          Strategy-led, custom-built digital experiences that help your business
-          look established, feel distinct, and move forward with confidence.
+          You’ve built a business worth choosing. We build custom websites that
+          show it—with distinctive design, a compelling story, and a clear path
+          from first impression to first enquiry.
         </p>
-
         <div ref={buttonRef} className="mt-9 opacity-0 sm:mt-10 ">
           <Link
             href="/packages"

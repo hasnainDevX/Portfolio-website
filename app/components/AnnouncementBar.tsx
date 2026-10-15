@@ -3,7 +3,7 @@ const announcementItems = [
   "✦",              
   "Hasnain Webstudio",
   "✦",
-  "Now Booking for November",
+  "Now Booking for November and December",
   "✦",
   "Hasnain Webstudio",
   "✦",

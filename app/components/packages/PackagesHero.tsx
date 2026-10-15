@@ -42,7 +42,7 @@ export default function PortfolioHero() {
               className="font-serif text-[clamp(2.75rem,7.6vw,5rem)] font-normal leading-[1.03] tracking-[-0.045em] text-charcoal lg:text-[clamp(5.25rem,4.6vw,4.75rem)]"
             >
               <span className="block">
-                High-end conversion focus website design
+                High-end conversion focus website
               </span>
               <span className="block">built with your whole
                 business in mind.</span>  

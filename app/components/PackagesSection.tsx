@@ -15,7 +15,7 @@ const HEADING =
   "text-3xl sm:text-4xl md:text-5xl leading-[1.15] sm:leading-[1.12] md:leading-[1.1] mb-6 sm:mb-7 md:mb-8 font-playfair md:capitalize uppercase tracking-wide text-charcoal";
 const BODY = "text-gray-800 md:text-base text-sm leading-relaxed ns";
 const BUTTON =
-  "px-16 py-3 cursor-pointer border-charcoal border-1 rounded-full hover:bg-gold text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 rounded-full";
+  "px-16 py-3 cursor-pointer hover:border-soft-beige border-1 rounded-full hover:bg-gold text-sm tracking-widest uppercase hover:text-white transition-colors duration-300 rounded-full";
 
 type PanelId = "included" | "suited";
 
@@ -95,7 +95,7 @@ const Accordion = ({
 
 const PackageRow = ({ pkg, flip }: { pkg: Pkg; flip: boolean }) => {
   // one panel open at a time; clicking the open one closes it
-  const [panel, setPanel] = useState<PanelId | null>("included");
+  const [panel, setPanel] = useState<PanelId | null>(null);
   const toggle = (id: PanelId) => setPanel((cur) => (cur === id ? null : id));
 
   return (

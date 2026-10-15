@@ -1,29 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useLayoutEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-import logo from "../assets/logo.jpeg"
+import gsap from "gsap";
+import logo from "../assets/logo.jpeg";
 
-/**
- * First-load intro: wordmark fades up, holds, fades out, then the whole
- * panel lifts away (curtain-style) to reveal the page underneath.
- *
- * Mounted once in app/layout.tsx, so it plays once per fresh page load —
- * it will not replay on client-side navigations between pages, since the
- * root layout isn't remounted for those.
- */
-const Preloader = () => {
+function PageReveal() {
   const overlayRef = useRef<HTMLDivElement>(null);
-  const wordRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const [done, setDone] = useState(false);
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+  useLayoutEffect(() => {
+    const overlay = overlayRef.current;
+    const logoElement = logoRef.current;
+    if (!overlay || !logoElement) return;
 
-    if (prefersReducedMotion) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setDone(true);
       return;
     }
@@ -31,45 +24,58 @@ const Preloader = () => {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.out" },
-      onComplete: () => {
-        document.body.style.overflow = previousOverflow;
-        setDone(true);
-      },
-    });
+    const restoreScroll = () => {
+      document.body.style.overflow = previousOverflow;
+    };
 
-    tl.fromTo(
-      wordRef.current,
-      { opacity: 0, y: 16, letterSpacing: "0.35em" },
-      { opacity: 1, y: 0, letterSpacing: "0.15em", duration: 1.1 }
-    )
-      .to(wordRef.current, { opacity: 0, y: -12, duration: 0.6 }, "+=0.5")
-      .to(
-        overlayRef.current,
-        { yPercent: -100, duration: 1, ease: "power4.inOut" },
-        "-=0.15"
-      );
+    const context = gsap.context(() => {
+      const panels = Array.from(overlay.querySelectorAll<HTMLElement>("[data-reveal-panel]")).filter((panel) => panel.offsetWidth > 0);
+
+      const timeline = gsap.timeline({
+        onComplete: () => {
+          restoreScroll();
+          setDone(true);
+        },
+      });
+
+      timeline
+        .to(logoElement, { opacity: 1, duration: 0.25, ease: "power2.out" })
+        .to(logoElement, { opacity: 0, duration: 0.18, ease: "power2.in" }, "+=0.2")
+        .to(panels, {
+          yPercent: -101,
+          duration: 1.2,
+          stagger: { each: 0.055, from: "start" },
+          ease: "power3.inOut",
+        }, "-=0.03");
+    }, overlay);
 
     return () => {
-      tl.kill();
-      document.body.style.overflow = previousOverflow;
+      context.revert();
+      restoreScroll();
     };
   }, []);
 
   if (done) return null;
 
   return (
-    <div
-      ref={overlayRef}
-      className="bg-charcoal fixed inset-0 z-[100] flex items-center justify-center"
-      aria-hidden="true"
-    >
-      <div ref={wordRef} className="flex flex-col items-center gap-2 opacity-0">
-        <Image src={logo} width={400} height={400} alt="logo" className="w-40"/>
+    <div ref={overlayRef} aria-hidden="true" className="fixed inset-0 z-[10000] overflow-hidden motion-reduce:hidden">
+      {/* Stepped curtain */}
+      <div className="absolute inset-0 grid grid-cols-5 md:grid-cols-10">
+        {Array.from({ length: 10 }, (_, index) => (
+          <div key={index} data-reveal-panel className={`-mx-px h-full bg-charcoal will-change-transform ${index >= 5 ? "hidden md:block" : ""}`} />
+        ))}
+      </div>
+
+      {/* Your logo */}
+      <div ref={logoRef} className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0">
+        <Image src={logo} alt="" priority sizes="(min-width: 768px) 224px, 176px" className="h-auto w-44 md:w-56" />
       </div>
     </div>
   );
-};
+}
 
-export default Preloader;
+export default function Preloader() {
+  const pathname = usePathname();
+
+  return <PageReveal key={pathname} />;
+}
