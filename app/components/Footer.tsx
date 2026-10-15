@@ -1,25 +1,25 @@
 "use client"
 import { useState } from "react";
-import  Link from "next/link";
+import Link from "next/link";
 import emailjs from "@emailjs/browser";
-import { Http2ServerResponse } from "node:http2";
 
 const Footer = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubscribe = () => {
-    if (!email || !firstName) return;
+  const handleSend = () => {
+    if (!name || !email || !message) return;
     setStatus("loading");
     emailjs
       .send(
         "service_oc2uvzh",
         "template_ckxo08e",
-        { from_name: firstName, from_email: email },
+        { from_name: name, from_email: email, message: message },
         "LnufNtBlctM0A6DHN",
       )
-      .then(() => { setStatus("success"); setEmail(""); setFirstName(""); })
+      .then(() => { setStatus("success"); setName(""); setEmail(""); setMessage(""); })
       .catch(() => setStatus("error"));
   };
 
@@ -125,24 +125,24 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Contact */}
           <div>
             <h3 className="text-base font-semibold mb-6 uppercase tracking-widest text-white" style={{ fontFamily: "system-ui, sans-serif" }}>
-              Newsletter
+              Contact
             </h3>
             <p className="text-xs leading-relaxed mb-5 text-white">
-              Tips, resources and occasional updates and digital joy will be delivered to your inbox.
+              Have a project in mind or a question? Send us a message and I'll get back to you.
             </p>
 
             {status === "success" ? (
-              <p className="text-xs text-white">You're in — talk soon.</p>
+              <p className="text-xs text-white">Message sent — talk soon.</p>
             ) : (
               <div className="space-y-2">
                 <input
                   type="text"
-                  placeholder="First name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-2.5 bg-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 text-xs"
                 />
                 <input
@@ -152,12 +152,19 @@ const Footer = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2.5 bg-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 text-xs"
                 />
+                <textarea
+                  placeholder="Message"
+                  rows={3}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/50 text-xs resize-none"
+                />
                 <button
-                  onClick={handleSubscribe}
+                  onClick={handleSend}
                   disabled={status === "loading"}
                   className="w-full px-4 py-2.5 bg-[#2a2a2a] text-white font-medium transition-all duration-300 text-xs uppercase tracking-wider disabled:opacity-50 hover:bg-soft-beige hover:text-[#2a2a2a]"
                 >
-                  {status === "loading" ? "Subscribing..." : "Subscribe"}
+                  {status === "loading" ? "Sending..." : "Send Message"}
                 </button>
                 {status === "error" && (
                   <p className="text-xs text-white/70">Something went wrong. Please try again.</p>
