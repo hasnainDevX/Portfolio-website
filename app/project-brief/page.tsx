@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logo.png";
 import CircularText from "../components/CircularText";
 import ProjectBriefForm from "../components/ProjectBrief/ProjectBriefForm";
 import { pageMetadata } from "../lib/Seo";

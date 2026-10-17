@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Navbar from "../Navbar";
-import logo from "../../assets/logo.jpeg";
+import logo from "../../assets/logo.png";
 import CircularText from "../CircularText";
 
 export default function AboutHero() {
