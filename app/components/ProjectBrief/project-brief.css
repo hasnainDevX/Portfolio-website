@@ -1,0 +1,44 @@
+.brief-range { touch-action: pan-y; }
+.brief-range::-webkit-slider-thumb { min-width: 20px; min-height: 20px; }
+.brief-range::-moz-range-thumb { width: 20px; height: 20px; }
+
+/* Mask only the background so controls and focus outlines are not clipped. */
+.brief-page .brief-paper { isolation: isolate; background: transparent; }
+.brief-paper::before {
+  content: "";
+  position: absolute;
+  inset: -6px 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--color-cream-bg, #f5f2eb);
+  --zigzag-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 6L6 0L12 6Z' fill='black'/%3E%3C/svg%3E");
+  --zigzag-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 0H12L6 6Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+  mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+}
+.brief-page input[type="checkbox"] {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--color-gold, #b5973a);
+  border-radius: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+.brief-page input[type="checkbox"]:checked {
+  background-color: var(--color-gold, #b5973a);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3 8 3 3 7-7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+.brief-page input[type="checkbox"]:focus-visible { outline: 2px solid var(--color-gold, #b5973a); outline-offset: 3px; }
+.brief-page input[type="checkbox"]:disabled { cursor: not-allowed; }
+.brief-page textarea { resize: vertical; min-height: 7.5rem; }
+.brief-page input:not([type="radio"]):not([type="checkbox"]):not([type="range"]),
+.brief-page select,
+.brief-page textarea { border-radius: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .brief-seal > div { transform: none !important; }
+}
+@media (forced-colors: active) {
+  .brief-page input[type="checkbox"] { appearance: auto; }
+}

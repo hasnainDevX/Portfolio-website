@@ -6,15 +6,14 @@ import experienceBg from "../assets/waves.png";
 // Service businesses only, in order of priority.
 // Put verticals you've actually shipped sites for first.
 const industries = [
-  "Lash & Brow Artists",
-  "Photographers",
+  "Beauty Professionals",
   "Event & Wedding Planners",
+  "Content Creators",
   "Cleaning Services",
   "Real Estate",
   "Virtual Assistants and Coaches",
   "Branding and SMM Agencies",
-  "Content Creators",
-  "Aesthetic Clinics"
+  "Cafes"
 ];
 
 function MarqueeRow({
@@ -112,7 +111,6 @@ const ExperienceSection = () => {
 
             <div className="max-w-xl lg:pb-1">
               <p className="font-body text-sm leading-relaxed text-charcoal/70 sm:text-base">
-                Lash artists, coaches, photographers, event planners, trainers.
                 If clients pay for your time and trust, your website is the
                 first thing they judge. I build sites that do the selling: a
                 clear offer, easy booking, and a place on Google.
