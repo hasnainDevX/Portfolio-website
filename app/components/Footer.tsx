@@ -77,6 +77,7 @@ const Footer = () => {
                   </svg>
                 </a>
               </li>
+               
 
               {/* Facebook */}
               <li>
@@ -101,7 +102,7 @@ const Footer = () => {
               </li>
 
               {/* LinkedIn */}
-              <li>
+              {/* <li>
                 <a
                   href="https://linkedin.com/in/hasnainWebstudio"
                   target="_blank"
@@ -121,8 +122,9 @@ const Footer = () => {
                     <circle cx="4" cy="4" r="2" />
                   </svg>
                 </a>
-              </li>
+              </li> */}
             </ul>
+             <p className="my-4">I'm not on any other platforms besides Instagram and Facebook.</p>
           </div>
 
           {/* Contact */}
