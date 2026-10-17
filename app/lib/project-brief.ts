@@ -1,4 +1,4 @@
-export const STEPS = ["Your business", "Your customers & goals", "Your website needs", "Your style", "Final details"];
+export const STEPS = ["Your business", "Your customers & goals", "Your website needs", "Your style & content"];
 export const STAGES = ["Just getting started and building my presence.", "Established and ready for a fresh look.", "Growing, but my current website is holding me back.", "Established, but I don’t have a website yet.", "Other"];
 export const GOALS = ["Attract more qualified inquiries.", "Get more bookings.", "Build trust and reflect the quality of my business.", "Showcase my work and results.", "Explain my services more clearly.", "Sell products or services online.", "Make my booking or inquiry process easier.", "Other"];
 export const DASHBOARD_OPTIONS = ["Yes, I’d like to update content myself.", "No, I don’t expect to need one.", "Not sure—please recommend."];
@@ -25,7 +25,7 @@ export type BriefData = {
   websiteNeeds: string; dashboard: string; budget: string; budgetCurrency: string; budgetOtherCurrency: string; budgetUndecided: boolean;
   styleDescription: string; styleRecommend: boolean; styleScales: Record<ScaleId, number | null>;
   referenceFeedback: Record<ReferenceId, { likes: string[]; avoid: string }>;
-  referenceChoice: string; referenceWhy: string; ownReferences: { url: string; likes: string }[];
+  referenceChoice: string; referenceWhy: string; ownReferences: { url: string; likes: string[] }[];
   assets: string[]; additionalNotes: string;
 };
 
@@ -35,12 +35,10 @@ export const QUESTIONS = [
   "Who are your ideal clients or customers?",
   "What services do you offer? Are you planning to sell any physical or digital products through your website?",
   "What would you most like your website to help you achieve?",
-  "How do customers currently find you, and what happens when someone wants to work with you?",
   "What pages or features would you like your website to include? Would you need a dashboard to update content yourself?",
   "How much are you willing to invest in your website?",
   "How would you like your website to look and feel?",
   "What do you already have ready for the website?",
-  "Is there anything else that could affect the project or that you’d like included in the proposal?",
 ];
 
 export function emptyBrief(): BriefData {
@@ -49,7 +47,7 @@ export function emptyBrief(): BriefData {
     audience: "", services: "", goals: [], goalsOther: "", customerJourney: "", websiteNeeds: "", dashboard: "", budget: "", budgetCurrency: "", budgetOtherCurrency: "", budgetUndecided: false,
     styleDescription: "", styleRecommend: false, styleScales: { tone: null, era: null, presence: null, density: null, approach: null, movement: null },
     referenceFeedback: { amr: { likes: [], avoid: "" }, tash: { likes: [], avoid: "" }, hans: { likes: [], avoid: "" } },
-    referenceChoice: "", referenceWhy: "", ownReferences: Array.from({ length: 3 }, () => ({ url: "", likes: "" })), assets: [], additionalNotes: "",
+    referenceChoice: "", referenceWhy: "", ownReferences: Array.from({ length: 2 }, () => ({ url: "", likes: [] })), assets: [], additionalNotes: "",
   };
 }
 
@@ -58,7 +56,7 @@ const fieldSteps: Record<string, number> = {
   audience: 1, services: 1, goals: 1, goalsOther: 1, customerJourney: 1,
   websiteNeeds: 2, dashboard: 2, budget: 2, budgetCurrency: 2, budgetOtherCurrency: 2, budgetUndecided: 2,
   styleDescription: 3, styleRecommend: 3, styleScales: 3, referenceFeedback: 3, referenceChoice: 3, referenceWhy: 3, ownReferences: 3,
-  assets: 4, additionalNotes: 4,
+  assets: 3, additionalNotes: 3,
 };
 export function stepForField(field: string) { return fieldSteps[field.split(".")[0]] ?? 0; }
 export function webUrl(value: string) {
@@ -80,7 +78,7 @@ export function validateBrief(data: BriefData, step?: number): BriefErrors {
   if (data.businessStage === "Other") required("businessStageOther", "Describe your current stage, or write ‘not sure’.");
   required("audience", "Tell me about your audience, or write ‘not sure yet’.");
   required("services", "Tell me about your services or products, or write ‘not sure yet’.");
-  if (data.goals.length < 1 || data.goals.length > 3 || data.goals.some((goal) => !GOALS.includes(goal))) errors.goals = "Choose between one and three goals. Use Other if you’re unsure.";
+  if (data.goals.length < 1 || data.goals.length > 4 || data.goals.some((goal) => !GOALS.includes(goal))) errors.goals = "Choose between one and four goals. Use Other if you’re unsure.";
   if (data.goals.includes("Other")) required("goalsOther", "Tell me about your other goal, or write ‘not sure yet’.");
   required("websiteNeeds", "Describe the pages or features you need, or write ‘please recommend’.");
   if (!DASHBOARD_OPTIONS.includes(data.dashboard)) errors.dashboard = "Choose a dashboard preference. ‘Not sure’ is welcome.";
@@ -91,7 +89,7 @@ export function validateBrief(data: BriefData, step?: number): BriefErrors {
   }
   data.ownReferences.forEach((reference, index) => {
     if (reference.url && !webUrl(reference.url)) errors[`ownReferences.${index}.url`] = "Use a complete URL starting with https://.";
-    if (reference.likes.trim() && !reference.url.trim()) errors[`ownReferences.${index}.url`] = "Add the website link for this reference.";
+    if (reference.likes.length && !reference.url.trim()) errors[`ownReferences.${index}.url`] = "Add the website link for this reference.";
   });
   if (data.assets.includes(ASSETS[7]) && data.assets.some((asset) => ASSETS.slice(0, 6).includes(asset))) errors.assets = "‘Nothing ready yet’ cannot be combined with ready assets.";
   return step === undefined ? errors : Object.fromEntries(Object.entries(errors).filter(([key]) => stepForField(key) === step));
@@ -124,7 +122,7 @@ export function parseBrief(value: unknown): { data: BriefData; errors: BriefErro
     if (value[key] !== undefined && typeof value[key] !== "boolean") errors[key] = "Review this selection.";
     data[key] = value[key] === true;
   }
-  data.goals = selection(value.goals, "goals", GOALS, 3);
+  data.goals = selection(value.goals, "goals", GOALS, 4);
   data.assets = selection(value.assets, "assets", ASSETS, 8);
   if (value.styleScales !== undefined && !record(value.styleScales)) errors.styleScales = "Review the style scales.";
   if (record(value.styleScales)) for (const scale of SCALES) {
@@ -142,28 +140,25 @@ export function parseBrief(value: unknown): { data: BriefData; errors: BriefErro
   }
   if (data.referenceChoice && ![...REFERENCE_IDS, "combination", "none"].includes(data.referenceChoice)) errors.referenceChoice = "Choose an available reference option.";
   if (value.ownReferences !== undefined) {
-    if (!Array.isArray(value.ownReferences) || value.ownReferences.length > 3) errors.ownReferences = "Add up to three references.";
+    if (!Array.isArray(value.ownReferences) || value.ownReferences.length > 2) errors.ownReferences = "Add up to two references.";
     else value.ownReferences.forEach((reference, index) => {
       if (!record(reference)) { errors.ownReferences = "Review your reference links."; return; }
-      data.ownReferences[index] = { url: text(reference.url, `ownReferences.${index}.url`, 2000), likes: text(reference.likes, `ownReferences.${index}.likes`) };
+      data.ownReferences[index] = { url: text(reference.url, `ownReferences.${index}.url`, 2000), likes: selection(reference.likes, `ownReferences.${index}.likes`, FEEDBACK_OPTIONS, 6) };
     });
   }
   return { data, errors };
 }
 
 export type ReviewGroup = { title: string; answers: { label: string; value: string }[] };
-export function reviewBrief(data: BriefData, references: readonly { id: string; name: string; url: string }[]): ReviewGroup[] {
+export function reviewBrief(data: BriefData): ReviewGroup[] {
   const answer = (label: string, value: string) => ({ label, value: value || "Not answered" });
-  const selectedReference = references.find((reference) => reference.id === data.referenceChoice)?.name ?? ({ combination: "A combination", none: "None of these" }[data.referenceChoice] || "Not answered");
   return [
-    { title: STEPS[0], answers: [answer("Your name", data.name), answer("Business name", data.businessName), answer("Email", data.email), answer("Current website or social media link", data.currentLink), answer(`1. ${QUESTIONS[0]}`, data.businessDescription), answer(`2. ${QUESTIONS[1]}`, data.businessStage === "Other" ? `Other: ${data.businessStageOther}` : data.businessStage)] },
-    { title: STEPS[1], answers: [answer(`3. ${QUESTIONS[2]}`, data.audience), answer(`4. ${QUESTIONS[3]}`, data.services), answer(`5. ${QUESTIONS[4]}`, data.goals.map((goal) => goal === "Other" ? `Other: ${data.goalsOther}` : goal).join("\n")), answer(`6. ${QUESTIONS[5]}`, data.customerJourney)] },
-    { title: STEPS[2], answers: [answer(`7. ${QUESTIONS[6]}`, data.websiteNeeds), answer("Dashboard preference", data.dashboard), answer(`8. ${QUESTIONS[7]}`, data.budgetUndecided ? "I haven’t decided yet" : `${data.budget} — ${data.budgetCurrency === "Other" ? data.budgetOtherCurrency : data.budgetCurrency}`)] },
-    { title: STEPS[3], answers: [answer(`9. ${QUESTIONS[8]}`, data.styleDescription), answer("Recommend a direction", data.styleRecommend ? "Yes — not sure; please recommend a direction." : "Not selected"), ...SCALES.map((scale) => answer(`${scale.left} ↔ ${scale.right}`, data.styleRecommend ? "Unanswered — recommendation requested" : selectedPosition(scale.left, scale.right, data.styleScales[scale.id]))), ...references.flatMap((reference) => { const feedback = data.referenceFeedback[reference.id as ReferenceId]; return [answer(`Example: ${reference.name}`, reference.url), answer(`${reference.name} — what I like`, feedback?.likes.join(", ") || ""), answer(`${reference.name} — change or avoid`, feedback?.avoid || "")]; }), answer("Closest example", selectedReference), answer("Why this direction?", data.referenceWhy), ...data.ownReferences.flatMap((reference, index) => [answer(`My reference ${index + 1}`, reference.url), answer(`My reference ${index + 1} — what I like`, reference.likes)])] },
-    { title: STEPS[4], answers: [answer(`10. ${QUESTIONS[9]}`, data.assets.join("\n")), answer(`11. ${QUESTIONS[10]}`, data.additionalNotes)] },
+    { title: STEPS[0], answers: [answer("Your name", data.name), answer("Business name", data.businessName), answer("Email", data.email), answer("Current website or social media link", data.currentLink), answer("1. " + QUESTIONS[0], data.businessDescription), answer("2. " + QUESTIONS[1], data.businessStage === "Other" ? "Other: " + data.businessStageOther : data.businessStage)] },
+    { title: STEPS[1], answers: [answer("3. " + QUESTIONS[2], data.audience), answer("4. " + QUESTIONS[3], data.services), answer("5. " + QUESTIONS[4], data.goals.map((goal) => goal === "Other" ? "Other: " + data.goalsOther : goal).join("\n"))] },
+    { title: STEPS[2], answers: [answer("6. " + QUESTIONS[5], data.websiteNeeds), answer("Dashboard preference", data.dashboard), answer("7. " + QUESTIONS[6], data.budgetUndecided ? "I haven’t decided yet" : data.budget + " — " + (data.budgetCurrency === "Other" ? data.budgetOtherCurrency : data.budgetCurrency))] },
+    { title: STEPS[3], answers: [answer("8. " + QUESTIONS[7], data.styleDescription), answer("Recommend a direction", data.styleRecommend ? "Yes — please recommend a direction." : "Not selected"), ...SCALES.map((scale) => answer(scale.left + " ↔ " + scale.right, data.styleRecommend ? "Unanswered — recommendation requested" : selectedPosition(scale.left, scale.right, data.styleScales[scale.id]))), ...data.ownReferences.flatMap((reference, index) => [answer("Reference " + (index + 1), reference.url), answer("Reference " + (index + 1) + " — what I like", reference.likes.join(", "))]), answer("9. " + QUESTIONS[8], data.assets.join("\n"))] },
   ];
 }
-
-export function formatBrief(data: BriefData, references: readonly { id: string; name: string; url: string }[], id: string) {
-  return `WEBSITE PROJECT BRIEF\nSubmission: ${id}\n\n${reviewBrief(data, references).map((group, index) => `STEP ${index + 1} — ${group.title.toUpperCase()}\n\n${group.answers.map((item) => `${item.label}\n${item.value}`).join("\n\n")}`).join("\n\n────────────────────────\n\n")}`;
+export function formatBrief(data: BriefData, id: string) {
+  return "WEBSITE PROJECT BRIEF\nSubmission: " + id + "\n\n" + reviewBrief(data).map((group, index) => "STEP " + (index + 1) + " — " + group.title.toUpperCase() + "\n\n" + group.answers.map((item) => item.label + "\n" + item.value).join("\n\n")).join("\n\n────────────────────────\n\n");
 }

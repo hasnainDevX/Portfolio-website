@@ -2,7 +2,6 @@ import "server-only";
 import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { formatBrief, parseBrief, validateBrief } from "./project-brief";
 
-type Reference = { id: string; name: string; url: string };
 type Dependencies = { env?: NodeJS.ProcessEnv; fetcher?: typeof fetch; now?: () => number };
 const MAX_BYTES = 64000;
 const requiredEnvironment = ["BRIEF_EMAILJS_SERVICE_ID", "BRIEF_EMAILJS_TEMPLATE_ID", "BRIEF_EMAILJS_PUBLIC_KEY", "BRIEF_EMAILJS_PRIVATE_KEY", "BRIEF_TOKEN_SECRET", "BRIEF_SITE_ORIGIN"];
@@ -12,7 +11,7 @@ function reply(status: number, body: object, extra: Record<string, string> = {})
 }
 
 
-export function createBriefHandlers(references: readonly Reference[], dependencies: Dependencies = {}) {
+export function createBriefHandlers(dependencies: Dependencies = {}) {
   const env = dependencies.env ?? process.env;
   const fetcher = dependencies.fetcher ?? fetch;
   const now = dependencies.now ?? Date.now;
@@ -86,7 +85,7 @@ export function createBriefHandlers(references: readonly Reference[], dependenci
     if (Object.keys(errors).length) return reply(422, { message: "Please review the highlighted answers.", errors });
     const data = parsed.data;
     const id = body.submissionId;
-    const formatted = formatBrief(data, references, id);
+    const formatted = formatBrief(data, id);
 
     try {
       let providerResponse: Response;

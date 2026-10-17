@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { ASSETS, CURRENCIES, DASHBOARD_OPTIONS, FEEDBACK_OPTIONS, GOALS, QUESTIONS, SCALES, STAGES, STEPS, emptyBrief, reviewBrief, selectedPosition, stepForField, validateBrief, type BriefData, type BriefErrors, type ReferenceId } from "../../lib/project-brief";
-import { BRIEF_REFERENCES } from "../../lib/project-brief-references";
+import { ASSETS, CURRENCIES, DASHBOARD_OPTIONS, FEEDBACK_OPTIONS, GOALS, QUESTIONS, SCALES, STAGES, STEPS, emptyBrief, reviewBrief, selectedPosition, stepForField, validateBrief, type BriefData, type BriefErrors } from "../../lib/project-brief";
+import { packages } from "../packages/PackagesContent";
 import { DRAFT_KEY, newDraft, readDraft } from "./draft";
 import "./project-brief.css";
 
@@ -137,10 +136,6 @@ export default function ProjectBriefForm() {
     update("assets", selected);
   }
 
-  function referenceFeedback(id: ReferenceId, key: "likes" | "avoid", value: string[] | string) {
-    update("referenceFeedback", { ...data.referenceFeedback, [id]: { ...data.referenceFeedback[id], [key]: value } });
-  }
-
   async function sendBrief() {
     if (sendingRef.current) return;
     const nextErrors = validateBrief(data);
@@ -167,7 +162,7 @@ export default function ProjectBriefForm() {
       else setDraftNotice("");
       setFocusTarget("brief-success");
     } catch (error) {
-      setFailure(error instanceof Error && !["AbortError", "TimeoutError", "TypeError"].includes(error.name) ? error.message : "We couldn’t confirm delivery. Your answers are saved. Retry to check the same submission without creating another.");
+      setFailure(error instanceof Error && !["AbortError", "TimeoutError", "TypeError"].includes(error.name) ? error.message : "We couldn’t confirm delivery. Your answers are saved. Please contact Hasnain before retrying, as the email may already have arrived.");
       setFocusTarget("brief-submit-error");
     } finally { sendingRef.current = false; setSending(false); }
   }
@@ -177,10 +172,10 @@ export default function ProjectBriefForm() {
     if (review) { void sendBrief(); return; }
     const nextErrors = validateBrief(data, step);
     if (Object.keys(nextErrors).length) { focusErrors(nextErrors); return; }
-    if (returnToReview || step === 4) {
+    if (returnToReview || step === 3) {
       const allErrors = validateBrief(data);
       if (Object.keys(allErrors).length) { focusErrors(allErrors); return; }
-      setDraft((previous) => ({ ...previous, step: 4, review: true })); setReturnToReview(false);
+      setDraft((previous) => ({ ...previous, step: 3, review: true })); setReturnToReview(false);
     } else setDraft((previous) => ({ ...previous, step: previous.step + 1 }));
     setErrors({}); setFocusTarget("brief-step-heading");
   }
@@ -200,8 +195,8 @@ export default function ProjectBriefForm() {
     </div>
 
     <div className="mb-10">
-      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2 text-sm"><p className="font-medium">{STEPS[step]}{review ? " · Review" : ""}</p><p className="tabular-nums text-charcoal/70">Step {step + 1} of 5</p></div>
-      <div role="progressbar" aria-label="Project brief progress" aria-valuemin={1} aria-valuemax={5} aria-valuenow={step + 1} aria-valuetext={`Step ${step + 1} of 5: ${STEPS[step]}`} className="grid grid-cols-5 gap-2">
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2 text-sm"><p className="font-medium">{STEPS[step]}{review ? " · Review" : ""}</p><p className="tabular-nums text-charcoal/70">Step {step + 1} of 4</p></div>
+      <div role="progressbar" aria-label="Project brief progress" aria-valuemin={1} aria-valuemax={4} aria-valuenow={step + 1} aria-valuetext={`Step ${step + 1} of 4: ${STEPS[step]}`} className="grid grid-cols-4 gap-2">
         {STEPS.map((name, position) => <div key={name} className={`h-1 ${position <= step ? "bg-gold" : "bg-charcoal/15"}`} />)}
       </div>
     </div>
@@ -213,7 +208,7 @@ export default function ProjectBriefForm() {
         <p className="mb-10 text-sm leading-relaxed text-charcoal/70">{review ? "Check your answers before sending. You can edit any step without losing your progress." : "Fields marked * are required. If you’re unsure, say so—we can work through it together."}</p>
 
         <motion.div key={`${step}-${review}`} initial={reduceMotion ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.18 }} className="space-y-12 sm:space-y-14">
-          {review ? reviewBrief(data, BRIEF_REFERENCES).map((group, groupIndex) => <section key={group.title} className="border-t border-charcoal/20 pt-6">
+          {review ? reviewBrief(data).map((group, groupIndex) => <section key={group.title} className="border-t border-charcoal/20 pt-6">
             <div className="mb-6 flex items-center justify-between gap-4"><h3 className="font-serif text-2xl sm:text-3xl">{groupIndex + 1}. {group.title}</h3><button type="button" aria-label={`Edit ${group.title}`} className={`${buttonCls} text-sm`} onClick={() => { setDraft((previous) => ({ ...previous, step: groupIndex, review: false })); setReturnToReview(true); setFocusTarget("brief-step-heading"); }}>Edit</button></div>
             <dl className="space-y-5">{group.answers.map((answer) => <div key={answer.label}><dt className="text-sm font-semibold leading-relaxed">{answer.label}</dt><dd className="mt-1 whitespace-pre-wrap break-words text-base leading-relaxed text-charcoal/80 [overflow-wrap:anywhere]">{answer.value}</dd></div>)}</dl>
           </section>) : <>
@@ -231,17 +226,17 @@ export default function ProjectBriefForm() {
             {step === 1 && <>
               <Question number={3} helper="Tell me who they are, where they’re based and what they come to you for."><TextField id="audience" label="Your ideal clients or customers" paragraph required value={data.audience} onChange={(value) => update("audience", value)} errors={errors} /></Question>
               <Question number={4} helper="If yes, tell me about the products and how you’d like to sell them."><TextField id="services" label="Your services and any products" paragraph required value={data.services} onChange={(value) => update("services", value)} errors={errors} /></Question>
-              <Question number={5} helper="Select up to three."><p id="goals-limit" role="status" className="text-sm text-charcoal/70">{data.goals.length} of 3 selected. {data.goals.length === 3 ? "Uncheck a goal before choosing another." : "Choose at least one goal. Use Other if you’re unsure."}</p><Choices id="goals" options={GOALS} selected={data.goals} multiple limit={3} onChange={(value) => update("goals", data.goals.includes(value) ? data.goals.filter((item) => item !== value) : data.goals.length < 3 ? [...data.goals, value] : data.goals)} errors={errors} />{data.goals.includes("Other") && <TextField id="goalsOther" label="Your other goal" required value={data.goalsOther} onChange={(value) => update("goalsOther", value)} errors={errors} />}</Question>
-              <Question number={6} optional helper="Walk me through the steps from their first inquiry to booking or purchasing. Is there anything you’d like to make easier?"><TextField id="customerJourney" label="Your current customer journey" paragraph value={data.customerJourney} onChange={(value) => update("customerJourney", value)} errors={errors} /></Question>
+              <Question number={5} helper="Select up to four."><p id="goals-limit" role="status" className="text-sm text-charcoal/70">{data.goals.length} of 4 selected. {data.goals.length === 4 ? "Uncheck a goal before choosing another." : "Choose at least one goal. Use Other if you’re unsure."}</p><Choices id="goals" options={GOALS} selected={data.goals} multiple limit={4} onChange={(value) => update("goals", data.goals.includes(value) ? data.goals.filter((item) => item !== value) : data.goals.length < 4 ? [...data.goals, value] : data.goals)} errors={errors} />{data.goals.includes("Other") && <TextField id="goalsOther" label="Your other goal" required value={data.goalsOther} onChange={(value) => update("goalsOther", value)} errors={errors} />}</Question>
             </>}
 
             {step === 2 && <>
-              <Question number={7} helper="For example: services, portfolio, testimonials, booking calendar, inquiry form, blog or online payments. Mention any tools you already use that should connect with your website.">
+              <Question number={6} helper="For example: services, portfolio, testimonials, booking calendar, inquiry form, blog or online payments. Mention any tools you already use that should connect with your website.">
                 <TextField id="websiteNeeds" label="Pages, features and integrations" paragraph required value={data.websiteNeeds} onChange={(value) => update("websiteNeeds", value)} errors={errors} />
                 <div className="border-l-2 border-gold pl-5"><p className="mb-2 font-medium">Would you like a dashboard?</p><p className="text-sm leading-relaxed text-charcoal/80">A dashboard lets you update content such as services, prices, products and images yourself. It’s an optional paid add-on, most useful when you expect frequent updates or need to manage content or products regularly. A simple service website with occasional changes may not need one. If you’re unsure, I can recommend the right approach.</p></div>
                 <fieldset className="min-w-0"><legend className="mb-3 text-sm font-medium">Dashboard preference *</legend><Choices id="dashboard" options={DASHBOARD_OPTIONS} selected={data.dashboard} onChange={(value) => update("dashboard", value)} errors={errors} /></fieldset>
               </Question>
-              <Question number={8} helper="Please share your budget or a comfortable range and include the currency. If you haven’t decided yet, let me know.">
+              <Question number={7} helper="Please share your budget or a comfortable range and include the currency. If you haven’t decided yet, let me know.">
+                <div className="border-l-2 border-gold pl-5 text-sm leading-relaxed"><p className="font-medium">Starting prices (USD)</p><ul className="mt-2 space-y-1">{packages.map((item) => <li key={item.id}>{item.name}: from {item.price.split(/[-–]/)[0].replace("+", "")} USD</li>)}</ul><p className="mt-2 text-charcoal/75">Your proposal will reflect the agreed scope. Domain and hosting renewals are additional.</p></div>
                 <label className={optionCls}><input type="checkbox" checked={data.budgetUndecided} onChange={(event) => update("budgetUndecided", event.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-gold" /><span>I haven’t decided yet</span></label>
                 {!data.budgetUndecided && <div className="grid gap-6 sm:grid-cols-[2fr_1fr]">
                   <TextField id="budget" label="Amount or comfortable range" required value={data.budget} onChange={(value) => update("budget", value)} errors={errors} />
@@ -251,7 +246,7 @@ export default function ProjectBriefForm() {
               </Question>
             </>}
 
-            {step === 3 && <Question number={9} optional helper="Share a few words describing the style you have in mind. Please include 1–3 sample website links, if possible, and tell me what you like about each.">
+            {step === 3 && <Question number={8} optional helper="Share a few words describing the style you have in mind. You can add up to two website references below and select what you like about each.">
               <TextField id="styleDescription" label="Overall direction and anything to avoid (optional)" paragraph value={data.styleDescription} onChange={(value) => update("styleDescription", value)} errors={errors} />
               <fieldset className="min-w-0 space-y-6 border-t border-charcoal/20 pt-8">
                 <legend className="pt-8 font-serif text-3xl">How should your website feel?</legend>
@@ -270,34 +265,25 @@ export default function ProjectBriefForm() {
               </fieldset>
 
               <div className="space-y-8 border-t border-charcoal/20 pt-8">
-                <h3 className="font-serif text-3xl">Which direction feels closest to your brand?</h3>
-                <p className="text-sm leading-relaxed text-charcoal/75">These existing project previews are conversation starters. Choose the details you like; you don’t need to like everything.</p>
-                {BRIEF_REFERENCES.map((reference, referenceIndex) => <fieldset key={reference.id} className="min-w-0 border-0 border-t border-charcoal/25 pb-4 pt-6 sm:pt-8">
-                  <legend className="pr-4 text-xs uppercase tracking-[0.15em] text-charcoal/70">Example {referenceIndex + 1}</legend>
-                  <div className="grid gap-6 sm:grid-cols-[0.85fr_1.15fr]">
-                    <div className="relative aspect-[4/5] overflow-hidden bg-cream-bg"><Image src={reference.image} alt={reference.alt} fill sizes="(min-width: 1024px) 290px, (min-width: 640px) 40vw, 90vw" className="object-contain" /></div>
-                    <div className="min-w-0"><h4 className="font-serif text-3xl">{reference.name}</h4><p className="mb-5 mt-2 text-sm leading-relaxed text-charcoal/75">{reference.description}</p><a href={reference.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${reference.name} website (opens in a new tab)`} className={`${buttonCls} inline-flex text-sm`}>View website ↗</a>
-                      <fieldset className="mt-6"><legend className="mb-3 text-sm font-medium">What do you like?</legend><div className="grid grid-cols-2 gap-x-4 gap-y-3">{FEEDBACK_OPTIONS.map((option) => <label key={option} className="flex cursor-pointer items-start gap-2 text-sm leading-snug"><input type="checkbox" checked={data.referenceFeedback[reference.id].likes.includes(option)} onChange={() => referenceFeedback(reference.id, "likes", data.referenceFeedback[reference.id].likes.includes(option) ? data.referenceFeedback[reference.id].likes.filter((item) => item !== option) : [...data.referenceFeedback[reference.id].likes, option])} className="mt-0.5 h-4 w-4 shrink-0 accent-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold" /><span>{option}</span></label>)}</div></fieldset>
-                    </div>
-                  </div>
-                  <div className="mt-6"><TextField id={`referenceFeedback.${reference.id}.avoid`} label="What would you change or avoid? (optional)" paragraph value={data.referenceFeedback[reference.id].avoid} onChange={(value) => referenceFeedback(reference.id, "avoid", value)} errors={errors} /></div>
+                <h3 className="font-serif text-3xl">Your references</h3>
+                <p className="text-sm leading-relaxed text-charcoal/75">Add up to two references. Each entry includes the website link and what you like about it. Both are optional.</p>
+                {data.ownReferences.map((reference, referenceIndex) => <fieldset key={referenceIndex} className="min-w-0 space-y-5 border-t border-charcoal/20 pt-6">
+                  <legend className="pr-3 text-sm font-medium">Reference {referenceIndex + 1}</legend>
+                  <TextField id={"ownReferences." + referenceIndex + ".url"} label="Reference — website URL" type="url" value={reference.url} onChange={(value) => update("ownReferences", data.ownReferences.map((item, position) => position === referenceIndex ? { ...item, url: value } : item))} errors={errors} helper="Include https://." />
+                  <fieldset className="min-w-0"><legend className="mb-3 text-sm font-medium">What do you like in it?</legend><Choices id={"ownReferences." + referenceIndex + ".likes"} options={FEEDBACK_OPTIONS} selected={reference.likes} multiple onChange={(value) => update("ownReferences", data.ownReferences.map((item, position) => position === referenceIndex ? { ...item, likes: item.likes.includes(value) ? item.likes.filter((like) => like !== value) : [...item.likes, value] } : item))} errors={errors} /></fieldset>
                 </fieldset>)}
-                <fieldset className="space-y-4"><legend className="mb-3 text-lg font-medium">Which example feels closest to what you want, and why?</legend><div id="brief-referenceChoice" className="grid gap-3 sm:grid-cols-2">{[...BRIEF_REFERENCES.map((reference) => ({ id: reference.id as string, name: reference.name as string })), { id: "combination", name: "A combination" }, { id: "none", name: "None of these" }].map((option) => <label key={option.id} className={optionCls}><input type="radio" name="referenceChoice" value={option.id} checked={data.referenceChoice === option.id} onChange={() => update("referenceChoice", option.id)} className="mt-0.5 h-4 w-4 shrink-0 accent-gold" /><span>{option.name}</span></label>)}</div><ErrorMessage id="referenceChoice" errors={errors} /><TextField id="referenceWhy" label="Why does this direction feel right? (optional)" paragraph value={data.referenceWhy} onChange={(value) => update("referenceWhy", value)} errors={errors} /></fieldset>
               </div>
-
-              <div className="space-y-7 border-t border-charcoal/20 pt-8"><h3 className="font-serif text-3xl">Your own references</h3><p className="text-sm text-charcoal/75">Add up to three website links. These are optional.</p>{data.ownReferences.map((reference, referenceIndex) => <div key={referenceIndex} className="space-y-4"><TextField id={`ownReferences.${referenceIndex}.url`} label={`Reference ${referenceIndex + 1} — website URL`} type="url" value={reference.url} onChange={(value) => update("ownReferences", data.ownReferences.map((item, position) => position === referenceIndex ? { ...item, url: value } : item))} errors={errors} helper="Include https://." /><TextField id={`ownReferences.${referenceIndex}.likes`} label="What do you like about this website? (optional)" paragraph value={reference.likes} onChange={(value) => update("ownReferences", data.ownReferences.map((item, position) => position === referenceIndex ? { ...item, likes: value } : item))} errors={errors} /></div>)}</div>
             </Question>}
 
-            {step === 4 && <>
-              <Question number={10} optional helper="Select all that apply."><Choices id="assets" options={ASSETS} selected={data.assets} multiple onChange={toggleAsset} errors={errors} /><p className="text-sm leading-relaxed text-charcoal/70">You can need help with some assets while having others ready. Choosing “Nothing ready yet” clears the specific ready assets.</p></Question>
-              <Question number={11} optional helper="For example: keeping content from your current website, another person involved in approvals, or questions you’d like answered."><TextField id="additionalNotes" label="Anything else for your proposal?" paragraph value={data.additionalNotes} onChange={(value) => update("additionalNotes", value)} errors={errors} /></Question>
+            {step === 3 && <>
+              <Question number={9} optional helper="Select all that apply."><Choices id="assets" options={ASSETS} selected={data.assets} multiple onChange={toggleAsset} errors={errors} /><p className="text-sm leading-relaxed text-charcoal/70">You can need help with some assets while having others ready. Choosing “Nothing ready yet” clears the specific ready assets.</p></Question>
             </>}
           </>}
         </motion.div>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-charcoal/20 pt-6">
-          <button type="button" disabled={step === 0 && !review || sending} className={buttonCls} onClick={() => { setDraft((previous) => ({ ...previous, review: false, step: review ? 4 : Math.max(0, previous.step - 1) })); setErrors({}); setFocusTarget("brief-step-heading"); }}>Back</button>
-          <button type="submit" disabled={sending} className={`${buttonCls} ml-auto`}>{sending ? "Sending your brief…" : review ? "Send Project Brief" : returnToReview ? "Save and return to review" : step === 4 ? "Review your brief" : "Continue"}</button>
+          <button type="button" disabled={step === 0 && !review || sending} className={buttonCls} onClick={() => { setDraft((previous) => ({ ...previous, review: false, step: review ? 3 : Math.max(0, previous.step - 1) })); setErrors({}); setFocusTarget("brief-step-heading"); }}>Back</button>
+          <button type="submit" disabled={sending} className={`${buttonCls} ml-auto`}>{sending ? "Sending your brief…" : review ? "Send Project Brief" : returnToReview ? "Save and return to review" : step === 3 ? "Review your brief" : "Continue"}</button>
         </div>
       </fieldset>
       {failure && <div id="brief-submit-error" role="alert" tabIndex={-1} className="mt-6 border-l-2 border-[#9b2929] bg-[#9b2929]/5 p-5 text-sm leading-relaxed outline-none"><p>{failure}</p>{review && <button type="button" disabled={sending} onClick={() => void sendBrief()} className={`${buttonCls} mt-4`}>Retry submission</button>}</div>}
