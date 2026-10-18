@@ -10,7 +10,7 @@ type Testimonial = {
   role?: string;
 };
 
-const CARD_HEIGHT = 560;
+
 const MAX_QUOTE_SIZE = 17;
 
 function FittedQuote({ quote }: { quote: string }) {
@@ -26,14 +26,21 @@ function FittedQuote({ quote }: { quote: string }) {
     let active = true;
 
     const fitText = () => {
-      if (!active || container.clientHeight === 0) return;
+      const figure = container.parentElement;
+      if (!active || !figure || figure.clientHeight === 0) return;
+      const style = getComputedStyle(figure);
+      const siblingsHeight = Array.from(figure.children).filter((child) => child !== container).reduce((total, child) => {
+        const childStyle = getComputedStyle(child);
+        return total + child.getBoundingClientRect().height + parseFloat(childStyle.marginTop) + parseFloat(childStyle.marginBottom);
+      }, 0);
+      const availableHeight = figure.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - siblingsHeight - 16;
 
       // Start at the preferred size, then reduce only when needed.
       let size = MAX_QUOTE_SIZE;
       text.style.fontSize = `${size}px`;
 
       while (
-        text.getBoundingClientRect().height > container.clientHeight &&
+        text.getBoundingClientRect().height > availableHeight &&
         size > 10
       ) {
         size -= 0.25;
@@ -44,7 +51,7 @@ function FittedQuote({ quote }: { quote: string }) {
     fitText();
 
     const observer = new ResizeObserver(fitText);
-    observer.observe(container);
+    if (container.parentElement) observer.observe(container.parentElement);
 
     document.fonts.ready.then(() => {
       if (active) fitText();
@@ -57,7 +64,7 @@ function FittedQuote({ quote }: { quote: string }) {
   }, [quote]);
 
   return (
-    <blockquote ref={containerRef} className="mt-4 min-h-0 flex-1">
+    <blockquote ref={containerRef} className="mt-4 w-full shrink-0 text-center">
       <p
         ref={textRef}
         className="font-display text-[17px] font-normal leading-[1.55] [overflow-wrap:anywhere]"
@@ -97,9 +104,9 @@ export default function MobileTestimonials({
   return (
     <section
       aria-label="Client testimonials"
-      className="hw-testimonials-band relative h-[90vh]! w-full min-w-0 bg-gold px-2 py-12 text-white md:hidden"
+      className="hw-testimonials-band relative h-[90svh] min-h-[620px] w-full min-w-0 bg-gold px-2 py-12 text-white md:hidden"
     >
-      <div className="mx-auto w-full max-w-lg">
+      <div className="mx-auto flex h-full w-full max-w-lg flex-col">
         <div className="mb-8 px-6 text-center">
           <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.2em] text-cream-bg">
             Kind words
@@ -114,7 +121,7 @@ export default function MobileTestimonials({
           role="region"
           aria-roledescription="carousel"
           aria-label="Client stories"
-          className={`w-full ${hasMultiple ? "px-11" : "px-4"}`}
+          className={`relative min-h-0 w-full flex-1 ${hasMultiple ? "px-11" : "px-4"}`}
         >
           {/* Previous */}
           {hasMultiple && (
@@ -143,8 +150,7 @@ export default function MobileTestimonials({
 
           {/* Fixed card area */}
           <div
-            className="min-w-0 overflow-hidden"
-            style={{ height: CARD_HEIGHT }}
+            className="h-full min-w-0 overflow-hidden"
           >
             <AnimatePresence initial={false} mode="wait" custom={direction}>
               <motion.figure
@@ -171,7 +177,7 @@ export default function MobileTestimonials({
                   duration: reduceMotion ? 0 : 0.2,
                   ease: "easeOut",
                 }}
-                className="m-0 flex h-full w-full flex-col px-1 py-7 text-white"
+                className="m-0 flex h-full w-full flex-col items-center justify-center px-1 py-7 text-center text-white"
               >
                 <span
                   aria-hidden="true"
@@ -182,7 +188,7 @@ export default function MobileTestimonials({
 
                 <FittedQuote quote={current.quote} />
 
-                <figcaption className="mt-5 shrink-0 border-t border-white/30 pt-4">
+                <figcaption className="mt-5 w-full shrink-0 text-center">
                   <p className="font-display text-xs font-semibold uppercase leading-snug tracking-[0.1em] [overflow-wrap:anywhere]">
                     {current.name}
                   </p>

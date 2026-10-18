@@ -100,7 +100,18 @@ export function createBriefHandlers(dependencies: Dependencies = {}) {
       }
 
       if (!providerResponse.ok) {
-        return reply(502, { message: "The email service did not confirm receipt. Your answers remain saved in this browser. Contact Hasnain before retrying if delivery is uncertain." });
+        const detail = (await providerResponse.text().catch(() => "")).slice(0, 4096).toLowerCase();
+        let code = "EMAILJS_REJECTED";
+        if (/non.browser|api (calls|requests) are disabled/.test(detail)) code = "EMAILJS_SERVER_ACCESS_DISABLED";
+        else if (/private.?key|access.?token|public.?key|user_id|authentication/.test(detail)) code = "EMAILJS_AUTH";
+        else if (/template/.test(detail)) code = "EMAILJS_TEMPLATE";
+        else if (/service.?id|service_id|service not found/.test(detail)) code = "EMAILJS_SERVICE";
+        else if (/recaptcha|captcha/.test(detail)) code = "EMAILJS_CAPTCHA";
+        else if (/quota|limit|too many/.test(detail) || providerResponse.status === 429) code = "EMAILJS_LIMIT";
+        else if (/recipient|to.?email|address/.test(detail)) code = "EMAILJS_RECIPIENT";
+        // Log only a known code and status, never raw provider text, answers or keys.
+        console.error("Project brief email rejected", { code, status: providerResponse.status });
+        return reply(502, { code, message: `The email service rejected the request (${code}, HTTP ${providerResponse.status}). Your answers remain saved in this browser. Please share this error code with Hasnain.` });
       }
 
       return reply(200, { received: true, submissionId: id });

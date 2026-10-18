@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import { ASSETS, CURRENCIES, DASHBOARD_OPTIONS, FEEDBACK_OPTIONS, GOALS, QUESTIONS, SCALES, STAGES, STEPS, emptyBrief, reviewBrief, selectedPosition, stepForField, validateBrief, type BriefData, type BriefErrors } from "../../lib/project-brief";
 import { packages } from "../packages/PackagesContent";
 import { DRAFT_KEY, newDraft, readDraft } from "./draft";
@@ -185,6 +186,7 @@ export default function ProjectBriefForm() {
     <p className="mb-5 text-xs uppercase tracking-[0.2em] text-charcoal/70">Project brief received</p>
     <h2 className="max-w-3xl font-serif text-4xl leading-tight sm:text-5xl">Thank you—your project brief has been received.</h2>
     <p className="mt-6 text-lg leading-relaxed">I’ll review your answers and get back to you with the next steps.</p>
+    <Link href="/portfolio" className={`${buttonCls} mt-8 inline-flex items-center justify-center`}>Explore portfolio</Link>
     {draftNotice && <p className="mt-6 text-sm">{draftNotice}</p>}
   </section>;
 

@@ -12,24 +12,10 @@ export default function AboutHero() {
         aria-labelledby="about-heading"
         className="flex min-h-[calc(100svh-24px)] flex-col items-center justify-center bg-transparent px-6 pb-16 pt-32 text-center md:px-12 md:pb-20 md:pt-36"
       >
-        <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
-          <Image
-            src={logo}
-            alt="Hasnain Webstudio"
-            width={96}
-            height={96}
-            className="mb-8 h-20 w-auto max-w-full object-contain md:h-24"
-          />
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-20">
 
-           <div className="absolute hidden md:block z-20 mb-4 mr-6 self-end -top-5 -right-5 md:right-12 md:top-12 md:m-0">
-            <CircularText
-              text="HASNAIN*WEBSTUDIO*"
-              onHover="speedUp"
-              spinDuration={20}
-              // className="text-sm!"
-            />
-          </div>
 
+          <div className="min-w-0 lg:text-left">
           <h1
             id="about-heading"
             className="font-serif text-[clamp(3rem,9vw,5rem)] font-light leading-[1.05] tracking-[-0.035em] text-gold"
@@ -66,6 +52,11 @@ export default function AboutHero() {
               to say yes.
             </p>
           </div>
+          </div>
+         <div className="relative ml-auto h-32 w-32 lg:ml-0 lg:h-[200px] lg:w-[200px]">
+          <CircularText text="YOUR BUSINESS • YOUR NEXT CHAPTER • " spinDuration={45} onHover="speedUp" className="!h-32 !w-32 !font-bold !text-charcoal [&>span]:!text-[11px] lg:!h-[200px] lg:!w-[200px] lg:[&>span]:!text-base" />
+          <span className="pointer-events-none absolute inset-0 flex items-center justify-center"><Image src={logo} alt="" width={104} height={104} className="h-16 w-16 object-contain lg:h-24 lg:w-24" /></span>
+        </div>
         </div>
       </section>
     </main>
