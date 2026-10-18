@@ -5,7 +5,7 @@ import gsap from "gsap";
 import Image from "next/image";
 
 import Navbar from "./Navbar";
-import hero1 from "../assets/amrsocialp1.png";
+import hero1 from "../assets/hero-image.png";
 
 const heroImages = [hero1];
 

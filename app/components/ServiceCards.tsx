@@ -146,7 +146,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         </div>
 
         {/* All cards live in the same stack. */}
-        <div className="absolute left-1/2 top-[60%] z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 -translate-y-1/2 sm:w-[82%] md:bottom-0 md:top-[27vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
+        <div className="absolute bottom-16 left-1/2 z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[27vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
           {cards.map((card, i) => {
             // Keep every tab aligned on mobile, then spread them on desktop.
             const desktopTabClass =
@@ -179,7 +179,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
 
                 {/* Main card. */}
                 <div
-                  className="relative h-[58vh] min-h-[470px] max-h-[560px] overflow-hidden rounded-t-[8px] border border-black/70 bg-cover bg-center bg-no-repeat md:h-[70vh] md:min-h-0 md:max-h-none md:rounded-t-[10px]"
+                  className="relative h-[58vh] min-h-[470px] max-h-[560px] overflow-hidden rounded-t-[8px] border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-0 md:max-h-none md:rounded-t-[10px]"
                   style={{
                     backgroundImage: `url("${getImageSrc(
                       card.backgroundImage,
@@ -257,7 +257,13 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
             );
           })}
         </div>
+        <div role="img" aria-label="Scroll down" className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center text-white">
+          <svg aria-hidden="true" viewBox="0 0 24 28" fill="none" className="hw-service-scroll h-7 w-6">
+            <path d="M12 3v20m-6-6 6 6 6-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
+      <style>{`@keyframes hw-service-scroll { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } } .hw-service-scroll { animation: hw-service-scroll 1.6s ease-in-out infinite; } @media (prefers-reduced-motion: reduce) { .hw-service-scroll { animation: none; } }`}</style>
     </section>
   );
 };
