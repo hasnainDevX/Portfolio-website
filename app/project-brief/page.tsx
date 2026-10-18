@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../assets/logo.png";
 import CircularText from "../components/CircularText";
+import Footer from "../components/Footer";
 import ProjectBriefForm from "../components/ProjectBrief/ProjectBriefForm";
 import { pageMetadata } from "../lib/Seo";
 
@@ -23,9 +24,9 @@ export default function ProjectBriefPage() {
           <p className="mt-7 max-w-[38rem] font-body text-lg leading-[1.65] text-charcoal sm:text-xl">Tell me more about your business and what you have in mind for your website. Your answers will help me prepare a proposal tailored to your goals and needs.</p>
           <p className="mt-4 max-w-[36rem] font-body text-base leading-relaxed text-charcoal/75">If you’re unsure about anything, just let me know—I can help you figure it out.</p>
         </div>
-        <div aria-hidden="true" className="brief-seal pointer-events-none relative hidden h-[200px] w-[200px] lg:block">
-          <CircularText text="YOUR BUSINESS • YOUR NEXT CHAPTER • " spinDuration={45} onHover="pause" className="!font-normal !text-gold [&>span]:!text-base" />
-          <span className="absolute inset-0 flex items-center justify-center"><Image src={logo} alt="" width={104} height={104} className="h-24 w-24 object-contain" /></span>
+        <div aria-hidden="true" className="brief-seal pointer-events-none relative mx-auto h-32 w-32 lg:mx-0 lg:h-[200px] lg:w-[200px]">
+          <CircularText text="YOUR BUSINESS • YOUR NEXT CHAPTER • " spinDuration={45} onHover="pause" className="!h-32 !w-32 !font-normal !text-charcoal [&>span]:!text-[11px] lg:!h-[200px] lg:!w-[200px] lg:[&>span]:!text-base" />
+          <span className="absolute inset-0 flex items-center justify-center"><Image src={logo} alt="" width={104} height={104} className="h-16 w-16 object-contain lg:h-24 lg:w-24" /></span>
         </div>
       </div>
       <section aria-label="Complete your project brief" className="brief-paper relative bg-cream-bg">
@@ -35,5 +36,6 @@ export default function ProjectBriefPage() {
       </section>
       <div aria-hidden="true" className="h-12 sm:h-16" />
     </main>
+    <Footer />
   </div>;
 }

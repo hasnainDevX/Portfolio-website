@@ -191,7 +191,7 @@ export default function ProjectBriefForm() {
   return <div className="font-body">
     <div className="mb-10 flex flex-col gap-4 border-b border-charcoal/20 pb-6 sm:flex-row sm:items-center sm:justify-between">
       <p role="status" className="max-w-xl text-sm leading-relaxed text-charcoal/75">{draftNotice}</p>
-      <button type="button" onClick={resetDraft} disabled={sending} className={`${buttonCls} shrink-0 self-start text-sm`}>Reset draft</button>
+
     </div>
 
     <div className="mb-10">
@@ -288,6 +288,9 @@ export default function ProjectBriefForm() {
       </fieldset>
       {failure && <div id="brief-submit-error" role="alert" tabIndex={-1} className="mt-6 border-l-2 border-[#9b2929] bg-[#9b2929]/5 p-5 text-sm leading-relaxed outline-none"><p>{failure}</p>{review && <button type="button" disabled={sending} onClick={() => void sendBrief()} className={`${buttonCls} mt-4`}>Retry submission</button>}</div>}
       <p className="mt-5 text-sm leading-relaxed text-charcoal/65">Your answers are used to prepare your proposal. Submitting this brief does not reserve a project slot.</p>
+      <div className="mt-10 border-t border-charcoal/15 pt-6">
+      <button type="button" onClick={resetDraft} disabled={sending} className={`${buttonCls} shrink-0 self-start text-sm`}>Reset draft</button>
+      </div>
     </form>
   </div>;
 }
