@@ -22,6 +22,11 @@ import MobileTestimonials from "./components/MobileTestimonials";
 
 const testimonials = [
   {
+  "quote": "I had a very specific vision for my website, and hasnain brought it together really beautifully! Everything feels so professional, thoughtfully designed, and true to what I wanted. What I appreciated most was how well he understood the little details that mattered to me. I’m genuinely so happy with how it turned out, and I’d absolutely recommend working with him!",
+  "name": "Amr socials",
+  "company": ""
+},
+  {
     quote:
       "Hasnain was amazing to work with. A website is something I’ve wanted to do for years but as a full time business owner, finding time to build a space that represented me and my brand was very challenging. The website hasnain created was everything I could have imagined and am so grateful to have this checked off my to-do list. Highly recommend hasainwebstudio for all your website needs!",
     name: "Natasha",
