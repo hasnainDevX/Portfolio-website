@@ -147,7 +147,7 @@ const Hero = () => {
       {/* Brand-colour image overlay (your existing one) */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 z-[1] bg-gradient-to-br from-charcoal/95 via-charcoal/80 to-gold/75"
+        className="absolute inset-0 z-[1] bg-gradient-to-br from-charcoal/95 via-black/95 to-gold/80"
       />
 
       {/* Desktop cursor light */}
