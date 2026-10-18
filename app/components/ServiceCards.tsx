@@ -284,7 +284,7 @@ const Skiper17 = () => {
       backgroundImage: bg,
       title: "Signature Site",
       timeline: "Live in 2-4 weeks",
-      badge: "Popular",
+      // badge: "",
       description:
         "A brand-led site that earns trust before your first message: custom design, sharper storytelling, a clear path to booking.",
       wif: "Best for: growing businesses that want to be the premium pick, not the cheapest.",
