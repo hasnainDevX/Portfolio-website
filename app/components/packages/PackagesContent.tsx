@@ -54,7 +54,7 @@ export const packages: Pkg[] = [
       "Optimize for 90+ SEO and PERFORMANCE Score so your website can appear in top search results when people search for your services.",
     ],
     included: [
-      "A multi-page custom website that explains your services and answers questions before clients ask",
+      "A multi-page custom website, with up to ten pages, that explains your services and answers questions before clients ask",
       "Search built into every page, including the technical details Google looks for, on a site made to load fast",
       "Subtle motion and detail that make the site feel finished and trustworthy",
       "A professional and strategic content that takes the user to inquiry",
@@ -79,7 +79,7 @@ export const packages: Pkg[] = [
     name: "The Complete Vision",
     image: CompleteImage,
     intro: [
-      "For businesses that want to compete with the names already showing up at the top of search results. It brings together a basic brand foundation, a fully custom website, and search planning built around the businesses you're up against.",
+      "For businesses that want to compete with the names already showing up at the top of search results. It brings together a brand foundation, a fully custom website, and search planning built around the businesses you're up against.",
       "It's designed to outlast trends: a consistent identity, a site that grows with the business, and ongoing maintenance and security updates so it keeps performing after launch.",
     ],
     included: [
@@ -87,6 +87,9 @@ export const packages: Pkg[] = [
       "Basic branding, so your website and everything around it share one consistent, established identity",
       "A review of who already appears for your key searches, with the site and its content planned to compete with them",
       "Custom features designed around how your business runs, with an online shop or content system if you need one",
+      "Up to 25 pages, so your site has room to grow with your business",
+      "Professional copywriting, so every page reads clearly and sells your services for you",
+      "An AI chatbot that answers your visitors' questions, even when you're offline",
       "A dashboard of your own for changing text and images, without waiting on a developer",
       "A site that works smoothly on every device, with app-like features on phones",
       "Ongoing maintenance and security updates, so it stays dependable and current",
