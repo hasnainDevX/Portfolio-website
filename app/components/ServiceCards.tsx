@@ -137,7 +137,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         </div>
 
         {/* All cards live in the same stack. */}
-       <div className="absolute bottom-16 left-1/2 z-10 h-[32rem] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[18vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
+        <div className="absolute bottom-16 left-1/2 z-10 h-[32rem] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[18vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
           {cards.map((card, i) => {
             // Keep every tab aligned on mobile, then spread them on desktop.
             const desktopTabClass =
@@ -159,8 +159,6 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                   willChange: "transform",
                 }}
               >
-               
-
                 {/* Main card. */}
                 <div
                   className="relative h-[55vh] max-h-[450px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
@@ -211,9 +209,11 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-7">
                           <Link
                             href="/packages"
-                            className="inline-flex min-h-11 items-center gap-1.5 text-[12px] uppercase tracking-[0.1em] text-charcoal underline decoration-charcoal/35 underline-offset-4 transition-colors duration-200 hover:decoration-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
+                            className="group inline-flex min-h-11 items-center gap-1.5 text-[12px] uppercase tracking-[0.1em] text-charcoal transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
                           >
-                            See what&apos;s included{" "}
+                            <span className="underline decoration-charcoal/35 underline-offset-4 transition-colors duration-200 group-hover:decoration-charcoal">
+                              See what&apos;s included
+                            </span>
                             <span aria-hidden="true">→</span>
                           </Link>
 
@@ -245,9 +245,24 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
             );
           })}
         </div>
-        <div role="img" aria-label="Scroll down" className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center text-white">
-          <svg aria-hidden="true" viewBox="0 0 24 28" fill="none" className="hw-service-scroll h-7 w-6">
-            <path d="M12 3v20m-6-6 6 6 6-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <div
+          role="img"
+          aria-label="Scroll down"
+          className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center text-white"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 28"
+            fill="none"
+            className="hw-service-scroll h-7 w-6"
+          >
+            <path
+              d="M12 3v20m-6-6 6 6 6-6"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
       </div>

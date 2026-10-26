@@ -31,7 +31,7 @@ export const packages: Pkg[] = [
       "A fast, smooth experience on phones, where most of your visitors arrive",
       "Enquiries sent straight to your inbox, with visitor stats that show where they come from",
       "Help with your wording, plus Hosting setup and domain guidance",
-      "Ten days of support after launch",
+      "10 days of support after launch",
     ],
     suitedTo: [
       "Are starting out and don't have a website yet",
@@ -59,7 +59,7 @@ export const packages: Pkg[] = [
       "Subtle motion and detail that make the site feel finished and trustworthy",
       "A professional and strategic content that takes the user to inquiry",
       "Tracking that shows which pages lead to enquiries, plus sign-up forms to build your mailing list",
-      "Twenty days of support and updates after launch",
+      "20 days of support and updates after launch",
     ],
     suitedTo: [
       "Have a growing or established business and want a full website from day one",
@@ -87,12 +87,12 @@ export const packages: Pkg[] = [
       "Basic branding, so your website and everything around it share one consistent, established identity",
       "A review of who already appears for your key searches, with the site and its content planned to compete with them",
       "Custom features designed around how your business runs, with an online shop or content system if you need one",
-      "Up to 25 pages, so your site has room to grow with your business",
+      "Up to 20 pages, so your site has room to grow with your business",
       "Professional copywriting, so every page reads clearly and sells your services for you",
       "An AI chatbot that answers your visitors' questions, even when you're offline",
       "A dashboard of your own for changing text and images, without waiting on a developer",
       "A site that works smoothly on every device, with app-like features on phones",
-      "Thirty days of priority support, with revisions",
+      "30 days of priority support, with revisions",
     ],
     suitedTo: [
       "Are up against established competitors who already appear at the top of search results",
