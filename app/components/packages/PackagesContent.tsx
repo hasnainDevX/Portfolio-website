@@ -80,7 +80,7 @@ export const packages: Pkg[] = [
     image: CompleteImage,
     intro: [
       "For businesses that want to compete with the names already showing up at the top of search results. It brings together a brand foundation, a fully custom website, and search planning built around the businesses you're up against.",
-      "It's designed to outlast trends: a consistent identity, a site that grows with the business, and ongoing maintenance and security updates so it keeps performing after launch.",
+      "It's designed to outlast trends: a consistent identity, a site that grows with the you, and makes your business the best choice in your industry",
     ],
     included: [
       "Everything in The Signature Site",
@@ -92,7 +92,6 @@ export const packages: Pkg[] = [
       "An AI chatbot that answers your visitors' questions, even when you're offline",
       "A dashboard of your own for changing text and images, without waiting on a developer",
       "A site that works smoothly on every device, with app-like features on phones",
-      "Ongoing maintenance and security updates, so it stays dependable and current",
       "Thirty days of priority support, with revisions",
     ],
     suitedTo: [
