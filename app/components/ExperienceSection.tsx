@@ -110,7 +110,7 @@ const ExperienceSection = () => {
             </div>
 
             <div className="max-w-xl lg:pb-1">
-              <p className="font-body text-sm leading-relaxed text-charcoal/70 sm:text-base">
+              <p className="font-body text-sm leading-relaxed text-charcoal/70 sm:text-base my-2">
                 If clients pay for your time and trust, your website is the
                 first thing they judge. I build sites that do the selling: a
                 clear offer, easy booking, and a place on Google.
