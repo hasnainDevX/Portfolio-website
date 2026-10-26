@@ -1,19 +1,14 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-
 import bg from "../assets/waves.png";
-
 import service1 from "../assets/allingoodhans1.png";
 import service2 from "../assets/lashedbytash.jpeg";
 import service3 from "../assets/cafesite.jpeg";
 import packagesbg from "../assets/packagesbg.png";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 interface CardData {
@@ -29,7 +24,6 @@ interface CardData {
   href: string;
   badge?: string;
 }
-
 interface StickyCardsProps {
   cards: CardData[];
   backgroundImage: StaticImageData | string;
@@ -45,9 +39,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
 
   useEffect(() => {
     const container = containerRef.current;
-
     if (!container) return;
-
     const cardElements = cardsRef.current.filter(
       (card): card is HTMLElement => card !== null,
     );
@@ -59,7 +51,6 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
       gsap.set(cardElements, {
         y: () => window.innerHeight + 120,
       });
-
       // Pin the section while each card stacks over the previous one.
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -146,7 +137,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         </div>
 
         {/* All cards live in the same stack. */}
-        <div className="absolute bottom-16 left-1/2 z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[27vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
+        <div className="absolute bottom-16 left-1/2 z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[18vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
           {cards.map((card, i) => {
             // Keep every tab aligned on mobile, then spread them on desktop.
             const desktopTabClass =
@@ -168,18 +159,11 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                   willChange: "transform",
                 }}
               >
-                {/* Folder tab. */}
-                <div
-                  className={`absolute left-[5%] top-[-42px] flex h-[44px] w-[58%] max-w-[190px] items-center justify-center rounded-t-[16px] border border-b-0 border-charcoal bg-soft-beige px-3 md:top-[-58px] md:h-[60px] md:w-[31%] md:max-w-[230px] md:rounded-t-[24px] md:px-5 ${desktopTabClass}`}
-                >
-                  <span className="text-center text-[8px] font-semibold uppercase leading-tight tracking-[0.11em] text-charcoal md:text-[10px] lg:text-[11px]">
-                    {card.title}
-                  </span>
-                </div>
+               
 
                 {/* Main card. */}
                 <div
-                  className="relative h-[58vh] min-h-[470px] max-h-[560px] overflow-hidden rounded-t-[8px] border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-0 md:max-h-none md:rounded-t-[10px]"
+                  className="hw-portfolio-zigzag relative h-[50vh] max-h-[400px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
                   style={{
                     backgroundImage: `url("${getImageSrc(
                       card.backgroundImage,
@@ -192,48 +176,52 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
                   {/* Mobile is text-only; desktop becomes a two-column layout. */}
                   <div className="relative z-10 grid h-full grid-cols-1 md:grid-cols-[1fr_0.92fr]">
                     {/* Text content */}
-                    <div className="m-2 flex min-w-0 flex-col justify-center rounded-[4px] bg-white px-5 py-5 text-charcoal sm:px-7 md:m-4 md:mr-0 md:px-7 md:py-6 lg:px-9">
+                    <div className="m-2 flex min-w-0 flex-col justify-center rounded-[4px] bg-white px-6 py-6 text-charcoal sm:px-7 md:m-4 md:mr-0 md:px-8 md:py-7 lg:px-9">
                       <div className="mx-auto w-full max-w-[440px] md:mx-0">
-                        <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 md:mb-5">
-                          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal/75">
-                            {card.timeline}
-                          </p>
+                        {(card.timeline || card.badge) && (
+                          <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+                            {card.timeline && (
+                              <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal/60">
+                                {card.timeline}
+                              </p>
+                            )}
 
-                          {card.badge && (
-                            <span className="border-l border-charcoal/25 pl-4 text-[11px] italic text-charcoal">
-                              {card.badge}
-                            </span>
-                          )}
-                        </div>
+                            {card.badge && (
+                              <span className="border-l border-charcoal/25 pl-4 text-[11px] italic text-charcoal/70">
+                                {card.badge}
+                              </span>
+                            )}
+                          </div>
+                        )}
 
-                        <h3 className="font-serif text-[clamp(2.25rem,9vw,3rem)] font-normal leading-[1.04] tracking-[-0.025em] text-charcoal md:text-[clamp(2.5rem,3.8vw,3.75rem)]">
+                        <h3 className="font-serif text-[clamp(2rem,8vw,2.65rem)] font-normal leading-[1.08] tracking-[-0.02em] text-charcoal md:text-[clamp(2.1rem,3.2vw,3rem)]">
                           {card.title}
                         </h3>
 
-                        <p className="mt-4 text-[15px] leading-[1.55] text-charcoal md:mt-5 lg:text-[16px]">
-                          {card.description}
-                        </p>
+                        <div className="mt-4 space-y-3 md:mt-5 md:space-y-4">
+                          <p className="text-[15px] leading-[1.65] text-charcoal/80 lg:text-[16px]">
+                            {card.description}
+                          </p>
 
-                        <p className="mt-4 max-w-[400px] text-[14px] leading-[1.55] text-charcoal/75">
-                          {card.wif}
-                        </p>
+                          <p className="max-w-[400px] text-[14px] leading-[1.65] text-charcoal/60">
+                            {card.wif}
+                          </p>
+                        </div>
 
-                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 md:mt-6">
+                        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-7">
                           <Link
-                            href={card.href}
-                            className="button button-lavender border rounded-full px-5 py-3 transition-colors duration-300 hover:bg-gold hover:text-white cursor-pointer"
+                            href="/packages"
+                            className="inline-flex min-h-11 items-center gap-1.5 text-[12px] uppercase tracking-[0.1em] text-charcoal underline decoration-charcoal/35 underline-offset-4 transition-colors duration-200 hover:decoration-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
                           >
-                            {card.cta}
-                            {/* <span aria-hidden="true" className="text-base">
-                             
-                            </span> */}
+                            See what&apos;s included{" "}
+                            <span aria-hidden="true">→</span>
                           </Link>
 
                           <Link
-                            href="/packages"
-                            className="inline-flex min-h-11 items-center text-[12px] text-charcoal underline decoration-charcoal/35 underline-offset-4 transition-colors duration-200 hover:decoration-charcoal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-charcoal"
+                            href={card.href}
+                            className="inline-flex min-h-11 items-center justify-center border border-charcoal px-6 py-3 text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-colors duration-300 hover:bg-charcoal hover:text-white"
                           >
-                            See what&apos;s included
+                            {card.cta}
                           </Link>
                         </div>
                       </div>
@@ -263,7 +251,18 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
           </svg>
         </div>
       </div>
-      <style>{`@keyframes hw-service-scroll { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } } .hw-service-scroll { animation: hw-service-scroll 1.6s ease-in-out infinite; } @media (prefers-reduced-motion: reduce) { .hw-service-scroll { animation: none; } }`}</style>
+      <style>{`
+        @keyframes hw-service-scroll { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+        .hw-service-scroll { animation: hw-service-scroll 1.6s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .hw-service-scroll { animation: none; } }
+
+        .hw-portfolio-zigzag {
+          --zigzag-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 6L6 0L12 6Z' fill='black'/%3E%3C/svg%3E");
+          --zigzag-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 0H12L6 6Z' fill='black'/%3E%3C/svg%3E");
+          -webkit-mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+          mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
+        }
+      `}</style>
     </section>
   );
 };
