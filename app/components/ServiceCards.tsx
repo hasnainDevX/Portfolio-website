@@ -137,7 +137,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         </div>
 
         {/* All cards live in the same stack. */}
-        <div className="absolute bottom-16 left-1/2 z-10 h-[clamp(470px,58vh,560px)] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[18vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
+       <div className="absolute bottom-16 left-1/2 z-10 h-[32rem] w-[88%] -translate-x-1/2 sm:w-[82%] md:bottom-16 md:top-[18vh] md:h-auto md:w-[88%] md:max-w-[1140px] md:translate-y-0 lg:w-[84%]">
           {cards.map((card, i) => {
             // Keep every tab aligned on mobile, then spread them on desktop.
             const desktopTabClass =
@@ -163,7 +163,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
 
                 {/* Main card. */}
                 <div
-                  className="hw-portfolio-zigzag relative h-[50vh] max-h-[400px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
+                  className="relative h-[50vh] max-h-[400px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
                   style={{
                     backgroundImage: `url("${getImageSrc(
                       card.backgroundImage,
