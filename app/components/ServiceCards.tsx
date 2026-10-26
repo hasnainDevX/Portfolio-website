@@ -255,13 +255,6 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
         @keyframes hw-service-scroll { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
         .hw-service-scroll { animation: hw-service-scroll 1.6s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) { .hw-service-scroll { animation: none; } }
-
-        .hw-portfolio-zigzag {
-          --zigzag-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 6L6 0L12 6Z' fill='black'/%3E%3C/svg%3E");
-          --zigzag-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M0 0H12L6 6Z' fill='black'/%3E%3C/svg%3E");
-          -webkit-mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
-          mask: var(--zigzag-top) left top / 12px 6px repeat-x, linear-gradient(#000 0 0) center / 100% calc(100% - 12px) no-repeat, var(--zigzag-bottom) left bottom / 12px 6px repeat-x;
-        }
       `}</style>
     </section>
   );
