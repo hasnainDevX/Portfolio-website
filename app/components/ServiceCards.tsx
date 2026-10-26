@@ -163,7 +163,7 @@ const StickyCard002 = ({ cards, backgroundImage }: StickyCardsProps) => {
 
                 {/* Main card. */}
                 <div
-                  className="relative h-[50vh] max-h-[400px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
+                  className="relative h-[55vh] max-h-[450px] overflow-hidden border border-black/70 bg-cover bg-center bg-no-repeat md:h-[calc(73vh-4rem)] md:min-h-[480px] md:max-h-none"
                   style={{
                     backgroundImage: `url("${getImageSrc(
                       card.backgroundImage,
