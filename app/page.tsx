@@ -93,7 +93,7 @@ export default function Home() {
       <ScrollShowcase
         mode="both"
         heading={[
-          "We create premium, conversion-focused websites",
+          "High-end, conversion-focused websites",
           "that attract the right clients",
           "and help your business grow.",
         ]}
